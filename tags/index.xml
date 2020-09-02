@@ -6,10 +6,37 @@
     <description>Recent content in Tags on The Blog of housirvip</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Sun, 20 May 2018 14:36:37 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 10 Jul 2018 00:00:00 +0800</lastBuildDate>
     
 	<atom:link href="https://housirvip.github.com/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>preview</title>
+      <link>https://housirvip.github.com/tags/preview/</link>
+      <pubDate>Tue, 10 Jul 2018 00:00:00 +0800</pubDate>
+      
+      <guid>https://housirvip.github.com/tags/preview/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>tag-3</title>
+      <link>https://housirvip.github.com/tags/tag-3/</link>
+      <pubDate>Tue, 10 Jul 2018 00:00:00 +0800</pubDate>
+      
+      <guid>https://housirvip.github.com/tags/tag-3/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Theme preview</title>
+      <link>https://housirvip.github.com/tags/theme-preview/</link>
+      <pubDate>Tue, 10 Jul 2018 00:00:00 +0800</pubDate>
+      
+      <guid>https://housirvip.github.com/tags/theme-preview/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>Consul</title>
@@ -170,6 +197,15 @@
       <pubDate>Wed, 16 Aug 2017 18:34:30 +0000</pubDate>
       
       <guid>https://housirvip.github.com/tags/%E8%BD%AF%E8%B7%AF%E7%94%B1/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>shortcodes</title>
+      <link>https://housirvip.github.com/tags/shortcodes/</link>
+      <pubDate>Tue, 30 Aug 2016 16:01:23 +0800</pubDate>
+      
+      <guid>https://housirvip.github.com/tags/shortcodes/</guid>
       <description></description>
     </item>
     
