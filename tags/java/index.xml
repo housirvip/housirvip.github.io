@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Java on The Blog of housirvip</title>
+    <link>https://housirvip.github.com/tags/java/</link>
+    <description>Recent content in Java on The Blog of housirvip</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Wed, 02 Sep 2020 21:44:20 +0800</lastBuildDate>
+    
+	<atom:link href="https://housirvip.github.com/tags/java/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>动态代理 Dynamic Proxy</title>
+      <link>https://housirvip.github.com/post/dynamic-proxy/</link>
+      <pubDate>Wed, 02 Sep 2020 21:44:20 +0800</pubDate>
+      
+      <guid>https://housirvip.github.com/post/dynamic-proxy/</guid>
+      <description>静态代理 原始接口和实现类 1 2 3 4 5 6 7 8 9 10 11 12 13 14 package vip.housir.proxy; /** * @author housirvip */ public interface SmsService { /** * send msg * * @param msg String */ public void send(String msg); } 1 2 3 4 5 6 7 8 9 10 11 12 package vip.housir.proxy; /** * @author housirvip</description>
+    </item>
+    
+  </channel>
+</rss>
