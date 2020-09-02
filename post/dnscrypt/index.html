@@ -49,7 +49,7 @@
 <meta itemprop="description" content="起因 国内近年来 DNS 污染严重，甚至就连一些地方宽带商都胡乱投毒，整一些花里胡哨的广告页面，什么，你想要干净清爽的网络浏览？ 经过 安装开发环境 1 sudo apt-get">
 <meta itemprop="datePublished" content="2017-08-24T12:53:47+00:00" />
 <meta itemprop="dateModified" content="2017-08-24T12:53:47+00:00" />
-<meta itemprop="wordCount" content="506">
+<meta itemprop="wordCount" content="520">
 
 
 
@@ -144,7 +144,7 @@
           <ul>
             <li><a href="#安装开发环境">安装开发环境</a></li>
             <li><a href="#安装依赖项">安装依赖项</a></li>
-            <li><a href="#安装-pcap_dnsproxyhttpsgithubcomchengr28pcap_dnsproxy">安装 <a href="https://github.com/chengr28/Pcap_DNSProxy">Pcap_DNSProxy</a></a></li>
+            <li><a href="#安装-pcap_dnsproxy">安装 Pcap_DNSProxy</a></li>
           </ul>
         </li>
         <li><a href="#结果">结果</a></li>
@@ -205,7 +205,7 @@ sudo aptitude install build-essential -y
 <pre class="chroma"><code class="language-bash" data-lang="bash">sudo apt-get install -y libsodium-dev libpcap-dev libssl-dev flex bison
 </code></pre></td></tr></table>
 </div>
-</div><h3 id="安装-pcap_dnsproxyhttpsgithubcomchengr28pcap_dnsproxy">安装 <a href="https://github.com/chengr28/Pcap_DNSProxy">Pcap_DNSProxy</a></h3>
+</div><h3 id="安装-pcap_dnsproxy">安装 Pcap_DNSProxy</h3>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre class="chroma"><code><span class="lnt">1
@@ -242,16 +242,27 @@ sudo vi Pcap_DNSProxy.service
 <li>WorkingDirectory填写你的程序位置文件夹</li>
 <li>ExecStart填写程序位置文件夹跟上程序名</li>
 </ul>
-<p>{% note warning %}
-[Service]
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">[Service]
 Type=forking
 WorkingDirectory=/home/pi/Pcap_DNSProxy/Source/Release
 ExecStart=/home/pi/Pcap_DNSProxy/Source/Release/Pcap_DNSProxy
 GuessMainPID=yes
 Restart=on-failure
 RestartSec=15s
-{% endnote %}</p>
-<div class="highlight"><div class="chroma">
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
@@ -271,26 +282,55 @@ sudo service Pcap_DNSProxy status
 <ul>
 <li>dig 命令测试 DNS 回到</li>
 </ul>
-<p>{% note success %}
-pi@raspberrypi:~/Pcap_DNSProxy/Source/Release $ dig @127.0.0.1 <a href="http://www.google.com">www.google.com</a></p>
-<p>; &laquo;&raquo; DiG 9.10.3-P4-Raspbian &laquo;&raquo; @127.0.0.1 <a href="http://www.google.com">www.google.com</a>
-; (1 server found)
-;; global options: +cmd
-;; Got answer:
-;; -&raquo;HEADER&laquo;- opcode: QUERY, status: NOERROR, id: 56212
-;; flags: qr rd ra; QUERY: 1, ANSWER: 1, AUTHORITY: 0, ADDITIONAL: 1</p>
-<p>;; OPT PSEUDOSECTION:
-; EDNS: version: 0, flags:; udp: 512
-;; QUESTION SECTION:
-;wwW.GOoGlE.coM.                        IN      A</p>
-<p>;; ANSWER SECTION:
-wwW.GOoGlE.coM.         266     IN      A       216.58.200.36</p>
-<p>;; Query time: 241 msec
-;; SERVER: 127.0.0.1#53(127.0.0.1)
-;; WHEN: Thu Aug 24 06:34:31 UTC 2017
-;; MSG SIZE  rcvd: 59
-{% endnote %}</p>
-<p><img src="http://static.nicesite.vip/2018-06-12-090255.jpg" alt=""></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">pi@raspberrypi:~/Pcap_DNSProxy/Source/Release $ dig @127.0.0.1 www.google.com
+
+<span class="p">;</span> &lt;&lt;&gt;&gt; DiG 9.10.3-P4-Raspbian &lt;&lt;&gt;&gt; @127.0.0.1 www.google.com
+<span class="p">;</span> <span class="o">(</span><span class="m">1</span> server found<span class="o">)</span>
+<span class="p">;;</span> global options: +cmd
+<span class="p">;;</span> Got answer:
+<span class="p">;;</span> -&gt;&gt;HEADER<span class="s">&lt;&lt;- opco</span>de: QUERY, status: NOERROR, id: <span class="m">56212</span>
+<span class="p">;;</span> flags: qr rd ra<span class="p">;</span> QUERY: 1, ANSWER: 1, AUTHORITY: 0, ADDITIONAL: <span class="m">1</span>
+
+<span class="p">;;</span> OPT PSEUDOSECTION:
+<span class="p">;</span> EDNS: version: 0, flags:<span class="p">;</span> udp: <span class="m">512</span>
+<span class="p">;;</span> QUESTION SECTION:
+<span class="p">;</span>wwW.GOoGlE.coM.                        IN      A
+
+<span class="p">;;</span> ANSWER SECTION:
+wwW.GOoGlE.coM.         <span class="m">266</span>     IN      A       216.58.200.36
+
+<span class="p">;;</span> Query time: <span class="m">241</span> msec
+<span class="p">;;</span> SERVER: 127.0.0.1#53<span class="o">(</span>127.0.0.1<span class="o">)</span>
+<span class="p">;;</span> WHEN: Thu Aug <span class="m">24</span> 06:34:31 UTC <span class="m">2017</span>
+<span class="p">;;</span> MSG SIZE  rcvd: <span class="m">59</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><img src="http://static.nicesite.vip/2018-06-12-090255.jpg" alt=""></p>
 
     </div>
 
