@@ -16,7 +16,21 @@
   </url>
   
   <url>
+    <loc>https://housirvip.github.com/tags/java/</loc>
+    <lastmod>2020-09-02T21:44:20+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
     <loc>https://housirvip.github.com/post/</loc>
+    <lastmod>2020-09-02T21:44:20+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://housirvip.github.com/tags/</loc>
     <lastmod>2020-09-02T21:44:20+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
@@ -31,6 +45,13 @@
   
   <url>
     <loc>https://housirvip.github.com/post/dynamic-proxy/</loc>
+    <lastmod>2020-09-02T21:44:20+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://housirvip.github.com/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/</loc>
     <lastmod>2020-09-02T21:44:20+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
@@ -66,13 +87,6 @@
   
   <url>
     <loc>https://housirvip.github.com/tags/tag-3/</loc>
-    <lastmod>2018-07-10T00:00:00+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://housirvip.github.com/tags/</loc>
     <lastmod>2018-07-10T00:00:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>

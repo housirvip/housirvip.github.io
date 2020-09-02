@@ -6,10 +6,28 @@
     <description>Recent content in Tags on The Blog of housirvip</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Tue, 10 Jul 2018 00:00:00 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 02 Sep 2020 21:44:20 +0800</lastBuildDate>
     
 	<atom:link href="https://housirvip.github.com/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Java</title>
+      <link>https://housirvip.github.com/tags/java/</link>
+      <pubDate>Wed, 02 Sep 2020 21:44:20 +0800</pubDate>
+      
+      <guid>https://housirvip.github.com/tags/java/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>设计模式</title>
+      <link>https://housirvip.github.com/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/</link>
+      <pubDate>Wed, 02 Sep 2020 21:44:20 +0800</pubDate>
+      
+      <guid>https://housirvip.github.com/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>preview</title>
