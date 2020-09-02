@@ -1,0 +1,992 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>在树莓派上搭建软路由 - The Blog of housirvip</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="housirvip" /><meta name="description" content="出发点 很早的时候一直在用网件 wndr4300 刷了 openwrt 以及 lede 这种开放式的路由系统，一直沉迷于无界浏览无法自拔。因为笔者最近在学习的一些东西比较新，在国内看不到" /><meta name="keywords" content="Blog, web, blog" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.74.3 with theme even" />
+
+
+<link rel="canonical" href="https://housirvip.github.com/post/soft-router/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.651e6917abb0239242daa570c2bec9867267bbcd83646da5a850afe573347b44.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="在树莓派上搭建软路由" />
+<meta property="og:description" content="出发点 很早的时候一直在用网件 wndr4300 刷了 openwrt 以及 lede 这种开放式的路由系统，一直沉迷于无界浏览无法自拔。因为笔者最近在学习的一些东西比较新，在国内看不到" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://housirvip.github.com/post/soft-router/" />
+<meta property="article:published_time" content="2017-08-16T18:34:30+00:00" />
+<meta property="article:modified_time" content="2017-08-16T18:34:30+00:00" />
+<meta itemprop="name" content="在树莓派上搭建软路由">
+<meta itemprop="description" content="出发点 很早的时候一直在用网件 wndr4300 刷了 openwrt 以及 lede 这种开放式的路由系统，一直沉迷于无界浏览无法自拔。因为笔者最近在学习的一些东西比较新，在国内看不到">
+<meta itemprop="datePublished" content="2017-08-16T18:34:30+00:00" />
+<meta itemprop="dateModified" content="2017-08-16T18:34:30+00:00" />
+<meta itemprop="wordCount" content="2138">
+
+
+
+<meta itemprop="keywords" content="软路由,树莓派,Linux," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="在树莓派上搭建软路由"/>
+<meta name="twitter:description" content="出发点 很早的时候一直在用网件 wndr4300 刷了 openwrt 以及 lede 这种开放式的路由系统，一直沉迷于无界浏览无法自拔。因为笔者最近在学习的一些东西比较新，在国内看不到"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Housirvip</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">首页</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">时间线</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">标签</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">目录</li>
+      </a><a href="/%E5%85%B3%E4%BA%8E%E6%88%91/">
+        <li class="mobile-menu-item">关于我</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Housirvip</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">首页</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">时间线</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">标签</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">目录</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/%E5%85%B3%E4%BA%8E%E6%88%91/">关于我</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">在树莓派上搭建软路由</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2017-08-16 </span>
+        
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#出发点">出发点</a></li>
+        <li><a href="#要求提升">要求提升</a></li>
+        <li><a href="#准备工具">准备工具</a>
+          <ul>
+            <li><a href="#需要的设备">需要的设备</a></li>
+            <li><a href="#需要的软件">需要的软件</a></li>
+            <li><a href="#网络拓扑">网络拓扑</a></li>
+          </ul>
+        </li>
+        <li><a href="#开始动手">开始动手</a>
+          <ul>
+            <li><a href="#配置网卡">配置网卡</a></li>
+            <li><a href="#配置-dnsmasq">配置 dnsmasq</a></li>
+            <li><a href="#配置转发服务">配置转发服务</a></li>
+            <li><a href="#配置无污染的上级-dns">配置无污染的上级 DNS</a></li>
+            <li><a href="#配置-v2ray">配置 v2ray</a></li>
+          </ul>
+        </li>
+        <li><a href="#效果展示">效果展示</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <h2 id="出发点">出发点</h2>
+<ul>
+<li>很早的时候一直在用网件 wndr4300 刷了 <a href="https://openwrt.org/">openwrt</a> 以及 <a href="https://lede-project.org/">lede</a> 这种开放式的路由系统，一直沉迷于无界浏览无法自拔。因为笔者最近在学习的一些东西比较新，在国内看不到详细的文档，能上 <a href="https://www.google.com">google</a> 当然是最好的。</li>
+</ul>
+<p><img src="http://static.nicesite.vip/2018-06-12-091349.jpg" alt=""></p>
+<h2 id="要求提升">要求提升</h2>
+<ul>
+<li>当然不能满足于可以访问，作为一个年轻人就要有敢于折腾的精神。速度慢点的路由已经满足不了笔者的需求了。刚好前几天买了个树莓派3，不折腾下似乎有点过分了啊。</li>
+</ul>
+<p><img src="http://static.nicesite.vip/2018-06-12-091423.jpg" alt=""></p>
+<h2 id="准备工具">准备工具</h2>
+<h3 id="需要的设备">需要的设备</h3>
+<ul>
+<li>电脑一台</li>
+<li>树莓派 or 其他linux平台</li>
+<li>网卡2个，有线，无线，usb网卡都行</li>
+<li>网线一根</li>
+</ul>
+<h3 id="需要的软件">需要的软件</h3>
+<ul>
+<li>dnsmasq or isc-dhcp-server</li>
+<li>overture or DNScrypt</li>
+<li>v2ray shadowsocks or shadowsocks-rss</li>
+</ul>
+<h3 id="网络拓扑">网络拓扑</h3>
+<p><img src="http://static.nicesite.vip/2018-06-12-091444.jpg" alt="网络拓扑图"></p>
+<h2 id="开始动手">开始动手</h2>
+<h3 id="配置网卡">配置网卡</h3>
+<ul>
+<li>先把提供本机dhcp服务的网卡地址配置好，给自己赋予一个静态地址</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">sudo vim /etc/network/interfaces
+
+<span class="c1"># 加入以下内容</span>
+auto lo
+iface lo inet loopback
+auto eth0
+allow-hotplug eth0
+iface eth0 inet dhcp
+auto eth1
+allow-hotplug eth1
+iface eth1 inet static
+        address 192.168.20.1
+        network 192.168.20.0
+        netmask 255.255.255.0
+        broadcast 192.168.20.255
+</code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>
+<p>解释下<code>eth0</code>和<code>eth1</code>是我的树莓派上两张网卡，这个网卡名字不一定都是这种，根据自己的网卡名称进行修改，输入<code>ifconfig</code>来查看</p>
+</li>
+<li>
+<p><code>eth0</code>是连接上级路由的，它的网段是<code>192.168.10.0</code>，我直接连上就能上网了，把这张卡设置<code>dhcp</code>，自动从上级路由获取ip，如果是无线网卡一般是<code>wlan0</code></p>
+</li>
+<li>
+<p><code>eth1</code>是本机用来提供路由服务的，设置自己的网段，并且赋予自己固定ip</p>
+</li>
+</ul>
+<h3 id="配置-dnsmasq">配置 dnsmasq</h3>
+<ul>
+<li>首先安装 dnsmasq 来提供 dhcp 和 dns 缓存服务</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">sudo apt-get install dnsmasq
+</code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>安装完成后查看安装状态</li>
+</ul>
+<p>{% note success %}
+pi@raspberrypi:~ $ dnsmasq -v
+Dnsmasq version 2.76  Copyright (c) 2000-2016 Simon Kelley
+Compile time options: IPv6 GNU-getopt DBus i18n IDN DHCP DHCPv6 no-Lua TFTP conntrack ipset auth DNSSEC loop-detect inotify
+{% endnote %}</p>
+<ul>
+<li>编辑 dnsmasq 配置文件</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 不需要提供dhcp服务的网卡，一般是连接外网的那张卡</span>
+no-dhcp-interface<span class="o">=</span>eth0
+dhcp-range<span class="o">=</span>192.168.20.10,192.168.20.100,72h
+
+cache-size<span class="o">=</span><span class="m">102400</span>
+log-facility<span class="o">=</span>/var/log/dnsmasq/dnsmasq.log
+
+<span class="c1"># 指定返回给客户端的ttl时间，一般不需要设置</span>
+max-ttl<span class="o">=</span><span class="m">28800</span>
+<span class="c1"># 本地 hosts 文件的缓存时间，通常不要求缓存本地，这样更改hosts文件后就即时生效。</span>
+local-ttl<span class="o">=</span><span class="m">360</span>
+<span class="c1"># 对于上游返回的值没有ttl时，dnsmasq给一个默认的ttl，一般不需要设置</span>
+neg-ttl<span class="o">=</span><span class="m">28800</span>
+<span class="c1"># 设置在缓存中的条目的最大 TTL。</span>
+max-cache-ttl<span class="o">=</span><span class="m">28800</span>
+<span class="c1"># 设置在缓存中的条目的最小 TTL。</span>
+min-cache-ttl<span class="o">=</span><span class="m">10800</span>
+
+conf-dir<span class="o">=</span>/etc/dnsmasq.d/
+</code></pre></td></tr></table>
+</div>
+</div><ul>
+<li><del>如果你是使用了<code>isc-dhcp-server</code>这种额外的 dhcp 服务器，那么就把上面</del></li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">no-dhcp-interface=eth0
+dhcp-range=192.168.20.10,192.168.20.100,72h
+</code></pre></td></tr></table>
+</div>
+</div><ul>
+<li><del>这两句删掉吧，如果不设定<code>dhcp-range</code> dnsmasq 默认是不开启 dhcp 的，然后这么配置<code>isc-dhcp-server</code></del></li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">sudo vim /etc/dhcp/dhcpd.conf
+
+<span class="c1"># 添加以下内容</span>
+ddns-update-style none<span class="p">;</span>
+default-lease-time 600<span class="p">;</span>
+max-lease-time 7200<span class="p">;</span>
+
+<span class="c1"># 网段</span>
+subnet 192.168.20.0 netmask 255.255.255.0 <span class="o">{</span>
+  
+  <span class="c1"># DHCP 分配ip范围</span>
+  range 192.168.20.10 192.168.20.100<span class="p">;</span>
+  
+  <span class="c1"># DHCP 给接入设备分配的网关</span>
+  option routers 192.168.20.1<span class="p">;</span>
+  option subnet-mask 255.255.255.0<span class="p">;</span>
+  option broadcast-address 192.168.20.255<span class="p">;</span>
+  
+  <span class="c1"># 分配的DNS服务器</span>
+  option domain-name-servers 192.168.20.1<span class="p">;</span>
+<span class="o">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>
+<p>建议直接用 dnsmasq 好了，忽略上面两条内容即可</p>
+</li>
+<li>
+<p>添加 gfwlist</p>
+</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="nb">cd</span> 
+git clone https://github.com/cokebar/gfwlist2dnsmasq.git
+<span class="nb">cd</span> gfwlist2dnsmasq
+chmod a+x gfwlist2dnsmasq.sh
+./gfwlist2dnsmasq -o gfwlist.conf -s gfwlist
+sudo cp gfwlist.conf /etc/dnsmasq.d/
+</code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>在<code>gfwlist.conf</code>中都是这样的存在</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">server=/030buy.com/127.0.0.1#5300
+ipset=/030buy.com/gfwlist
+server=/0rz.tw/127.0.0.1#5300
+ipset=/0rz.tw/gfwlist
+...
+</code></pre></td></tr></table>
+</div>
+</div><ul>
+<li><code>127.0.0.1#5300</code>代表匹配的域名通过这个服务器和端口进行 DNS 解析，而这个端口是多少取决于一会你的防污染 DNS 服务器开启的端口，刚生成的是 5353 端口，我的因为被占用了，查找并替换改成 5300</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 开启dnsmasq</span>
+sudo service dnsmasq start
+
+<span class="c1"># 设置开机自启动</span>
+sudo systemctl <span class="nb">enable</span> dnsmasq
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="配置转发服务">配置转发服务</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">sudo vim /etc/sysctl.conf
+
+<span class="c1"># 修改一项，把前面注释号#去掉，或者自己加</span>
+net.ipv4.ip_forward <span class="o">=</span> <span class="m">1</span>
+
+<span class="c1"># 让上述修改立刻生效</span>
+sysctl -p
+</code></pre></td></tr></table>
+</div>
+</div><ul>
+<li><code>iptables</code>开启网段定向转发</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">sudo iptables -t nat -A POSTROUTING -s 192.168.20.0/24 -o eth0 -j MASQUERADE
+
+<span class="c1"># 上面这条命令重启就没了，写入文件中保证长期有效</span>
+sudo vim /etc/rc.local
+
+<span class="c1"># 在 exit0 前加入</span>
+iptables -t nat -A POSTROUTING -s 192.168.20.0/24 -o eth0 -j MASQUERADE
+</code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>ok， 至此，一个具有正常功能的普通路由就可以使用了，连接的设备也是可以上网的了</li>
+</ul>
+<h3 id="配置无污染的上级-dns"><del>配置无污染的上级 DNS</del></h3>
+<ul>
+<li>
+<p>其实多此一举，v2ray 自带无污染dns服务</p>
+</li>
+<li>
+<p><del>安装 <a href="https://github.com/shawn1m/overture">overture</a>, 去 github 下载 <a href="https://github.com/shawn1m/overture/releases">release-binary</a>, 我的树莓派下载 <a href="https://github.com/shawn1m/overture/releases/download/1.3.5.2/overture-linux-arm.zip">overture-linux-arm.zip</a></del></p>
+</li>
+<li>
+<p><del>修改配置文件 <code>config.json</code></del></p>
+</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-json" data-lang="json"><span class="p">{</span>
+  <span class="nt">&#34;BindAddress&#34;</span><span class="p">:</span> <span class="s2">&#34;:5300&#34;</span><span class="p">,</span>
+  <span class="nt">&#34;PrimaryDNS&#34;</span><span class="p">:</span> <span class="p">[</span>
+    <span class="p">{</span>
+      <span class="nt">&#34;Name&#34;</span><span class="p">:</span> <span class="s2">&#34;DNSPod&#34;</span><span class="p">,</span>
+      <span class="nt">&#34;Address&#34;</span><span class="p">:</span> <span class="s2">&#34;119.29.29.29:53&#34;</span><span class="p">,</span>
+      <span class="nt">&#34;Protocol&#34;</span><span class="p">:</span> <span class="s2">&#34;udp&#34;</span><span class="p">,</span>
+      <span class="nt">&#34;SOCKS5Address&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;</span><span class="p">,</span>
+      <span class="nt">&#34;Timeout&#34;</span><span class="p">:</span> <span class="mi">6</span><span class="p">,</span>
+      <span class="nt">&#34;EDNSClientSubnet&#34;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&#34;Policy&#34;</span><span class="p">:</span> <span class="s2">&#34;disable&#34;</span><span class="p">,</span>
+        <span class="nt">&#34;ExternalIP&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;</span>
+      <span class="p">}</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+      <span class="nt">&#34;Name&#34;</span><span class="p">:</span> <span class="s2">&#34;114&#34;</span><span class="p">,</span>
+      <span class="nt">&#34;Address&#34;</span><span class="p">:</span> <span class="s2">&#34;114.114.114.114:53&#34;</span><span class="p">,</span>
+      <span class="nt">&#34;Protocol&#34;</span><span class="p">:</span> <span class="s2">&#34;udp&#34;</span><span class="p">,</span>
+      <span class="nt">&#34;Timeout&#34;</span><span class="p">:</span> <span class="mi">6</span><span class="p">,</span>
+      <span class="nt">&#34;EDNSClientSubnet&#34;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&#34;Policy&#34;</span><span class="p">:</span> <span class="s2">&#34;disable&#34;</span><span class="p">,</span>
+        <span class="nt">&#34;ExternalIP&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+  <span class="p">],</span>
+  <span class="nt">&#34;AlternativeDNS&#34;</span><span class="p">:</span> <span class="p">[</span>
+    <span class="p">{</span>
+      <span class="nt">&#34;Name&#34;</span><span class="p">:</span> <span class="s2">&#34;OpenDNS&#34;</span><span class="p">,</span>
+      <span class="nt">&#34;Address&#34;</span><span class="p">:</span> <span class="s2">&#34;208.67.222.222:443&#34;</span><span class="p">,</span>
+      <span class="nt">&#34;Protocol&#34;</span><span class="p">:</span> <span class="s2">&#34;tcp&#34;</span><span class="p">,</span>
+      <span class="nt">&#34;SOCKS5Address&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;</span><span class="p">,</span>
+      <span class="nt">&#34;Timeout&#34;</span><span class="p">:</span> <span class="mi">6</span><span class="p">,</span>
+      <span class="nt">&#34;EDNSClientSubnet&#34;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&#34;Policy&#34;</span><span class="p">:</span> <span class="s2">&#34;disable&#34;</span><span class="p">,</span>
+        <span class="nt">&#34;ExternalIP&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+  <span class="p">],</span>
+  <span class="nt">&#34;OnlyPrimaryDNS&#34;</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+  <span class="nt">&#34;RedirectIPv6Record&#34;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+  <span class="nt">&#34;IPNetworkFile&#34;</span><span class="p">:</span> <span class="s2">&#34;./ip_network_sample&#34;</span><span class="p">,</span>
+  <span class="nt">&#34;DomainFile&#34;</span><span class="p">:</span> <span class="s2">&#34;./domain_sample&#34;</span><span class="p">,</span>
+  <span class="nt">&#34;DomainBase64Decode&#34;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+  <span class="nt">&#34;HostsFile&#34;</span><span class="p">:</span> <span class="s2">&#34;./hosts_sample&#34;</span><span class="p">,</span>
+  <span class="nt">&#34;MinimumTTL&#34;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+  <span class="nt">&#34;CacheSize&#34;</span> <span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+  <span class="nt">&#34;RejectQtype&#34;</span><span class="p">:</span> <span class="p">[</span><span class="mi">255</span><span class="p">]</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>
+<p><del>然后直接运行就行 <code>./overture-linux-arm</code>, 这样不能关闭这次连接的终端，否则就关闭了，可以选择开一个 screen 来运行，或者<code>./overture-linux-arm &amp;</code></del></p>
+</li>
+<li>
+<p><a href="https://dnscrypt.org/">DNSCrypt</a> 可以代替 overture 不过配置麻烦，读者可以自行研究，功能更加强大稳定</p>
+</li>
+</ul>
+<h3 id="配置-v2ray">配置 v2ray</h3>
+<ul>
+<li>先去安装 <a href="https://www.v2ray.com/">v2ray</a></li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="nb">cd</span> 
+wget https://install.direct/go.sh
+sudo bash go.sh
+sudo vim /etc/v2ray/config.json
+</code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>客户端配置出一个socks5代理端口 8080 (以备不时之需)、一个透明代理端口 1080</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span><span class="lnt">60
+</span><span class="lnt">61
+</span><span class="lnt">62
+</span><span class="lnt">63
+</span><span class="lnt">64
+</span><span class="lnt">65
+</span><span class="lnt">66
+</span><span class="lnt">67
+</span><span class="lnt">68
+</span><span class="lnt">69
+</span><span class="lnt">70
+</span><span class="lnt">71
+</span><span class="lnt">72
+</span><span class="lnt">73
+</span><span class="lnt">74
+</span><span class="lnt">75
+</span><span class="lnt">76
+</span><span class="lnt">77
+</span><span class="lnt">78
+</span><span class="lnt">79
+</span><span class="lnt">80
+</span><span class="lnt">81
+</span><span class="lnt">82
+</span><span class="lnt">83
+</span><span class="lnt">84
+</span><span class="lnt">85
+</span><span class="lnt">86
+</span><span class="lnt">87
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-json" data-lang="json"><span class="p">{</span>
+  <span class="nt">&#34;log&#34;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nt">&#34;access&#34;</span><span class="p">:</span> <span class="s2">&#34;/var/log/v2ray/access.log&#34;</span><span class="p">,</span>
+    <span class="nt">&#34;error&#34;</span><span class="p">:</span> <span class="s2">&#34;/var/log/v2ray/error.log&#34;</span><span class="p">,</span>
+    <span class="nt">&#34;loglevel&#34;</span><span class="p">:</span> <span class="s2">&#34;warning&#34;</span>
+  <span class="p">},</span>
+  <span class="nt">&#34;inbound&#34;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nt">&#34;port&#34;</span><span class="p">:</span> <span class="mi">8080</span><span class="p">,</span>
+    <span class="nt">&#34;listen&#34;</span><span class="p">:</span> <span class="s2">&#34;192.168.20.1&#34;</span><span class="p">,</span>
+    <span class="nt">&#34;protocol&#34;</span><span class="p">:</span> <span class="s2">&#34;socks&#34;</span><span class="p">,</span>
+    <span class="nt">&#34;settings&#34;</span><span class="p">:</span> <span class="p">{</span>
+      <span class="nt">&#34;auth&#34;</span><span class="p">:</span> <span class="s2">&#34;noauth&#34;</span><span class="p">,</span>
+      <span class="nt">&#34;udp&#34;</span><span class="p">:</span> <span class="kc">false</span>
+    <span class="p">}</span>
+  <span class="p">},</span>
+  <span class="nt">&#34;inboundDetour&#34;</span><span class="p">:</span> <span class="p">[</span>
+    <span class="p">{</span>
+      <span class="nt">&#34;protocol&#34;</span><span class="p">:</span> <span class="s2">&#34;dokodemo-door&#34;</span><span class="p">,</span>
+      <span class="nt">&#34;port&#34;</span><span class="p">:</span><span class="mi">1080</span><span class="p">,</span>
+      <span class="nt">&#34;settings&#34;</span><span class="p">:{</span>
+        <span class="nt">&#34;network&#34;</span><span class="p">:</span> <span class="s2">&#34;tcp,udp&#34;</span><span class="p">,</span>
+        <span class="nt">&#34;timeout&#34;</span><span class="p">:</span> <span class="mi">30</span><span class="p">,</span>
+        <span class="nt">&#34;followRedirect&#34;</span><span class="p">:</span> <span class="kc">true</span>
+      <span class="p">}</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+      <span class="nt">&#34;protocol&#34;</span><span class="p">:</span> <span class="s2">&#34;dokodemo-door&#34;</span><span class="p">,</span>
+      <span class="nt">&#34;port&#34;</span><span class="p">:</span><span class="mi">5300</span><span class="p">,</span>
+      <span class="nt">&#34;settings&#34;</span><span class="p">:{</span>
+        <span class="nt">&#34;address&#34;</span><span class="p">:</span><span class="s2">&#34;8.8.8.8&#34;</span><span class="p">,</span>
+        <span class="nt">&#34;port&#34;</span><span class="p">:</span><span class="mi">53</span><span class="p">,</span>
+        <span class="nt">&#34;network&#34;</span><span class="p">:</span> <span class="s2">&#34;udp&#34;</span><span class="p">,</span>
+        <span class="nt">&#34;timeout&#34;</span><span class="p">:</span> <span class="mi">30</span><span class="p">,</span>
+        <span class="nt">&#34;followRedirect&#34;</span><span class="p">:</span> <span class="kc">false</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+  <span class="p">],</span>
+  <span class="nt">&#34;outbound&#34;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nt">&#34;protocol&#34;</span><span class="p">:</span> <span class="s2">&#34;vmess&#34;</span><span class="p">,</span>
+    <span class="nt">&#34;settings&#34;</span><span class="p">:</span> <span class="p">{</span>
+      <span class="nt">&#34;vnext&#34;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="p">{</span>
+          <span class="nt">&#34;address&#34;</span><span class="p">:</span> <span class="s2">&#34;yourserver.com&#34;</span><span class="p">,</span>
+          <span class="nt">&#34;port&#34;</span><span class="p">:</span> <span class="mi">12345</span><span class="p">,</span>
+          <span class="nt">&#34;users&#34;</span><span class="p">:</span> <span class="p">[</span>
+            <span class="p">{</span>
+              <span class="nt">&#34;id&#34;</span><span class="p">:</span> <span class="s2">&#34;1sb4165e-1234-4310-9d57-a8a2994r5e0d&#34;</span><span class="p">,</span>
+              <span class="nt">&#34;alterId&#34;</span><span class="p">:</span> <span class="mi">32</span><span class="p">,</span>
+              <span class="nt">&#34;security&#34;</span><span class="p">:</span> <span class="s2">&#34;auto&#34;</span>
+            <span class="p">}</span>
+          <span class="p">]</span>
+        <span class="p">}</span>
+      <span class="p">]</span>
+    <span class="p">},</span>
+    <span class="nt">&#34;streamSettings&#34;</span><span class="p">:{</span>
+        <span class="nt">&#34;network&#34;</span><span class="p">:</span><span class="s2">&#34;kcp&#34;</span><span class="p">,</span>
+        <span class="nt">&#34;kcpSettings&#34;</span><span class="p">:</span> <span class="p">{</span>
+          <span class="nt">&#34;mtu&#34;</span><span class="p">:</span> <span class="mi">1350</span><span class="p">,</span>
+          <span class="nt">&#34;tti&#34;</span><span class="p">:</span> <span class="mi">20</span><span class="p">,</span>
+          <span class="nt">&#34;uplinkCapacity&#34;</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span>
+          <span class="nt">&#34;downlinkCapacity&#34;</span><span class="p">:</span> <span class="mi">100</span><span class="p">,</span>
+          <span class="nt">&#34;congestion&#34;</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+          <span class="nt">&#34;readBufferSize&#34;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+          <span class="nt">&#34;writeBufferSize&#34;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+          <span class="nt">&#34;header&#34;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="nt">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;none&#34;</span>
+          <span class="p">}</span>
+        <span class="p">}</span>
+      <span class="p">},</span>
+    <span class="nt">&#34;mux&#34;</span><span class="p">:</span> <span class="p">{</span>
+      <span class="nt">&#34;enabled&#34;</span><span class="p">:</span> <span class="kc">true</span>
+    <span class="p">}</span>
+  <span class="p">},</span>
+  <span class="nt">&#34;outboundDetour&#34;</span><span class="p">:</span> <span class="p">[</span>
+    <span class="p">{</span>
+      <span class="nt">&#34;protocol&#34;</span><span class="p">:</span> <span class="s2">&#34;freedom&#34;</span><span class="p">,</span>
+      <span class="nt">&#34;settings&#34;</span><span class="p">:</span> <span class="p">{},</span>
+      <span class="nt">&#34;tag&#34;</span><span class="p">:</span> <span class="s2">&#34;direct&#34;</span>
+    <span class="p">}</span>
+  <span class="p">],</span>
+  <span class="nt">&#34;dns&#34;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nt">&#34;servers&#34;</span><span class="p">:</span> <span class="p">[</span>
+      <span class="s2">&#34;8.8.8.8&#34;</span><span class="p">,</span>
+      <span class="s2">&#34;localhost&#34;</span>
+    <span class="p">]</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>iptables 和 ipset 设置</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">sudo apt-get install ipset
+sudo ipset -N gfwlist iphash
+sudo iptables -t nat -A PREROUTING -p tcp -m <span class="nb">set</span> --match-set gfwlist dst -j REDIRECT --to-port <span class="m">1080</span>
+sudo iptables -t nat -A OUTPUT -p tcp -m <span class="nb">set</span> --match-set gfwlist dst -j REDIRECT --to-port <span class="m">1080</span>
+
+<span class="c1"># 把路由配置写入文件中，长久保存</span>
+sudo vim /etc/rc.local
+
+<span class="c1"># 在exit0前把这三句加上</span>
+ipset -N gfwlist iphash
+iptables -t nat -A PREROUTING -p tcp -m <span class="nb">set</span> --match-set gfwlist dst -j REDIRECT --to-port <span class="m">1080</span>
+iptables -t nat -A OUTPUT -p tcp -m <span class="nb">set</span> --match-set gfwlist dst -j REDIRECT --to-port <span class="m">1080</span>
+</code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>开启无限制的世界</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">sudo service v2ray start
+
+<span class="c1"># 把 v2ray 设置为开机自启动</span>
+sudo systemctl <span class="nb">enable</span> v2ray
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="效果展示">效果展示</h2>
+<p><img src="http://static.nicesite.vip/2018-06-12-091503.jpg" alt="树莓派连接"></p>
+<p>{% note success %}
+housirvipdeiMac:~ housirvip$ dig <a href="http://www.google.com">www.google.com</a></p>
+<p>; &laquo;&raquo; DiG 9.8.3-P1 &laquo;&raquo; <a href="http://www.google.com">www.google.com</a>
+;; global options: +cmd
+;; Got answer:
+;; -&raquo;HEADER&laquo;- opcode: QUERY, status: NOERROR, id: 23438
+;; flags: qr rd ra; QUERY: 1, ANSWER: 1, AUTHORITY: 0, ADDITIONAL: 0</p>
+<p>;; QUESTION SECTION:
+;www.google.com.                        IN      A</p>
+<p>;; ANSWER SECTION:
+<a href="http://www.google.com">www.google.com</a>.         1978    IN      A       172.217.26.36</p>
+<p>;; Query time: 17 msec
+;; SERVER: 192.168.20.1#53(192.168.20.1)
+;; WHEN: Thu Aug 17 23:59:10 2017
+;; MSG SIZE  rcvd: 48
+{% endnote %}</p>
+<p><img src="http://static.nicesite.vip/2018-06-12-091511.jpg" alt="google ip 验证"></p>
+<p><img src="http://static.nicesite.vip/2018-06-12-091522.jpg" alt="youtube测试"></p>
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">housirvip</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+        2017-08-16
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/%E8%BD%AF%E8%B7%AF%E7%94%B1/">软路由</a>
+          <a href="/tags/%E6%A0%91%E8%8E%93%E6%B4%BE/">树莓派</a>
+          <a href="/tags/linux/">Linux</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/post/hackintosh-z270/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">在z270平台装黑苹果</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+  <div id="vcomments"></div>
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+  <script type="text/javascript">
+    new Valine({
+        el: '#vcomments' ,
+        appId: 'LGk5vbfMKxE0HrHOrkCC8gKf-gzGzoHsz',
+        appKey: 'Fy59MNy0luXKeogBChUJp2g8',
+        notify:  false ,
+        verify:  false ,
+        avatar:'mm',
+        placeholder: '说点什么吧...',
+        visitor:  false 
+    });
+  </script>
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:housirvip@gmail.com" class="iconfont icon-email" title="email"></a>
+      <a href="https://github.com/housirvip" class="iconfont icon-github" title="github"></a>
+  <a href="https://housirvip.github.com/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2017 - 
+    2020
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">housirvip</span>
+  </span>
+</div>
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.d7b7ada643c9c1a983026e177f141f7363b4640d619caf01d8831a6718cd44ea.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

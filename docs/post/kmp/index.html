@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>KMP算法个人理解 - The Blog of housirvip</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="housirvip" /><meta name="description" content="简介 KMP算法是一种改进的字符串匹配算法，由D.E.Knuth，J.H.Morris和V.R.Pratt同时发现，因此人们称它为克努特—莫里" /><meta name="keywords" content="Blog, web, blog" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.74.3 with theme even" />
+
+
+<link rel="canonical" href="https://housirvip.github.com/post/kmp/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.651e6917abb0239242daa570c2bec9867267bbcd83646da5a850afe573347b44.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="KMP算法个人理解" />
+<meta property="og:description" content="简介 KMP算法是一种改进的字符串匹配算法，由D.E.Knuth，J.H.Morris和V.R.Pratt同时发现，因此人们称它为克努特—莫里" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://housirvip.github.com/post/kmp/" />
+<meta property="article:published_time" content="2018-01-18T18:34:30+00:00" />
+<meta property="article:modified_time" content="2018-01-18T18:34:30+00:00" />
+<meta itemprop="name" content="KMP算法个人理解">
+<meta itemprop="description" content="简介 KMP算法是一种改进的字符串匹配算法，由D.E.Knuth，J.H.Morris和V.R.Pratt同时发现，因此人们称它为克努特—莫里">
+<meta itemprop="datePublished" content="2018-01-18T18:34:30+00:00" />
+<meta itemprop="dateModified" content="2018-01-18T18:34:30+00:00" />
+<meta itemprop="wordCount" content="1715">
+
+
+
+<meta itemprop="keywords" content="算法,LeetCode,Golang," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="KMP算法个人理解"/>
+<meta name="twitter:description" content="简介 KMP算法是一种改进的字符串匹配算法，由D.E.Knuth，J.H.Morris和V.R.Pratt同时发现，因此人们称它为克努特—莫里"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Housirvip</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">首页</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">时间线</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">标签</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">目录</li>
+      </a><a href="/%E5%85%B3%E4%BA%8E%E6%88%91/">
+        <li class="mobile-menu-item">关于我</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Housirvip</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">首页</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">时间线</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">标签</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">目录</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/%E5%85%B3%E4%BA%8E%E6%88%91/">关于我</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">KMP算法个人理解</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2018-01-18 </span>
+        
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#简介">简介</a></li>
+        <li><a href="#理论介绍">理论介绍</a>
+          <ul>
+            <li><a href="#计算next数组">计算next数组</a></li>
+            <li><a href="#第一次匹配">第一次匹配</a></li>
+            <li><a href="#第二次匹配">第二次匹配</a></li>
+            <li><a href="#第三次匹配">第三次匹配</a></li>
+            <li><a href="#再换个例子解释下移动">再换个例子解释下移动</a></li>
+            <li><a href="#换个角度来看待移动">换个角度来看待移动</a></li>
+          </ul>
+        </li>
+        <li><a href="#算法代码">算法代码</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <h2 id="简介">简介</h2>
+<blockquote>
+<p>KMP算法是一种改进的字符串匹配算法，由D.E.Knuth，J.H.Morris和V.R.Pratt同时发现，因此人们称它为克努特—莫里斯—普拉特操作（简称KMP算法）。</p>
+</blockquote>
+<p>KMP算法的关键是利用匹配失败后的信息，尽量减少模式串与主串的匹配次数以达到快速匹配的目的。具体实现就是实现一个next()函数，函数本身包含了模式串的局部匹配信息。时间复杂度O(m+n)。</p>
+<h2 id="理论介绍">理论介绍</h2>
+<p>设目标字符串target为：
+<code>a b a c a a b a c a b a c a b a a b b</code></p>
+<p>模式字符串model为：<code>a b a c a b</code></p>
+<h3 id="计算next数组">计算next数组</h3>
+<p>对此model串的next数组计算为<code>[0 0 1 0 1 2]</code>
+计算规则为：截止到此index，首尾重复的子串最大长度。</p>
+<ul>
+<li>a 规定为0</li>
+<li>ab 首尾子串a和b，重复长度为0</li>
+<li>aba 首部子串a，ab，尾部子串a，ba，重复1</li>
+<li>abac 首部子串a，ab，aba，尾部子串c，ac，bac，长度为0</li>
+<li>abaca 首部子串a，ab，aba，abac，尾部子串a，ca，aca，baca，长度为1</li>
+<li>abacab 首部子串a，ab，aba，abac，abaca，尾部子串b，ab，cab，acab，bacab，长度为2</li>
+</ul>
+<p>next数组就是这样子去算，不过从上述过程可以发现，next数组，上次的数值和下次的数值是有所关系的，有三种情况会发生：1.归零；2.归一；3.加一；</p>
+<blockquote>
+<p>归零是加上一位字符后，没有重复首尾没有重复了，甚至首位和尾位单字符都不相同了，就归零。
+归一是加上加上一位字符后，只剩下首位和尾位单字符相同。
+加一是加上一位字符后，碰巧和首部那串字符相同顺序，多一个字符，就是多的那一个子串的长度。</p>
+</blockquote>
+<p>举个例子对于字符串abcabcad
+next[0]=0
+next[1]=0
+next[2]=0
+next[3]=0+1
+next[4]=1+1
+next[5]=2+1
+next[6]=1
+next[7]=0</p>
+<h3 id="第一次匹配">第一次匹配</h3>
+<p><img src="http://static.nicesite.vip/2018-06-12-085014.jpg" alt=""></p>
+<p>我们可以看出在model的index=5的字符（规定第一个为index=0）出现不匹配</p>
+<p>那么我们需要把model后移，再次进行匹配
+（移动是相对的，说把target前移或者model后移都可以的咯）</p>
+<p><strong>此时就出现了问题，后移多少位？</strong></p>
+<ul>
+<li>
+<p>传统算法认为后移一位，继续匹配是最稳健安全的，但是这样太过浪费时间，设target长度为n，model的长度为m，那么复杂度为O(n*m)
+(其实能优化成(n-m)*m)</p>
+</li>
+<li>
+<p>KMP算法则使model尽可能多的后移，我们看到，前面已经匹配了5个字符了，而next[4]=1，说明index=4的地方和index=0的地方是相等的。那么target与model在index=4的地方能匹配，就等同于在index=0的地方也能配对。我们此时移动了4位，这个4即5-1，已配对的长度-next[index-1]</p>
+</li>
+</ul>
+<h3 id="第二次匹配">第二次匹配</h3>
+<p><img src="http://static.nicesite.vip/2018-06-12-085035.jpg" alt=""></p>
+<p>index=1时不匹配，移动index-next[index-1]即1-0=1</p>
+<h3 id="第三次匹配">第三次匹配</h3>
+<p><img src="http://static.nicesite.vip/2018-06-12-085058.jpg" alt=""></p>
+<p>很完美，匹配成功了</p>
+<h3 id="再换个例子解释下移动">再换个例子解释下移动</h3>
+<h4 id="例2">例2</h4>
+<p><img src="http://static.nicesite.vip/2018-06-12-085117.jpg" alt=""></p>
+<p><img src="http://static.nicesite.vip/2018-06-12-085129.jpg" alt=""></p>
+<p>前面匹配了6个字符ABCDAB，而最后的D未匹配，D前面的字符next[6-1]=2，6-2=4，所以model串向后移动了4个位置</p>
+<h3 id="换个角度来看待移动">换个角度来看待移动</h3>
+<p>我们看例2：
+对于target串的指针位置，规定为i，model串的指针位置规定为j。
+如果使得i从0到len(target)-1，每次i++，而且只增加不减少，只对j进行各种回退，即可实现复杂度为O(n)
+此时i=10，j=6，不匹配。
+之后i不变，j=next[j-1]=2，继续匹配，i++，j++
+这样就相当于model串后移了6-2=4位。</p>
+<h2 id="算法代码">算法代码</h2>
+<p>代码使用golang书写</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-go" data-lang="go"><span class="c1">//时间复杂度为o(n)其中n为str长度
+</span><span class="c1"></span><span class="kd">func</span> <span class="nf">getNext</span><span class="p">(</span><span class="nx">model</span> <span class="kt">string</span><span class="p">)</span> <span class="p">[]</span><span class="kt">int</span> <span class="p">{</span>
+	<span class="nx">len</span> <span class="o">:=</span> <span class="nb">len</span><span class="p">(</span><span class="nx">model</span><span class="p">)</span>
+	<span class="c1">// 声明动态长度为len的一个next数组
+</span><span class="c1"></span>	<span class="nx">next</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">([]</span><span class="kt">int</span><span class="p">,</span> <span class="nx">len</span><span class="p">)</span>
+	<span class="k">for</span> <span class="nx">i</span> <span class="o">:=</span> <span class="mi">1</span><span class="p">;</span> <span class="nx">i</span> <span class="p">&lt;</span> <span class="nx">len</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span> <span class="p">{</span>
+		<span class="c1">// 无非归零，归一，加一三种情况
+</span><span class="c1"></span>		<span class="k">if</span> <span class="nx">next</span><span class="p">[</span><span class="nx">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="p">&gt;</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="nx">model</span><span class="p">[</span><span class="nx">next</span><span class="p">[</span><span class="nx">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]]</span> <span class="o">==</span> <span class="nx">model</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="p">{</span>
+			<span class="nx">next</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="p">=</span> <span class="nx">next</span><span class="p">[</span><span class="nx">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span>
+		<span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="nx">model</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="nx">model</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="p">{</span>
+			<span class="nx">next</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="p">=</span> <span class="mi">1</span>
+		<span class="p">}</span>
+		<span class="c1">// 不修改表示next[i]=0
+</span><span class="c1"></span>	<span class="p">}</span>
+	<span class="k">return</span> <span class="nx">next</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-go" data-lang="go"><span class="c1">//时间复杂度为o(m)其中m为str长度
+</span><span class="c1"></span><span class="kd">func</span> <span class="nf">KMP</span><span class="p">(</span><span class="nx">model</span><span class="p">,</span> <span class="nx">target</span> <span class="kt">string</span><span class="p">)</span> <span class="kt">bool</span> <span class="p">{</span>
+	<span class="nx">next</span> <span class="o">:=</span> <span class="nf">getNext</span><span class="p">(</span><span class="nx">model</span><span class="p">)</span>
+	<span class="nx">same</span> <span class="o">:=</span> <span class="mi">0</span>
+	<span class="c1">// 保证i始终不退回，j尽量少退回
+</span><span class="c1"></span>	<span class="k">for</span> <span class="nx">i</span><span class="p">,</span> <span class="nx">j</span> <span class="o">:=</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="p">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="nx">target</span><span class="p">);</span> <span class="nx">i</span><span class="o">++</span> <span class="p">{</span>
+		<span class="k">if</span> <span class="nx">model</span><span class="p">[</span><span class="nx">j</span><span class="p">]</span> <span class="o">==</span> <span class="nx">target</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="p">{</span>
+			<span class="nx">same</span><span class="o">++</span>
+			<span class="nx">j</span><span class="o">++</span>
+		<span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="nx">j</span> <span class="p">&gt;</span> <span class="mi">0</span> <span class="p">{</span>
+			<span class="c1">// 前面一位的next值表示各种回退后此时匹配的字符数
+</span><span class="c1"></span>			<span class="nx">same</span> <span class="p">=</span> <span class="nx">next</span><span class="p">[</span><span class="nx">j</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+			<span class="c1">// j就回退到same的值，前j位都匹配完成了，只需要往后匹配
+</span><span class="c1"></span>			<span class="nx">j</span> <span class="p">=</span> <span class="nx">same</span>
+		<span class="p">}</span>
+		<span class="k">if</span> <span class="nx">same</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="nx">model</span><span class="p">)</span> <span class="p">{</span>
+			<span class="c1">// 此时刚好匹配完成，开始位置为i-length+1，结束位置为i
+</span><span class="c1"></span>			<span class="k">return</span> <span class="kc">true</span>
+		<span class="p">}</span>
+	<span class="p">}</span>
+	<span class="k">return</span> <span class="kc">false</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div>
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">housirvip</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+        2018-01-18
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/%E7%AE%97%E6%B3%95/">算法</a>
+          <a href="/tags/leetcode/">LeetCode</a>
+          <a href="/tags/golang/">Golang</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/post/manacher/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">manacher算法</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        <a class="next" href="/post/git%E5%92%8Csvn%E5%8C%BA%E5%88%AB/">
+            <span class="next-text nav-default">Git 和 SVN 基本区别</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+  <div id="vcomments"></div>
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+  <script type="text/javascript">
+    new Valine({
+        el: '#vcomments' ,
+        appId: 'LGk5vbfMKxE0HrHOrkCC8gKf-gzGzoHsz',
+        appKey: 'Fy59MNy0luXKeogBChUJp2g8',
+        notify:  false ,
+        verify:  false ,
+        avatar:'mm',
+        placeholder: '说点什么吧...',
+        visitor:  false 
+    });
+  </script>
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:housirvip@gmail.com" class="iconfont icon-email" title="email"></a>
+      <a href="https://github.com/housirvip" class="iconfont icon-github" title="github"></a>
+  <a href="https://housirvip.github.com/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2017 - 
+    2020
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">housirvip</span>
+  </span>
+</div>
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.d7b7ada643c9c1a983026e177f141f7363b4640d619caf01d8831a6718cd44ea.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

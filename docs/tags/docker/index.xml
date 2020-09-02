@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Docker on The Blog of housirvip</title>
+    <link>https://housirvip.github.com/tags/docker/</link>
+    <description>Recent content in Docker on The Blog of housirvip</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Sun, 20 May 2018 14:36:37 +0000</lastBuildDate>
+    
+	<atom:link href="https://housirvip.github.com/tags/docker/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Docker&#43;Consul服务发现</title>
+      <link>https://housirvip.github.com/post/docker-consul%E6%9C%8D%E5%8A%A1%E5%8F%91%E7%8E%B0/</link>
+      <pubDate>Sun, 20 May 2018 14:36:37 +0000</pubDate>
+      
+      <guid>https://housirvip.github.com/post/docker-consul%E6%9C%8D%E5%8A%A1%E5%8F%91%E7%8E%B0/</guid>
+      <description>前言 Docker从入门到实践 细节部分讲的不是特别细，很多知识还是得各种查资料。 Docker文档 consul文档 如果你选择 Consul，这个是</description>
+    </item>
+    
+    <item>
+      <title>Docker常见命令与操作</title>
+      <link>https://housirvip.github.com/post/docker%E5%B8%B8%E8%A7%81%E5%91%BD%E4%BB%A4%E4%B8%8E%E6%93%8D%E4%BD%9C/</link>
+      <pubDate>Sun, 20 May 2018 12:03:19 +0000</pubDate>
+      
+      <guid>https://housirvip.github.com/post/docker%E5%B8%B8%E8%A7%81%E5%91%BD%E4%BB%A4%E4%B8%8E%E6%93%8D%E4%BD%9C/</guid>
+      <description>Docker 命令入门 拉取镜像 docker pull &amp;lt;镜像名:tag&amp;gt; 例如 docker pull progrium/consul:latest 列出存在的镜像 docker images 结果显示举例 1 2 3 4 REPOSITORY TAG IMAGE ID CREATED SIZE swaggerapi/swagger-editor latest aaa304fc1b89 2 months ago 35.9MB daocloud.io/library/ubuntu 16.04 14f60031763d 10 months ago 120MB</description>
+    </item>
+    
+  </channel>
+</rss>

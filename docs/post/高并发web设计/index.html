@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>高并发web系统设计 - The Blog of housirvip</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="housirvip" /><meta name="description" content="核心技术点 前端优化 前端优化主要包括动态内容静态化，增加前端缓存。页面静态化是指将指含有大量动态元素的动态网页，如jsp、php等，转换为ht" /><meta name="keywords" content="Blog, web, blog" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.74.3 with theme even" />
+
+
+<link rel="canonical" href="https://housirvip.github.com/post/%E9%AB%98%E5%B9%B6%E5%8F%91web%E8%AE%BE%E8%AE%A1/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.651e6917abb0239242daa570c2bec9867267bbcd83646da5a850afe573347b44.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="高并发web系统设计" />
+<meta property="og:description" content="核心技术点 前端优化 前端优化主要包括动态内容静态化，增加前端缓存。页面静态化是指将指含有大量动态元素的动态网页，如jsp、php等，转换为ht" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://housirvip.github.com/post/%E9%AB%98%E5%B9%B6%E5%8F%91web%E8%AE%BE%E8%AE%A1/" />
+<meta property="article:published_time" content="2018-01-02T12:13:24+00:00" />
+<meta property="article:modified_time" content="2018-01-02T12:13:24+00:00" />
+<meta itemprop="name" content="高并发web系统设计">
+<meta itemprop="description" content="核心技术点 前端优化 前端优化主要包括动态内容静态化，增加前端缓存。页面静态化是指将指含有大量动态元素的动态网页，如jsp、php等，转换为ht">
+<meta itemprop="datePublished" content="2018-01-02T12:13:24+00:00" />
+<meta itemprop="dateModified" content="2018-01-02T12:13:24+00:00" />
+<meta itemprop="wordCount" content="2343">
+
+
+
+<meta itemprop="keywords" content="Web,高并发," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="高并发web系统设计"/>
+<meta name="twitter:description" content="核心技术点 前端优化 前端优化主要包括动态内容静态化，增加前端缓存。页面静态化是指将指含有大量动态元素的动态网页，如jsp、php等，转换为ht"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Housirvip</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">首页</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">时间线</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">标签</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">目录</li>
+      </a><a href="/%E5%85%B3%E4%BA%8E%E6%88%91/">
+        <li class="mobile-menu-item">关于我</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Housirvip</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">首页</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">时间线</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">标签</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">目录</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/%E5%85%B3%E4%BA%8E%E6%88%91/">关于我</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">高并发web系统设计</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2018-01-02 </span>
+        
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#核心技术点">核心技术点</a></li>
+        <li><a href="#高并发带来的问题和解决方案">高并发带来的问题和解决方案</a>
+          <ul>
+            <li><a href="#事务问题一致性">事务问题（一致性）</a></li>
+            <li><a href="#状态问题session">状态问题(session)</a></li>
+          </ul>
+        </li>
+        <li><a href="#设计原则">设计原则</a>
+          <ul>
+            <li><a href="#高并发原则">高并发原则</a></li>
+            <li><a href="#高可用原则">高可用原则</a></li>
+            <li><a href="#业务设计原则">业务设计原则</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <p><img src="http://static.nicesite.vip/2018-06-12-085459.jpg" alt=""></p>
+<h2 id="核心技术点">核心技术点</h2>
+<ul>
+<li>前端优化</li>
+</ul>
+<blockquote>
+<p>前端优化主要包括动态内容静态化，增加前端缓存。页面静态化是指将指含有大量动态元素的动态网页，如jsp、php等，转换为html静态页面，静态页面由于不用加载动态元素，其访问速度要比动态页面快得多，可以增加访问速度，减小数据库压力；前端页面缓存在系统前端对Web服务器上的页面进行缓存。</p>
+</blockquote>
+<ul>
+<li>CDN技术</li>
+</ul>
+<blockquote>
+<p>CDN即内容分发网络，其基本思路是尽可能避开互联网上有可能影响数据传输速度和稳定性的瓶颈和环节，使内容传输的更快、更稳定。通过在网络各处放置节点服务器所构成的在现有的互联网基础之上的一层智能虚拟网络，CDN系统能够实时地根据网络流量和各节点的连接、负载状况以及到用户的距离和响应时间等综合信息将用户的请求重新导向离用户最近的服务节点上。其目的是使用户可就近取得所需内容，解决 Internet网络拥挤的状况，提高用户访问网站的响应速度。</p>
+</blockquote>
+<ul>
+<li>负载均衡</li>
+</ul>
+<blockquote>
+<p>负载均衡的基本思想是把高并发的访问平均分配到每一个服务器节点上，从而减小分布式数据库中每一个节点的压力。</p>
+</blockquote>
+<ul>
+<li>中间件</li>
+</ul>
+<blockquote>
+<p>数据库的中间件技术是指把应用层与数据库层分离，在中间增加一个部分，避免应用直接访问数据库。因为系统可能采用读写分离的技术，因而会使用不同的数据库，中间件可以屏蔽数据库直接的不同，提供统一的接口。中间件还负责事务的协调处理，起到数据连接管理的作用，多个客户端连接通过中间件可以共用一个数据库连接。</p>
+</blockquote>
+<ul>
+<li>memcached</li>
+</ul>
+<blockquote>
+<p>memcached是一个高性能的分布式内存对象缓存系统，通过在内存中缓存数据和对象来减少读取数据库的次数，从而提高动态、数据库驱动网站的速度，它是基于一个存储键/值对的hashmap。</p>
+</blockquote>
+<ul>
+<li>并发控制</li>
+</ul>
+<blockquote>
+<p>数据库限流，达到数据库的最大并发数，进入行锁状态。如不进行控制，一旦其中一个连接卡住，会引发雪崩效应，从而影响整个系统</p>
+</blockquote>
+<ul>
+<li>排队系统</li>
+</ul>
+<blockquote>
+<p>锁机制导致排队</p>
+</blockquote>
+<ul>
+<li>并行复制</li>
+</ul>
+<blockquote>
+<p>采用并行复制的技术可以解决主备库复制延迟问题</p>
+</blockquote>
+<ul>
+<li>数据库拆分</li>
+</ul>
+<blockquote>
+<p>分为水平拆分和垂直拆分，垂直拆分即按列拆分，把数据按应用分离，降低单个事务的数据处理量；水平拆分即按行拆分，降低节点的并发量</p>
+</blockquote>
+<ul>
+<li>读写分离</li>
+</ul>
+<blockquote>
+<p>有些系统读操作频繁，而有些系统写操作频繁，读写分离能有效提高访问速度</p>
+</blockquote>
+<h2 id="高并发带来的问题和解决方案">高并发带来的问题和解决方案</h2>
+<h3 id="事务问题一致性">事务问题（一致性）</h3>
+<ul>
+<li>容器事务管理</li>
+<li>锁机制</li>
+<li>隔离机制</li>
+</ul>
+<h3 id="状态问题session">状态问题(session)</h3>
+<ul>
+<li>用cooke记录sesion</li>
+</ul>
+<blockquote>
+<p>缺点是有大小限制，另外不稳定，客户端可能关闭浏览器导致数据丢失，且不安全</p>
+</blockquote>
+<ul>
+<li>session复制</li>
+</ul>
+<blockquote>
+<p>即集群中的服务器都持有一份sesion，每次有数据变化时需要同步给其他服务器，适合小规模网站</p>
+</blockquote>
+<ul>
+<li>session绑定</li>
+</ul>
+<blockquote>
+<p>由负载均衡服务器将客户的IP/cookie与session绑定，实现会话粘滞。
+但这种方案缺乏高可用性，因为客户的关闭浏览器可能会改变cookie，客户端IP也可能变化，服务器端也可能宕机导致session丢失。</p>
+</blockquote>
+<ul>
+<li>session服务器</li>
+</ul>
+<blockquote>
+<p>包含两个层面，
+一个是利用分布式缓存，可以实现会话的保持，适合一般集群需求
+另一个是独立session服务器，适合更高要求的需求，例如单点登录（SSO）</p>
+</blockquote>
+<h2 id="设计原则">设计原则</h2>
+<ul>
+<li>墨菲定律</li>
+</ul>
+<blockquote>
+<p>任何事没有表面看起来那么简单 - 所有的事都会比预计的时间长 - 可能出错的事情总会出错 - 担心某种事情发生，那么它就更有可能发生</p>
+</blockquote>
+<ul>
+<li>康威定律</li>
+</ul>
+<blockquote>
+<p>系统架构师公司组织架构的反映 - 按照业务闭环进行系统拆分/组织架构划分，实现闭环、高内聚、低耦合，减少沟通成本 - 如果沟通出现问题，应该考虑进行系统和组织架构的调整 - 适合时机进行系统拆分，不要一开始就吧系统、服务拆分拆的非常细，虽然闭环，但是每个人维护的系统多，维护成本高 - 微服务架构的理论基础 - 康威定律</p>
+</blockquote>
+<ul>
+<li>二八定律</li>
+</ul>
+<blockquote>
+<p>80%的结果取决于20%的原因</p>
+</blockquote>
+<h3 id="高并发原则">高并发原则</h3>
+<ol>
+<li>无状态</li>
+</ol>
+<blockquote>
+<p>无状态应用，便于水平扩展
+有状态配置可通过配置中心实现无状态</p>
+</blockquote>
+<ol start="2">
+<li>拆分</li>
+</ol>
+<blockquote>
+<p>系统维度：按照系统功能、业务拆分，如购物车，结算，订单等
+功能维度：对系统功能在做细粒度拆分
+读写维度：根据读写比例特征拆分；读多，可考虑多级缓存；写多，可考虑分库分表
+AOP维度： 根据访问特征，按照AOP进行拆分，比如商品详情页可分为CDN、页面渲染系统，CDN就是一个AOP系统
+模块维度：对整体代码结构划分Web、Service、DAO</p>
+</blockquote>
+<ol start="3">
+<li>服务化</li>
+</ol>
+<blockquote>
+<p>服务化演进: 进程内服务-单机远程服务-集群手动注册服务-自动注册和发现服务-服务的分组、隔离、路由-服务治理
+考虑服务分组、隔离、限流、黑白名单、超时、重试机制、路由、故障补偿等</p>
+</blockquote>
+<ol start="4">
+<li>消息队列</li>
+</ol>
+<blockquote>
+<p>目的: 服务解耦(一对多消费)、异步处理、流量削峰缓冲等
+大流量缓冲： 牺牲强一致性，保证最终一致性(案例：库存扣减，现在Redis中做扣减，记录扣减日志，通过后台进程将扣减日志应用到DB)
+数据校对: 解决异步消息机制下消息丢失问题</p>
+</blockquote>
+<ol start="5">
+<li>数据异构</li>
+</ol>
+<blockquote>
+<p>数据异构: 通过消息队列机制接收数据变更，原子化存储
+数据闭环: 屏蔽多从数据来源，将数据异构存储，形成闭环</p>
+</blockquote>
+<ol start="6">
+<li>
+<p>缓存银弹</p>
+</li>
+<li>
+<p>并发化</p>
+</li>
+</ol>
+<h3 id="高可用原则">高可用原则</h3>
+<ol>
+<li>降级</li>
+</ol>
+<blockquote>
+<p>降级开关集中化管理：将开关配置信息推送到各个应用
+可降级的多级读服务：如服务调用降级为只读本地缓存
+开关前置化：如Nginx+lua(OpenResty)配置降级策略，引流流量；可基于此做灰度策略
+业务降级：高并发下，保证核心功能，次要功能可由同步改为异步策略或屏蔽功能</p>
+</blockquote>
+<ol start="2">
+<li>限流</li>
+</ol>
+<blockquote>
+<p>目的: 防止恶意请求攻击或超出系统峰值
+实践：
+恶意请求流量只访问到Cache
+穿透后端应用的流量使用Nginx的limit处理
+恶意IP使用Nginx Deny策略或者iptables拒绝</p>
+</blockquote>
+<ol start="3">
+<li>切流量</li>
+</ol>
+<blockquote>
+<p>目的：屏蔽故障机器
+实践:
+DNS: 更改域名解析入口，如DNSPOD可以添加备用IP，正常IP故障时，会自主切换到备用地址;生效实践较慢
+HttpDNS: 为了绕过运营商LocalDNS实现的精准流量调度
+LVS/HaProxy/Nginx: 摘除故障节点</p>
+</blockquote>
+<ol start="4">
+<li>可回滚</li>
+</ol>
+<blockquote>
+<p>发布版本失败时可随时快速回退到上一个稳定版本</p>
+</blockquote>
+<h3 id="业务设计原则">业务设计原则</h3>
+<ul>
+<li>防重设计</li>
+<li>幂等设计</li>
+<li>流程定义</li>
+<li>状态与状态机</li>
+<li>后台系统操作可反馈</li>
+<li>后台系统审批化</li>
+<li>文档注释</li>
+<li>备份</li>
+</ul>
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">housirvip</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+        2018-01-02
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/web/">Web</a>
+          <a href="/tags/%E9%AB%98%E5%B9%B6%E5%8F%91/">高并发</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/post/sql%E5%92%8Cnosql/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">NoSQL与SQL对比</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        <a class="next" href="/post/dnscrypt/">
+            <span class="next-text nav-default">搭建纯净 DNS 服务</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+  <div id="vcomments"></div>
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+  <script type="text/javascript">
+    new Valine({
+        el: '#vcomments' ,
+        appId: 'LGk5vbfMKxE0HrHOrkCC8gKf-gzGzoHsz',
+        appKey: 'Fy59MNy0luXKeogBChUJp2g8',
+        notify:  false ,
+        verify:  false ,
+        avatar:'mm',
+        placeholder: '说点什么吧...',
+        visitor:  false 
+    });
+  </script>
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:housirvip@gmail.com" class="iconfont icon-email" title="email"></a>
+      <a href="https://github.com/housirvip" class="iconfont icon-github" title="github"></a>
+  <a href="https://housirvip.github.com/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2017 - 
+    2020
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">housirvip</span>
+  </span>
+</div>
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.d7b7ada643c9c1a983026e177f141f7363b4640d619caf01d8831a6718cd44ea.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

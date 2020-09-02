@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>软路由 on The Blog of housirvip</title>
+    <link>https://housirvip.github.com/tags/%E8%BD%AF%E8%B7%AF%E7%94%B1/</link>
+    <description>Recent content in 软路由 on The Blog of housirvip</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Wed, 16 Aug 2017 18:34:30 +0000</lastBuildDate>
+    
+	<atom:link href="https://housirvip.github.com/tags/%E8%BD%AF%E8%B7%AF%E7%94%B1/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>在树莓派上搭建软路由</title>
+      <link>https://housirvip.github.com/post/soft-router/</link>
+      <pubDate>Wed, 16 Aug 2017 18:34:30 +0000</pubDate>
+      
+      <guid>https://housirvip.github.com/post/soft-router/</guid>
+      <description>出发点 很早的时候一直在用网件 wndr4300 刷了 openwrt 以及 lede 这种开放式的路由系统，一直沉迷于无界浏览无法自拔。因为笔者最近在学习的一些东西比较新，在国内看不到</description>
+    </item>
+    
+  </channel>
+</rss>

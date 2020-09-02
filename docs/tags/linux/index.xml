@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Linux on The Blog of housirvip</title>
+    <link>https://housirvip.github.com/tags/linux/</link>
+    <description>Recent content in Linux on The Blog of housirvip</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Sun, 20 May 2018 12:03:19 +0000</lastBuildDate>
+    
+	<atom:link href="https://housirvip.github.com/tags/linux/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Docker常见命令与操作</title>
+      <link>https://housirvip.github.com/post/docker%E5%B8%B8%E8%A7%81%E5%91%BD%E4%BB%A4%E4%B8%8E%E6%93%8D%E4%BD%9C/</link>
+      <pubDate>Sun, 20 May 2018 12:03:19 +0000</pubDate>
+      
+      <guid>https://housirvip.github.com/post/docker%E5%B8%B8%E8%A7%81%E5%91%BD%E4%BB%A4%E4%B8%8E%E6%93%8D%E4%BD%9C/</guid>
+      <description>Docker 命令入门 拉取镜像 docker pull &amp;lt;镜像名:tag&amp;gt; 例如 docker pull progrium/consul:latest 列出存在的镜像 docker images 结果显示举例 1 2 3 4 REPOSITORY TAG IMAGE ID CREATED SIZE swaggerapi/swagger-editor latest aaa304fc1b89 2 months ago 35.9MB daocloud.io/library/ubuntu 16.04 14f60031763d 10 months ago 120MB</description>
+    </item>
+    
+    <item>
+      <title>搭建纯净 DNS 服务</title>
+      <link>https://housirvip.github.com/post/dnscrypt/</link>
+      <pubDate>Thu, 24 Aug 2017 12:53:47 +0000</pubDate>
+      
+      <guid>https://housirvip.github.com/post/dnscrypt/</guid>
+      <description>起因 国内近年来 DNS 污染严重，甚至就连一些地方宽带商都胡乱投毒，整一些花里胡哨的广告页面，什么，你想要干净清爽的网络浏览？ 经过 安装开发环境 1 sudo apt-get</description>
+    </item>
+    
+    <item>
+      <title>编译安装 shadowsocksr-libev</title>
+      <link>https://housirvip.github.com/post/ssr-install/</link>
+      <pubDate>Thu, 24 Aug 2017 12:13:24 +0000</pubDate>
+      
+      <guid>https://housirvip.github.com/post/ssr-install/</guid>
+      <description>起因 作为一个开发者，不能上 google 是有多难受，吃灰的树莓派刚好派上了用场 安装 准备工具 电脑一台 树莓派 ssr 账号一个 ssr-libev 源码 各种依赖 开始动手 安装开发环境 1 sudo</description>
+    </item>
+    
+    <item>
+      <title>在树莓派上搭建软路由</title>
+      <link>https://housirvip.github.com/post/soft-router/</link>
+      <pubDate>Wed, 16 Aug 2017 18:34:30 +0000</pubDate>
+      
+      <guid>https://housirvip.github.com/post/soft-router/</guid>
+      <description>出发点 很早的时候一直在用网件 wndr4300 刷了 openwrt 以及 lede 这种开放式的路由系统，一直沉迷于无界浏览无法自拔。因为笔者最近在学习的一些东西比较新，在国内看不到</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>版本控制 on The Blog of housirvip</title>
+    <link>https://housirvip.github.com/tags/%E7%89%88%E6%9C%AC%E6%8E%A7%E5%88%B6/</link>
+    <description>Recent content in 版本控制 on The Blog of housirvip</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Tue, 02 Jan 2018 12:25:24 +0000</lastBuildDate>
+    
+	<atom:link href="https://housirvip.github.com/tags/%E7%89%88%E6%9C%AC%E6%8E%A7%E5%88%B6/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Git 和 SVN 基本区别</title>
+      <link>https://housirvip.github.com/post/git%E5%92%8Csvn%E5%8C%BA%E5%88%AB/</link>
+      <pubDate>Tue, 02 Jan 2018 12:25:24 +0000</pubDate>
+      
+      <guid>https://housirvip.github.com/post/git%E5%92%8Csvn%E5%8C%BA%E5%88%AB/</guid>
+      <description>GIT是分布式的，SVN不是 这是GIT和其它非分布式的版本控制系统，例如SVN，CVS等，最核心的区别。如果你能理解这个概念，那么你就已经上</description>
+    </item>
+    
+  </channel>
+</rss>

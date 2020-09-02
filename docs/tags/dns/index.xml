@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Dns on The Blog of housirvip</title>
+    <link>https://housirvip.github.com/tags/dns/</link>
+    <description>Recent content in Dns on The Blog of housirvip</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Thu, 24 Aug 2017 12:53:47 +0000</lastBuildDate>
+    
+	<atom:link href="https://housirvip.github.com/tags/dns/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>搭建纯净 DNS 服务</title>
+      <link>https://housirvip.github.com/post/dnscrypt/</link>
+      <pubDate>Thu, 24 Aug 2017 12:53:47 +0000</pubDate>
+      
+      <guid>https://housirvip.github.com/post/dnscrypt/</guid>
+      <description>起因 国内近年来 DNS 污染严重，甚至就连一些地方宽带商都胡乱投毒，整一些花里胡哨的广告页面，什么，你想要干净清爽的网络浏览？ 经过 安装开发环境 1 sudo apt-get</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Web on The Blog of housirvip</title>
+    <link>https://housirvip.github.com/tags/web/</link>
+    <description>Recent content in Web on The Blog of housirvip</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Sun, 20 May 2018 14:36:37 +0000</lastBuildDate>
+    
+	<atom:link href="https://housirvip.github.com/tags/web/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Docker&#43;Consul服务发现</title>
+      <link>https://housirvip.github.com/post/docker-consul%E6%9C%8D%E5%8A%A1%E5%8F%91%E7%8E%B0/</link>
+      <pubDate>Sun, 20 May 2018 14:36:37 +0000</pubDate>
+      
+      <guid>https://housirvip.github.com/post/docker-consul%E6%9C%8D%E5%8A%A1%E5%8F%91%E7%8E%B0/</guid>
+      <description>前言 Docker从入门到实践 细节部分讲的不是特别细，很多知识还是得各种查资料。 Docker文档 consul文档 如果你选择 Consul，这个是</description>
+    </item>
+    
+    <item>
+      <title>Git 和 SVN 基本区别</title>
+      <link>https://housirvip.github.com/post/git%E5%92%8Csvn%E5%8C%BA%E5%88%AB/</link>
+      <pubDate>Tue, 02 Jan 2018 12:25:24 +0000</pubDate>
+      
+      <guid>https://housirvip.github.com/post/git%E5%92%8Csvn%E5%8C%BA%E5%88%AB/</guid>
+      <description>GIT是分布式的，SVN不是 这是GIT和其它非分布式的版本控制系统，例如SVN，CVS等，最核心的区别。如果你能理解这个概念，那么你就已经上</description>
+    </item>
+    
+    <item>
+      <title>DNS 域名系统</title>
+      <link>https://housirvip.github.com/post/dns/</link>
+      <pubDate>Tue, 02 Jan 2018 12:20:24 +0000</pubDate>
+      
+      <guid>https://housirvip.github.com/post/dns/</guid>
+      <description>DNS（Domain Name System，域名系统），因特网上作为域名和IP地址相互映射的一个分布式数据库，能够使用户更方便的访问互联网，而不用去</description>
+    </item>
+    
+    <item>
+      <title>CDN 内容分发网络</title>
+      <link>https://housirvip.github.com/post/cdn/</link>
+      <pubDate>Tue, 02 Jan 2018 12:15:24 +0000</pubDate>
+      
+      <guid>https://housirvip.github.com/post/cdn/</guid>
+      <description>CDN的全称是Content Delivery Network，即内容分发网络。其基本思路是尽可能避开互联网上有可能影响数据传输速度和稳定性的瓶颈和环节，使内</description>
+    </item>
+    
+    <item>
+      <title>NoSQL与SQL对比</title>
+      <link>https://housirvip.github.com/post/sql%E5%92%8Cnosql/</link>
+      <pubDate>Tue, 02 Jan 2018 12:15:24 +0000</pubDate>
+      
+      <guid>https://housirvip.github.com/post/sql%E5%92%8Cnosql/</guid>
+      <description>概念 SQL (Structured Query Language) 数据库，指关系型数据库。主要代表：SQL Server，Oracle，MySQL(开源)，PostgreSQL(开源)。 NoSQL</description>
+    </item>
+    
+    <item>
+      <title>高并发web系统设计</title>
+      <link>https://housirvip.github.com/post/%E9%AB%98%E5%B9%B6%E5%8F%91web%E8%AE%BE%E8%AE%A1/</link>
+      <pubDate>Tue, 02 Jan 2018 12:13:24 +0000</pubDate>
+      
+      <guid>https://housirvip.github.com/post/%E9%AB%98%E5%B9%B6%E5%8F%91web%E8%AE%BE%E8%AE%A1/</guid>
+      <description>核心技术点 前端优化 前端优化主要包括动态内容静态化，增加前端缓存。页面静态化是指将指含有大量动态元素的动态网页，如jsp、php等，转换为ht</description>
+    </item>
+    
+  </channel>
+</rss>

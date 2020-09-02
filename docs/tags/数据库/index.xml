@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>数据库 on The Blog of housirvip</title>
+    <link>https://housirvip.github.com/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/</link>
+    <description>Recent content in 数据库 on The Blog of housirvip</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Tue, 02 Jan 2018 12:15:24 +0000</lastBuildDate>
+    
+	<atom:link href="https://housirvip.github.com/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>NoSQL与SQL对比</title>
+      <link>https://housirvip.github.com/post/sql%E5%92%8Cnosql/</link>
+      <pubDate>Tue, 02 Jan 2018 12:15:24 +0000</pubDate>
+      
+      <guid>https://housirvip.github.com/post/sql%E5%92%8Cnosql/</guid>
+      <description>概念 SQL (Structured Query Language) 数据库，指关系型数据库。主要代表：SQL Server，Oracle，MySQL(开源)，PostgreSQL(开源)。 NoSQL</description>
+    </item>
+    
+  </channel>
+</rss>

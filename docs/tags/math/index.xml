@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Math on The Blog of housirvip</title>
+    <link>https://housirvip.github.com/tags/math/</link>
+    <description>Recent content in Math on The Blog of housirvip</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Sun, 20 May 2018 00:19:33 +0000</lastBuildDate>
+    
+	<atom:link href="https://housirvip.github.com/tags/math/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>MarkDown数学公式</title>
+      <link>https://housirvip.github.com/post/markdown%E6%95%B0%E5%AD%A6%E5%85%AC%E5%BC%8F/</link>
+      <pubDate>Sun, 20 May 2018 00:19:33 +0000</pubDate>
+      
+      <guid>https://housirvip.github.com/post/markdown%E6%95%B0%E5%AD%A6%E5%85%AC%E5%BC%8F/</guid>
+      <description>在输入数学公式的时候，需要在数学公式的前后加入$$符号，将需要输入的公式加入到$$中间。 上下标 上标 ^ 下标 _ 名称 数学表达式 MarkDown公式</description>
+    </item>
+    
+  </channel>
+</rss>

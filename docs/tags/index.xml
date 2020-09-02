@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Tags on The Blog of housirvip</title>
+    <link>https://housirvip.github.com/tags/</link>
+    <description>Recent content in Tags on The Blog of housirvip</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Sun, 20 May 2018 14:36:37 +0000</lastBuildDate>
+    
+	<atom:link href="https://housirvip.github.com/tags/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Consul</title>
+      <link>https://housirvip.github.com/tags/consul/</link>
+      <pubDate>Sun, 20 May 2018 14:36:37 +0000</pubDate>
+      
+      <guid>https://housirvip.github.com/tags/consul/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Docker</title>
+      <link>https://housirvip.github.com/tags/docker/</link>
+      <pubDate>Sun, 20 May 2018 14:36:37 +0000</pubDate>
+      
+      <guid>https://housirvip.github.com/tags/docker/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Web</title>
+      <link>https://housirvip.github.com/tags/web/</link>
+      <pubDate>Sun, 20 May 2018 14:36:37 +0000</pubDate>
+      
+      <guid>https://housirvip.github.com/tags/web/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Linux</title>
+      <link>https://housirvip.github.com/tags/linux/</link>
+      <pubDate>Sun, 20 May 2018 12:03:19 +0000</pubDate>
+      
+      <guid>https://housirvip.github.com/tags/linux/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>MarkDown</title>
+      <link>https://housirvip.github.com/tags/markdown/</link>
+      <pubDate>Sun, 20 May 2018 00:19:33 +0000</pubDate>
+      
+      <guid>https://housirvip.github.com/tags/markdown/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Math</title>
+      <link>https://housirvip.github.com/tags/math/</link>
+      <pubDate>Sun, 20 May 2018 00:19:33 +0000</pubDate>
+      
+      <guid>https://housirvip.github.com/tags/math/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Golang</title>
+      <link>https://housirvip.github.com/tags/golang/</link>
+      <pubDate>Fri, 26 Jan 2018 09:39:41 +0000</pubDate>
+      
+      <guid>https://housirvip.github.com/tags/golang/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>LeetCode</title>
+      <link>https://housirvip.github.com/tags/leetcode/</link>
+      <pubDate>Fri, 26 Jan 2018 09:39:41 +0000</pubDate>
+      
+      <guid>https://housirvip.github.com/tags/leetcode/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>算法</title>
+      <link>https://housirvip.github.com/tags/%E7%AE%97%E6%B3%95/</link>
+      <pubDate>Fri, 26 Jan 2018 09:39:41 +0000</pubDate>
+      
+      <guid>https://housirvip.github.com/tags/%E7%AE%97%E6%B3%95/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>版本控制</title>
+      <link>https://housirvip.github.com/tags/%E7%89%88%E6%9C%AC%E6%8E%A7%E5%88%B6/</link>
+      <pubDate>Tue, 02 Jan 2018 12:25:24 +0000</pubDate>
+      
+      <guid>https://housirvip.github.com/tags/%E7%89%88%E6%9C%AC%E6%8E%A7%E5%88%B6/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>高并发</title>
+      <link>https://housirvip.github.com/tags/%E9%AB%98%E5%B9%B6%E5%8F%91/</link>
+      <pubDate>Tue, 02 Jan 2018 12:20:24 +0000</pubDate>
+      
+      <guid>https://housirvip.github.com/tags/%E9%AB%98%E5%B9%B6%E5%8F%91/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>数据库</title>
+      <link>https://housirvip.github.com/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/</link>
+      <pubDate>Tue, 02 Jan 2018 12:15:24 +0000</pubDate>
+      
+      <guid>https://housirvip.github.com/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Dns</title>
+      <link>https://housirvip.github.com/tags/dns/</link>
+      <pubDate>Thu, 24 Aug 2017 12:53:47 +0000</pubDate>
+      
+      <guid>https://housirvip.github.com/tags/dns/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>树莓派</title>
+      <link>https://housirvip.github.com/tags/%E6%A0%91%E8%8E%93%E6%B4%BE/</link>
+      <pubDate>Thu, 24 Aug 2017 12:53:47 +0000</pubDate>
+      
+      <guid>https://housirvip.github.com/tags/%E6%A0%91%E8%8E%93%E6%B4%BE/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>SSR</title>
+      <link>https://housirvip.github.com/tags/ssr/</link>
+      <pubDate>Thu, 24 Aug 2017 12:13:24 +0000</pubDate>
+      
+      <guid>https://housirvip.github.com/tags/ssr/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Hackintosh</title>
+      <link>https://housirvip.github.com/tags/hackintosh/</link>
+      <pubDate>Fri, 18 Aug 2017 12:01:23 +0000</pubDate>
+      
+      <guid>https://housirvip.github.com/tags/hackintosh/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>黑苹果</title>
+      <link>https://housirvip.github.com/tags/%E9%BB%91%E8%8B%B9%E6%9E%9C/</link>
+      <pubDate>Fri, 18 Aug 2017 12:01:23 +0000</pubDate>
+      
+      <guid>https://housirvip.github.com/tags/%E9%BB%91%E8%8B%B9%E6%9E%9C/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>软路由</title>
+      <link>https://housirvip.github.com/tags/%E8%BD%AF%E8%B7%AF%E7%94%B1/</link>
+      <pubDate>Wed, 16 Aug 2017 18:34:30 +0000</pubDate>
+      
+      <guid>https://housirvip.github.com/tags/%E8%BD%AF%E8%B7%AF%E7%94%B1/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

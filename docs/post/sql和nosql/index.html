@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>NoSQL与SQL对比 - The Blog of housirvip</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="housirvip" /><meta name="description" content="概念 SQL (Structured Query Language) 数据库，指关系型数据库。主要代表：SQL Server，Oracle，MySQL(开源)，PostgreSQL(开源)。 NoSQL" /><meta name="keywords" content="Blog, web, blog" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.74.3 with theme even" />
+
+
+<link rel="canonical" href="https://housirvip.github.com/post/sql%E5%92%8Cnosql/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.651e6917abb0239242daa570c2bec9867267bbcd83646da5a850afe573347b44.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="NoSQL与SQL对比" />
+<meta property="og:description" content="概念 SQL (Structured Query Language) 数据库，指关系型数据库。主要代表：SQL Server，Oracle，MySQL(开源)，PostgreSQL(开源)。 NoSQL" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://housirvip.github.com/post/sql%E5%92%8Cnosql/" />
+<meta property="article:published_time" content="2018-01-02T12:15:24+00:00" />
+<meta property="article:modified_time" content="2018-01-02T12:15:24+00:00" />
+<meta itemprop="name" content="NoSQL与SQL对比">
+<meta itemprop="description" content="概念 SQL (Structured Query Language) 数据库，指关系型数据库。主要代表：SQL Server，Oracle，MySQL(开源)，PostgreSQL(开源)。 NoSQL">
+<meta itemprop="datePublished" content="2018-01-02T12:15:24+00:00" />
+<meta itemprop="dateModified" content="2018-01-02T12:15:24+00:00" />
+<meta itemprop="wordCount" content="2287">
+
+
+
+<meta itemprop="keywords" content="Web,数据库," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="NoSQL与SQL对比"/>
+<meta name="twitter:description" content="概念 SQL (Structured Query Language) 数据库，指关系型数据库。主要代表：SQL Server，Oracle，MySQL(开源)，PostgreSQL(开源)。 NoSQL"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Housirvip</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">首页</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">时间线</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">标签</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">目录</li>
+      </a><a href="/%E5%85%B3%E4%BA%8E%E6%88%91/">
+        <li class="mobile-menu-item">关于我</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Housirvip</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">首页</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">时间线</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">标签</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">目录</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/%E5%85%B3%E4%BA%8E%E6%88%91/">关于我</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">NoSQL与SQL对比</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2018-01-02 </span>
+        
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#概念">概念</a></li>
+        <li><a href="#区别">区别</a></li>
+        <li><a href="#优缺点">优缺点</a>
+          <ul>
+            <li><a href="#关系型数据库">关系型数据库</a></li>
+            <li><a href="#nosql数据库">NoSQL数据库</a></li>
+          </ul>
+        </li>
+        <li><a href="#补充">补充</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <h2 id="概念">概念</h2>
+<blockquote>
+<p>SQL (Structured Query Language) 数据库，指关系型数据库。主要代表：SQL Server，Oracle，MySQL(开源)，PostgreSQL(开源)。
+NoSQL（Not Only SQL）泛指非关系型数据库。主要代表：MongoDB，Redis，CouchDB，HBase。</p>
+</blockquote>
+<p>随着web2.0的快速发展，非关系型、分布式数据存储得到了快速的发展，它们不保证关系数据的ACID特性。NoSQL概念在2009年被提了出来。NoSQL最常见的解释是“non-relational”，“Not Only SQL”也被很多人接受。（“NoSQL”一词最早于1998年被用于一个轻量级的关系数据库的名字。）</p>
+<p>NoSQL被我们用得最多的当数key-value存储，当然还有其他的文档型的、列存储、图型数据库、xml数据库等。在NoSQL概念提出之前，这些数据库就被用于各种系统当中，但是却很少用于web互联网应用。比如cdb、qdbm、bdb数据库。</p>
+<p><img src="http://static.nicesite.vip/2018-06-12-085427.jpg" alt=""></p>
+<h2 id="区别">区别</h2>
+<hr>
+<ol>
+<li>
+<p>存储方式
+　　SQL数据存在特定结构的表中；而NoSQL则更加灵活和可扩展，存储方式可以省是JSON文档、哈希表或者其他方式。SQL通常以数据库表形式存储数据。举个栗子，存个学生借书数据：
+而NoSQL存储方式比较灵活，比如使用类JSON文件存储上表中熊大的借阅数据：</p>
+</li>
+<li>
+<p>表/数据集合的数据的关系
+　　在SQL中，必须定义好表和字段结构后才能添加数据，例如定义表的主键(primary key)，索引(index),触发器(trigger),存储过程(stored procedure)等。表结构可以在被定义之后更新，但是如果有比较大的结构变更的话就会变得比较复杂。在NoSQL中，数据可以在任何时候任何地方添加，不需要先定义表。例如下面这段代码会自动创建一个新的&quot;借阅表&quot;数据集合：
+NoSQL也可以在数据集中建立索引。以MongoDB为例，会自动在数据集合创建后创建唯一值_id字段，这样的话就可以在数据集创建后增加索引。
+从这点来看，NoSQL可能更加适合初始化数据还不明确或者未定的项目中。</p>
+</li>
+<li>
+<p>外部数据存储
+　　SQL中如何需要增加外部关联数据的话，规范化做法是在原表中增加一个外键，关联外部数据表。例如需要在借阅表中增加审核人信息，先建立一个审核人表：
+再在原来的借阅人表中增加审核人外键：
+这样如果我们需要更新审核人个人信息的时候只需要更新审核人表而不需要对借阅人表做更新。而在NoSQL中除了这种规范化的外部数据表做法以外，我们还能用如下的非规范化方式把外部数据直接放到原数据集中，以提高查询效率。缺点也比较明显，更新审核人数据的时候将会比较麻烦。</p>
+</li>
+<li>
+<p>SQL中的JOIN查询
+　　SQL中可以使用JOIN表链接方式将多个关系数据表中的数据用一条简单的查询语句查询出来。NoSQL暂未提供类似JOIN的查询方式对多个数据集中的数据做查询。所以大部分NoSQL使用非规范化的数据存储方式存储数据。</p>
+</li>
+<li>
+<p>数据耦合性
+　　SQL中不允许删除已经被使用的外部数据，例如审核人表中的&quot;熊三&quot;已经被分配给了借阅人熊大，那么在审核人表中将不允许删除熊三这条数据，以保证数据完整性。而NoSQL中则没有这种强耦合的概念，可以随时删除任何数据。</p>
+</li>
+<li>
+<p>事务
+　　SQL中如果多张表数据需要同批次被更新，即如果其中一张表更新失败的话其他表也不能更新成功。这种场景可以通过事务来控制，可以在所有命令完成后再统一提交事务。而NoSQL中没有事务这个概念，每一个数据集的操作都是原子级的。</p>
+</li>
+<li>
+<p>增删改查语法</p>
+</li>
+<li>
+<p>查询性能
+　　在相同水平的系统设计的前提下，因为NoSQL中省略了JOIN查询的消耗，故理论上性能上是优于SQL的。</p>
+</li>
+</ol>
+<h2 id="优缺点">优缺点</h2>
+<hr>
+<h3 id="关系型数据库">关系型数据库</h3>
+<p>&lt;1&gt;关系数据库的特点是：</p>
+<ul>
+<li>数据关系模型基于关系模型，结构化存储，完整性约束。</li>
+<li>基于二维表及其之间的联系，需要连接、并、交、差、除等数据操作。</li>
+<li>采用结构化的查询语言（SQL）做数据读写。</li>
+<li>操作需要数据的一致性，需要事务甚至是强一致性。</li>
+</ul>
+<p>&lt;2&gt;优点：</p>
+<ul>
+<li>保持数据的一致性（事务处理）</li>
+<li>可以进行join等复杂查询。</li>
+<li>通用化，技术成熟。</li>
+</ul>
+<p>&lt;3&gt;缺点:</p>
+<ul>
+<li>数据读写必须经过sql解析，大量数据、高并发下读写性能不足。</li>
+<li>对数据做读写，或修改数据结构时需要加锁，影响并发操作。</li>
+<li>无法适应非结构化存储。</li>
+<li>扩展困难。</li>
+<li>昂贵、复杂。</li>
+</ul>
+<h3 id="nosql数据库">NoSQL数据库</h3>
+<p>&lt;1&gt;NoSQL数据库的特点是：</p>
+<ul>
+<li>非结构化的存储。</li>
+<li>基于多维关系模型。</li>
+<li>具有特有的使用场景。</li>
+</ul>
+<p>&lt;2&gt;优点：</p>
+<ul>
+<li>高并发，大数据下读写能力较强。</li>
+<li>基本支持分布式，易于扩展，可伸缩。</li>
+<li>简单，弱结构化存储。</li>
+</ul>
+<p>&lt;3&gt;缺点:</p>
+<ul>
+<li>join等复杂操作能力较弱。</li>
+<li>事务支持较弱。</li>
+<li>通用性差。</li>
+<li>无完整约束复杂业务场景支持较差。</li>
+</ul>
+<h2 id="补充">补充</h2>
+<hr>
+<p>目前许多大型互联网项目都会选用MySQL（或任何关系型数据库） + NoSQL的组合方案。</p>
+<ul>
+<li>
+<p>关系型数据库适合存储结构化数据，如用户的帐号、地址：
+　　1）这些数据通常需要做结构化查询（嗯，好像是废话），比如join，这时候，关系型数据库就要胜出一筹
+　　2）这些数据的规模、增长的速度通常是可以预期的
+　　3）事务性、一致性</p>
+</li>
+<li>
+<p>NoSQL适合存储非结构化数据，如文章、评论：
+　　1）这些数据通常用于模糊处理，如全文搜索、机器学习
+　　2）这些数据是海量的，而且增长的速度是难以预期的，
+　　3）根据数据的特点，NoSQL数据库通常具有无限（至少接近）伸缩性
+　　4）按key获取数据效率很高，但是对join或其他结构化查询的支持就比较差</p>
+</li>
+</ul>
+<p>　　基于它们的适用范围不同，目前主流架构才会采用组合方案，一个也不能少。目前为止，还没有出现一个能够通吃各种场景的数据库，而且根据CAP理论，这样的数据库是不存在的。</p>
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">housirvip</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+        2018-01-02
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/web/">Web</a>
+          <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/post/cdn/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">CDN 内容分发网络</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        <a class="next" href="/post/%E9%AB%98%E5%B9%B6%E5%8F%91web%E8%AE%BE%E8%AE%A1/">
+            <span class="next-text nav-default">高并发web系统设计</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+  <div id="vcomments"></div>
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+  <script type="text/javascript">
+    new Valine({
+        el: '#vcomments' ,
+        appId: 'LGk5vbfMKxE0HrHOrkCC8gKf-gzGzoHsz',
+        appKey: 'Fy59MNy0luXKeogBChUJp2g8',
+        notify:  false ,
+        verify:  false ,
+        avatar:'mm',
+        placeholder: '说点什么吧...',
+        visitor:  false 
+    });
+  </script>
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:housirvip@gmail.com" class="iconfont icon-email" title="email"></a>
+      <a href="https://github.com/housirvip" class="iconfont icon-github" title="github"></a>
+  <a href="https://housirvip.github.com/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2017 - 
+    2020
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">housirvip</span>
+  </span>
+</div>
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.d7b7ada643c9c1a983026e177f141f7363b4640d619caf01d8831a6718cd44ea.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

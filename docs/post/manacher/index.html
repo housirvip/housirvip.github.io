@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>manacher算法 - The Blog of housirvip</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="housirvip" /><meta name="description" content="原题再现 LeetCode problem No.5 Given a string s, find the longest palindromic substring in s. You may assume that the maximum length of s is 1000. 从字符串s中找出最长的回文子串，s的长度不会超过1000 Example: Input: &amp;ldquo;babad&amp;rdquo; Output: &amp;ldquo;bab&amp;rdquo; Note: &amp;ldquo;aba&amp;rdquo; is also a valid answer. Example:" /><meta name="keywords" content="Blog, web, blog" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.74.3 with theme even" />
+
+
+<link rel="canonical" href="https://housirvip.github.com/post/manacher/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.651e6917abb0239242daa570c2bec9867267bbcd83646da5a850afe573347b44.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="manacher算法" />
+<meta property="og:description" content="原题再现 LeetCode problem No.5 Given a string s, find the longest palindromic substring in s. You may assume that the maximum length of s is 1000. 从字符串s中找出最长的回文子串，s的长度不会超过1000 Example: Input: &ldquo;babad&rdquo; Output: &ldquo;bab&rdquo; Note: &ldquo;aba&rdquo; is also a valid answer. Example:" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://housirvip.github.com/post/manacher/" />
+<meta property="article:published_time" content="2018-01-26T09:39:41+00:00" />
+<meta property="article:modified_time" content="2018-01-26T09:39:41+00:00" />
+<meta itemprop="name" content="manacher算法">
+<meta itemprop="description" content="原题再现 LeetCode problem No.5 Given a string s, find the longest palindromic substring in s. You may assume that the maximum length of s is 1000. 从字符串s中找出最长的回文子串，s的长度不会超过1000 Example: Input: &ldquo;babad&rdquo; Output: &ldquo;bab&rdquo; Note: &ldquo;aba&rdquo; is also a valid answer. Example:">
+<meta itemprop="datePublished" content="2018-01-26T09:39:41+00:00" />
+<meta itemprop="dateModified" content="2018-01-26T09:39:41+00:00" />
+<meta itemprop="wordCount" content="1363">
+
+
+
+<meta itemprop="keywords" content="算法,LeetCode,Golang," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="manacher算法"/>
+<meta name="twitter:description" content="原题再现 LeetCode problem No.5 Given a string s, find the longest palindromic substring in s. You may assume that the maximum length of s is 1000. 从字符串s中找出最长的回文子串，s的长度不会超过1000 Example: Input: &ldquo;babad&rdquo; Output: &ldquo;bab&rdquo; Note: &ldquo;aba&rdquo; is also a valid answer. Example:"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Housirvip</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">首页</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">时间线</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">标签</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">目录</li>
+      </a><a href="/%E5%85%B3%E4%BA%8E%E6%88%91/">
+        <li class="mobile-menu-item">关于我</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Housirvip</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">首页</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">时间线</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">标签</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">目录</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/%E5%85%B3%E4%BA%8E%E6%88%91/">关于我</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">manacher算法</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2018-01-26 </span>
+        
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#原题再现">原题再现</a>
+          <ul>
+            <li><a href="#通俗解法">通俗解法</a></li>
+            <li><a href="#启发思考">启发思考</a></li>
+          </ul>
+        </li>
+        <li><a href="#介绍">介绍</a></li>
+        <li><a href="#原理">原理</a>
+          <ul>
+            <li><a href="#改造字符串">改造字符串</a></li>
+            <li><a href="#规律数组">规律数组</a></li>
+          </ul>
+        </li>
+        <li><a href="#代码">代码</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <h2 id="原题再现">原题再现</h2>
+<p>LeetCode problem No.5</p>
+<blockquote>
+<p>Given a string s, find the longest palindromic substring in s. You may assume that the maximum length of s is 1000.<br>
+从字符串s中找出最长的回文子串，s的长度不会超过1000</p>
+</blockquote>
+<p>Example:
+Input: &ldquo;babad&rdquo;
+Output: &ldquo;bab&rdquo;
+Note: &ldquo;aba&rdquo; is also a valid answer.</p>
+<p>Example:
+Input: &ldquo;cbbd&rdquo;
+Output: &ldquo;bb&rdquo;</p>
+<h3 id="通俗解法">通俗解法</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nf">longestPalindrome</span><span class="p">(</span><span class="nx">str</span> <span class="kt">string</span><span class="p">)</span> <span class="kt">string</span> <span class="p">{</span>
+	<span class="nx">start</span><span class="p">,</span> <span class="nx">end</span><span class="p">,</span> <span class="nx">len1</span><span class="p">,</span> <span class="nx">len2</span><span class="p">,</span> <span class="nx">lenPalindrome</span> <span class="o">:=</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span>
+	<span class="k">for</span> <span class="nx">i</span> <span class="o">:=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="p">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="nx">str</span><span class="p">);</span> <span class="nx">i</span><span class="o">++</span> <span class="p">{</span>
+		<span class="c1">// 奇偶要分开讨论
+</span><span class="c1"></span>		<span class="nx">len1</span> <span class="p">=</span> <span class="nf">palindromeLen</span><span class="p">(</span><span class="nx">str</span><span class="p">,</span> <span class="nx">i</span><span class="p">,</span> <span class="nx">i</span><span class="p">)</span>
+		<span class="nx">len2</span> <span class="p">=</span> <span class="nf">palindromeLen</span><span class="p">(</span><span class="nx">str</span><span class="p">,</span> <span class="nx">i</span><span class="p">,</span> <span class="nx">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+		<span class="nx">lenPalindrome</span> <span class="p">=</span> <span class="nf">maxInt</span><span class="p">(</span><span class="nx">len1</span><span class="p">,</span> <span class="nx">len2</span><span class="p">)</span>
+		<span class="k">if</span> <span class="nx">lenPalindrome</span> <span class="p">&gt;</span> <span class="nx">end</span><span class="o">-</span><span class="nx">start</span> <span class="p">{</span>
+			<span class="nx">start</span><span class="p">,</span> <span class="nx">end</span> <span class="p">=</span> <span class="nx">i</span><span class="o">-</span><span class="p">(</span><span class="nx">lenPalindrome</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="nx">i</span><span class="o">+</span><span class="nx">lenPalindrome</span><span class="o">/</span><span class="mi">2</span>
+		<span class="p">}</span>
+	<span class="p">}</span>
+	<span class="k">return</span> <span class="nx">str</span><span class="p">[</span><span class="nx">start</span><span class="p">:</span><span class="nx">end</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span>
+<span class="p">}</span>
+
+<span class="c1">// golang中没有max，min这类函数，自己写一个
+</span><span class="c1"></span><span class="kd">func</span> <span class="nf">maxInt</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span> <span class="kt">int</span><span class="p">)</span> <span class="kt">int</span> <span class="p">{</span>
+	<span class="k">if</span> <span class="nx">a</span> <span class="p">&gt;</span> <span class="nx">b</span> <span class="p">{</span>
+		<span class="k">return</span> <span class="nx">a</span>
+	<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+		<span class="k">return</span> <span class="nx">b</span>
+	<span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">func</span> <span class="nf">palindromeLen</span><span class="p">(</span><span class="nx">str</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">left</span><span class="p">,</span> <span class="nx">right</span> <span class="kt">int</span><span class="p">)</span> <span class="kt">int</span> <span class="p">{</span>
+	<span class="nx">i</span> <span class="o">:=</span> <span class="mi">0</span>
+	<span class="k">for</span> <span class="nx">i</span> <span class="p">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">left</span><span class="o">-</span><span class="nx">i</span> <span class="o">&gt;=</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="nx">right</span><span class="o">+</span><span class="nx">i</span> <span class="p">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="nx">str</span><span class="p">);</span> <span class="nx">i</span><span class="o">++</span> <span class="p">{</span>
+		<span class="k">if</span> <span class="nx">str</span><span class="p">[</span><span class="nx">left</span><span class="o">-</span><span class="nx">i</span><span class="p">]</span> <span class="o">!=</span> <span class="nx">str</span><span class="p">[</span><span class="nx">right</span><span class="o">+</span><span class="nx">i</span><span class="p">]</span> <span class="p">{</span>
+			<span class="k">break</span>
+		<span class="p">}</span>
+	<span class="p">}</span>
+	<span class="k">return</span> <span class="mi">2</span><span class="o">*</span><span class="nx">i</span> <span class="o">-</span> <span class="mi">1</span> <span class="o">+</span> <span class="nx">right</span> <span class="o">-</span> <span class="nx">left</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="启发思考">启发思考</h3>
+<p>受到之前kmp算法的提示，我们应该能感受到，这种字符串找规律的题目，应该会有更加操作简便的解法。</p>
+<ul>
+<li>分开讨论的部分能不能一起讨论？</li>
+<li>能不能整理出一个类似kmp的next数组的规律数组？</li>
+<li>能不能以线性的复杂度搞定？</li>
+</ul>
+<h2 id="介绍">介绍</h2>
+<blockquote>
+<p>马拉车算法Manacher&rsquo;s Algorithm是用来查找一个字符串的最长回文子串的线性方法，由Manacher在1975年发明的，这个方法的最大贡献是在于将时间复杂度提升到了线性。</p>
+</blockquote>
+<p>这个算法解决了奇偶分开讨论的问题，把冗余的循环节省掉，将时间复杂度降低到O(n)</p>
+<h2 id="原理">原理</h2>
+<p><a href="https://articles.leetcode.com/longest-palindromic-substring-part-ii/">LeetCode马拉车讲解（英文版）</a>，这个推荐看一下，写的很棒。</p>
+<h3 id="改造字符串">改造字符串</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">source    =     a   b   c   a   c   b   a   d   f
+strNew    = $ # a # b # c # a # c # b # a # d # f # &amp;
+prGroup[i]= 0 0 1 0 1 0 1 0 7 0 1 0 1 0 1 0 1 0 1 0 0
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">source    =     a   b   a   a   b   a
+strNew    = $ # a # b # a # a # b # a # &amp;
+prGroup[i]= 0 0 1 0 3 0 1 6 1 0 3 0 1 0 0
+</code></pre></td></tr></table>
+</div>
+</div><p>每个字符中间都加上#，首尾也加上。为了防止字符串越界，首尾再增加一个不同的字符。
+prGroup[i]是指以i为下标的字符，它的回文长度（去掉字符本身）palindrome-group</p>
+<h3 id="规律数组">规律数组</h3>
+<p><img src="http://static.nicesite.vip/2018-06-12-084839.jpg" alt=""></p>
+<p>例如上图，我们已经知道了i=13以前所有的prprGroup，那么i=13时还需要再次一遍遍的往两侧循环检测吗？<br>
+当然不需要，不然复杂度又成O(n^2)了</p>
+<p>我们选取目前已知的，能够使右边界R的index最大的prGroup，此时R=20，L=2，C=11<br>
+之后需要对不同的i进行判断</p>
+<ul>
+<li>当 i &lt;= R 时：
+<ul>
+<li>若有 prGroup[i&rsquo;] &lt; R-i  我们已经知道了C=11处是对称点，如果C左侧的某个点的prGroup长度能够保证在[L,C]区间内，那么对称点必然相同。i=13时，有 prGroup[i&rsquo;]==prGroup[i]</li>
+<li>prGroup[i&rsquo;] &gt;= R-i 那么此时的情况呢？当然不在保证 prGroup[i&rsquo;]==prGroup[i] 一定成立，因为从R之后的点都是未知的，但可以保证 prGroup[i] &gt;= R-i。例如下图，i=15时，prGroup[i&rsquo;]已经超出[L,C]区间，有prGroup[i]&gt;= R-i，R之后的字符是否符合需要一步一步往后验证，并更新R，L，C
+<img src="http://static.nicesite.vip/2018-06-12-084925.jpg" alt=""></li>
+</ul>
+</li>
+<li>当 i &gt; R 时，已经超过[L,R]区间，只能往后一个一个的验证，直至更新R，L，C</li>
+</ul>
+<h2 id="代码">代码</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-go" data-lang="go"><span class="c1">// 著名的马拉车算法，将复杂度回归线性O(n)
+</span><span class="c1"></span><span class="kd">func</span> <span class="nf">manacher</span><span class="p">(</span><span class="nx">source</span> <span class="kt">string</span><span class="p">)</span> <span class="kt">string</span> <span class="p">{</span>
+	<span class="c1">// 先对字符串增加#字符
+</span><span class="c1"></span>	<span class="nx">str</span> <span class="o">:=</span> <span class="nf">changeStr</span><span class="p">(</span><span class="nx">source</span><span class="p">)</span>
+	<span class="nx">lenStr</span> <span class="o">:=</span> <span class="nb">len</span><span class="p">(</span><span class="nx">str</span><span class="p">)</span>
+	<span class="nx">prGroup</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">([]</span><span class="kt">int</span><span class="p">,</span> <span class="nx">lenStr</span><span class="p">)</span>
+	<span class="nx">tempCentre</span><span class="p">,</span> <span class="nx">tempRight</span><span class="p">,</span> <span class="nx">prMax</span><span class="p">,</span> <span class="nx">prMaxIndex</span> <span class="o">:=</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span>
+	<span class="k">for</span> <span class="nx">i</span> <span class="o">:=</span> <span class="mi">1</span><span class="p">;</span> <span class="nx">i</span> <span class="p">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="nx">str</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span> <span class="p">{</span>
+		<span class="c1">// golang没有三元运算符
+</span><span class="c1"></span>		<span class="k">if</span> <span class="nx">i</span> <span class="o">&lt;=</span> <span class="nx">tempRight</span> <span class="p">{</span>
+			<span class="nx">prGroup</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="p">=</span> <span class="nf">minInt</span><span class="p">(</span><span class="nx">tempRight</span><span class="o">-</span><span class="nx">i</span><span class="p">,</span> <span class="nx">prGroup</span><span class="p">[</span><span class="mi">2</span><span class="o">*</span><span class="nx">tempCentre</span><span class="o">-</span><span class="nx">i</span><span class="p">])</span>
+		<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+			<span class="nx">prGroup</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="p">=</span> <span class="mi">0</span>
+		<span class="p">}</span>
+		<span class="k">for</span> <span class="nx">str</span><span class="p">[</span><span class="nx">i</span><span class="o">-</span><span class="nx">prGroup</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="nx">str</span><span class="p">[</span><span class="nx">i</span><span class="o">+</span><span class="nx">prGroup</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="p">{</span>
+			<span class="nx">prGroup</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span><span class="o">++</span>
+		<span class="p">}</span>
+		<span class="k">if</span> <span class="nx">tempRight</span> <span class="p">&lt;</span> <span class="nx">prGroup</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span><span class="o">+</span><span class="nx">i</span> <span class="p">{</span>
+			<span class="nx">tempCentre</span> <span class="p">=</span> <span class="nx">i</span>
+			<span class="nx">tempRight</span> <span class="p">=</span> <span class="nx">i</span> <span class="o">+</span> <span class="nx">prGroup</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span>
+		<span class="p">}</span>
+		<span class="k">if</span> <span class="nx">prMax</span> <span class="p">&lt;</span> <span class="nx">prGroup</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="p">{</span>
+			<span class="nx">prMax</span> <span class="p">=</span> <span class="nx">prGroup</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span>
+			<span class="nx">prMaxIndex</span> <span class="p">=</span> <span class="nx">i</span>
+		<span class="p">}</span>
+	<span class="p">}</span>
+	<span class="k">return</span> <span class="nx">source</span><span class="p">[(</span><span class="nx">prMaxIndex</span><span class="o">-</span><span class="mi">1</span><span class="o">-</span><span class="nx">prMax</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">:(</span><span class="nx">prMaxIndex</span><span class="o">-</span><span class="mi">1</span><span class="o">+</span><span class="nx">prMax</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">]</span>
+<span class="p">}</span>
+
+<span class="kd">func</span> <span class="nf">minInt</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span> <span class="kt">int</span><span class="p">)</span> <span class="kt">int</span> <span class="p">{</span>
+	<span class="k">if</span> <span class="nx">a</span> <span class="p">&gt;</span> <span class="nx">b</span> <span class="p">{</span>
+		<span class="k">return</span> <span class="nx">b</span>
+	<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+		<span class="k">return</span> <span class="nx">a</span>
+	<span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">func</span> <span class="nf">changeStr</span><span class="p">(</span><span class="nx">source</span> <span class="kt">string</span><span class="p">)</span> <span class="kt">string</span> <span class="p">{</span>
+	<span class="nx">b</span> <span class="o">:=</span> <span class="nx">bytes</span><span class="p">.</span><span class="nx">Buffer</span><span class="p">{}</span>
+	<span class="nx">b</span><span class="p">.</span><span class="nf">WriteString</span><span class="p">(</span><span class="s">&#34;$#&#34;</span><span class="p">)</span>
+	<span class="k">for</span> <span class="nx">i</span> <span class="o">:=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="p">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="nx">source</span><span class="p">);</span> <span class="nx">i</span><span class="o">++</span> <span class="p">{</span>
+		<span class="nx">b</span><span class="p">.</span><span class="nf">WriteString</span><span class="p">(</span><span class="nb">string</span><span class="p">(</span><span class="nx">source</span><span class="p">[</span><span class="nx">i</span><span class="p">]))</span>
+		<span class="nx">b</span><span class="p">.</span><span class="nf">WriteString</span><span class="p">(</span><span class="s">&#34;#&#34;</span><span class="p">)</span>
+	<span class="p">}</span>
+	<span class="nx">b</span><span class="p">.</span><span class="nf">WriteString</span><span class="p">(</span><span class="s">&#34;&amp;&#34;</span><span class="p">)</span>
+	<span class="k">return</span> <span class="nx">b</span><span class="p">.</span><span class="nf">String</span><span class="p">()</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div>
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">housirvip</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+        2018-01-26
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/%E7%AE%97%E6%B3%95/">算法</a>
+          <a href="/tags/leetcode/">LeetCode</a>
+          <a href="/tags/golang/">Golang</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/post/markdown%E6%95%B0%E5%AD%A6%E5%85%AC%E5%BC%8F/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">MarkDown数学公式</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        <a class="next" href="/post/kmp/">
+            <span class="next-text nav-default">KMP算法个人理解</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+  <div id="vcomments"></div>
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+  <script type="text/javascript">
+    new Valine({
+        el: '#vcomments' ,
+        appId: 'LGk5vbfMKxE0HrHOrkCC8gKf-gzGzoHsz',
+        appKey: 'Fy59MNy0luXKeogBChUJp2g8',
+        notify:  false ,
+        verify:  false ,
+        avatar:'mm',
+        placeholder: '说点什么吧...',
+        visitor:  false 
+    });
+  </script>
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:housirvip@gmail.com" class="iconfont icon-email" title="email"></a>
+      <a href="https://github.com/housirvip" class="iconfont icon-github" title="github"></a>
+  <a href="https://housirvip.github.com/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2017 - 
+    2020
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">housirvip</span>
+  </span>
+</div>
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.d7b7ada643c9c1a983026e177f141f7363b4640d619caf01d8831a6718cd44ea.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

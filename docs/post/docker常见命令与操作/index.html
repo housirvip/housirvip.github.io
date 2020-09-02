@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Docker常见命令与操作 - The Blog of housirvip</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="housirvip" /><meta name="description" content="Docker 命令入门 拉取镜像 docker pull &amp;lt;镜像名:tag&amp;gt; 例如 docker pull progrium/consul:latest 列出存在的镜像 docker images 结果显示举例 1 2 3 4 REPOSITORY TAG IMAGE ID CREATED SIZE swaggerapi/swagger-editor latest aaa304fc1b89 2 months ago 35.9MB daocloud.io/library/ubuntu 16.04 14f60031763d 10 months ago 120MB" /><meta name="keywords" content="Blog, web, blog" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.74.3 with theme even" />
+
+
+<link rel="canonical" href="https://housirvip.github.com/post/docker%E5%B8%B8%E8%A7%81%E5%91%BD%E4%BB%A4%E4%B8%8E%E6%93%8D%E4%BD%9C/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.651e6917abb0239242daa570c2bec9867267bbcd83646da5a850afe573347b44.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="Docker常见命令与操作" />
+<meta property="og:description" content="Docker 命令入门 拉取镜像 docker pull &lt;镜像名:tag&gt; 例如 docker pull progrium/consul:latest 列出存在的镜像 docker images 结果显示举例 1 2 3 4 REPOSITORY TAG IMAGE ID CREATED SIZE swaggerapi/swagger-editor latest aaa304fc1b89 2 months ago 35.9MB daocloud.io/library/ubuntu 16.04 14f60031763d 10 months ago 120MB" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://housirvip.github.com/post/docker%E5%B8%B8%E8%A7%81%E5%91%BD%E4%BB%A4%E4%B8%8E%E6%93%8D%E4%BD%9C/" />
+<meta property="article:published_time" content="2018-05-20T12:03:19+00:00" />
+<meta property="article:modified_time" content="2018-05-20T12:03:19+00:00" />
+<meta itemprop="name" content="Docker常见命令与操作">
+<meta itemprop="description" content="Docker 命令入门 拉取镜像 docker pull &lt;镜像名:tag&gt; 例如 docker pull progrium/consul:latest 列出存在的镜像 docker images 结果显示举例 1 2 3 4 REPOSITORY TAG IMAGE ID CREATED SIZE swaggerapi/swagger-editor latest aaa304fc1b89 2 months ago 35.9MB daocloud.io/library/ubuntu 16.04 14f60031763d 10 months ago 120MB">
+<meta itemprop="datePublished" content="2018-05-20T12:03:19+00:00" />
+<meta itemprop="dateModified" content="2018-05-20T12:03:19+00:00" />
+<meta itemprop="wordCount" content="1590">
+
+
+
+<meta itemprop="keywords" content="Docker,Linux," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Docker常见命令与操作"/>
+<meta name="twitter:description" content="Docker 命令入门 拉取镜像 docker pull &lt;镜像名:tag&gt; 例如 docker pull progrium/consul:latest 列出存在的镜像 docker images 结果显示举例 1 2 3 4 REPOSITORY TAG IMAGE ID CREATED SIZE swaggerapi/swagger-editor latest aaa304fc1b89 2 months ago 35.9MB daocloud.io/library/ubuntu 16.04 14f60031763d 10 months ago 120MB"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Housirvip</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">首页</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">时间线</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">标签</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">目录</li>
+      </a><a href="/%E5%85%B3%E4%BA%8E%E6%88%91/">
+        <li class="mobile-menu-item">关于我</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Housirvip</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">首页</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">时间线</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">标签</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">目录</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/%E5%85%B3%E4%BA%8E%E6%88%91/">关于我</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">Docker常见命令与操作</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2018-05-20 </span>
+        
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#docker-命令入门">Docker 命令入门</a>
+          <ul>
+            <li><a href="#拉取镜像">拉取镜像</a></li>
+            <li><a href="#列出存在的镜像">列出存在的镜像</a></li>
+            <li><a href="#删除镜像">删除镜像</a></li>
+            <li><a href="#创建容器">创建容器</a></li>
+            <li><a href="#操作容器">操作容器</a></li>
+          </ul>
+        </li>
+        <li><a href="#docker-进阶操作">Docker 进阶操作</a>
+          <ul>
+            <li><a href="#修改docker本地镜像与容器的存储位置">修改Docker本地镜像与容器的存储位置</a></li>
+            <li><a href="#生成新的-image">生成新的 image</a></li>
+            <li><a href="#给镜像打上标签">给镜像打上标签</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <h2 id="docker-命令入门">Docker 命令入门</h2>
+<h3 id="拉取镜像">拉取镜像</h3>
+<p><code>docker pull &lt;镜像名:tag&gt;</code></p>
+<p>例如 <code>docker pull progrium/consul:latest</code></p>
+<h3 id="列出存在的镜像">列出存在的镜像</h3>
+<p><code>docker images</code> 结果显示举例</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">REPOSITORY                   TAG                 IMAGE ID            CREATED             SIZE
+swaggerapi/swagger-editor    latest              aaa304fc1b89        <span class="m">2</span> months ago        35.9MB
+daocloud.io/library/ubuntu   16.04               14f60031763d        <span class="m">10</span> months ago       120MB
+progrium/consul              latest              09ea64205e55        <span class="m">2</span> years ago         69.4MB
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="删除镜像">删除镜像</h3>
+<p><code>docker rmi &lt;镜像名&gt; </code></p>
+<p><code>docker rmi $(docker images | grep none | awk '{print $3}' | sort -r)</code> 删除所有镜像</p>
+<h3 id="创建容器">创建容器</h3>
+<p><code>docker run -t -i ubuntu:16.04 /bin/bash </code></p>
+<p><code>docker run -d -p 80:80 -v /data:/data --name ubuntu ubuntu:16.04 /bin/bash </code></p>
+<p><code>--name</code> 参数可以指定启动后的容器名字，如果不指定则docker会帮我们取一个名字</p>
+<p><code>-i -t</code> 立即进入到容器命令行操作，其中，<code>-t</code> 选项让Docker分配一个伪终端（pseudo-tty）并绑定到容器的标准输入上， <code>-i</code> 则让容器的标准输入保持打开。</p>
+<p>后台运行可以填写 <code>-d</code></p>
+<p><code>-p &lt;host_port:contain_port&gt;</code> 是端口暴露或者端口映射</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">-p 11211:11211 这个即是默认情况下，绑定主机所有网卡（0.0.0.0）的11211端口到容器的11211端口上
+-p 127.0.0.1:11211:11211 只绑定localhost这个接口的11211端口
+-p 127.0.0.1::5000
+-p 127.0.0.1:80:8080
+</code></pre></td></tr></table>
+</div>
+</div><p><code>-v &lt;host_path:container_path&gt;</code> 是目录映射</p>
+<h3 id="操作容器">操作容器</h3>
+<h4 id="查看正在运行的容器">查看正在运行的容器</h4>
+<p><code>docker ps</code></p>
+<p><code>docker ps -a </code> 为查看所有的容器，包括已经停止的</p>
+<h4 id="启动关闭和重启">启动关闭和重启</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">docker start &lt;container_id_or_name&gt;
+docker stop &lt;container_id_or_name&gt;
+docker restart &lt;container_id_or_name&gt;
+docker <span class="nb">kill</span> &lt;container_id_or_name&gt;
+</code></pre></td></tr></table>
+</div>
+</div><h4 id="进入到正在运行的容器">进入到正在运行的容器</h4>
+<p><code>docker exec -it &lt;container_id_or_name&gt; /bin/bash</code></p>
+<p>操作完成后，直接 <code>ctrl + d</code> 或者直接输入 <code>exit</code> 退出即可</p>
+<h4 id="删除容器">删除容器</h4>
+<p><code>docker rm &lt;container_id_or_name&gt;</code></p>
+<h4 id="查看容器user密码">查看容器user密码</h4>
+<p><code>docker logs &lt;container_id_or_name&gt; 2&gt;&amp;1 | grep '^User: ' | tail -n1</code></p>
+<p>因为docker容器启动时的root用户的密码是随机分配的。所以，通过这种方式就可以得到redmine容器的root用户的密码了</p>
+<h4 id="查看容器日志">查看容器日志</h4>
+<p><code>docker logs -f &lt;container_id_or_name&gt;</code></p>
+<h2 id="docker-进阶操作">Docker 进阶操作</h2>
+<blockquote>
+<p>详见 Gitbook <a href="https://github.com/yeasy/docker_practice">Docker从入门到实践</a></p>
+</blockquote>
+<h3 id="修改docker本地镜像与容器的存储位置">修改Docker本地镜像与容器的存储位置</h3>
+<h4 id="方法一软链接">方法一、软链接</h4>
+<p>默认情况下Docker的存放位置为：<code>/var/lib/docker</code> 可以通过下面命令查看具体位置：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">sudo docker info <span class="p">|</span> grep <span class="s2">&#34;Docker Root Dir&#34;</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>解决这个问题，最直接的方法当然是挂载分区到这个目录，但是我的数据盘还有其他东西，这肯定不好管理，所以采用修改镜像和容器的存放路径的方式达到目的</p>
+<p>这个方法里将通过软连接来实现</p>
+<p>首先停掉Docker服务：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">systemctl restart docker
+或者
+service docker stop
+</code></pre></td></tr></table>
+</div>
+</div><p>然后移动整个<code>/var/lib/docker</code>目录到目的路径：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">mv /var/lib/docker /root/data/docker
+ln -s /root/data/docker /var/lib/docker
+</code></pre></td></tr></table>
+</div>
+</div><p>这时候启动Docker时发现存储目录依旧是<code>/var/lib/docker</code>，但是实际上是存储在数据盘的，你可以在数据盘上看到容量变化</p>
+<h4 id="方法二修改镜像和容器的存放路径">方法二、修改镜像和容器的存放路径</h4>
+<p>指定镜像和容器存放路径的参数是<code>--graph=/var/lib/docker</code>，我们只需要修改配置文件指定启动参数即可。</p>
+<p>Docker 的配置文件可以设置大部分的后台进程参数，在各个操作系统中的存放位置不一致，在 Ubuntu 中的位置是：<code>/etc/default/docker</code>，在 CentOS 中的位置是：<code>/etc/sysconfig/docker</code>。</p>
+<p>如果是 CentOS 则添加下面这行：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="nv">OPTIONS</span><span class="o">=</span>--graph<span class="o">=</span><span class="s2">&#34;/root/data/docker&#34;</span> --selinux-enabled -H fd://
+</code></pre></td></tr></table>
+</div>
+</div><p>如果是 Ubuntu 则添加下面这行（因为 Ubuntu 默认没开启 selinux）：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-Shell" data-lang="Shell"><span class="nv">OPTIONS</span><span class="o">=</span>--graph<span class="o">=</span><span class="s2">&#34;/root/data/docker&#34;</span> -H fd://
+<span class="c1"># 或者</span>
+<span class="nv">DOCKER_OPTS</span><span class="o">=</span><span class="s2">&#34;-g /root/data/docker&#34;</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>最后重新启动，Docker 的路径就改成 <code>/root/data/docker</code> 了</p>
+<h3 id="生成新的-image">生成新的 image</h3>
+<p><code>build</code>命令可以从<code>Dockerfile</code>和上下文来创建镜像：
+<code>docker build [OPTIONS] PATH | URL | -</code>上面的<code>PATH</code>或<code>URL</code>中的文件被称作上下文，build  image的过程会先把这些文件传送到docker的服务端来进行的
+如果<code>PATH</code>直接就是一个单独的<code>Dockerfile</code>文件则可以不需要上下文；如果<code>URL</code>是一个Git仓库地址，那么创建image的过程中会自动<code>git  clone</code>一份到本机的临时目录，它就成为了本次build的上下文。无论指定的<code>PATH</code>是什么，<code>Dockerfile</code>是至关重要的，请参考 <a href="http://docs.docker.com/reference/builder/">Dockerfile  Reference</a>。
+请看下面的例子：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-dockerfile" data-lang="dockerfile"><span class="c"># cat Dockerfile </span><span class="err">
+</span><span class="err"></span><span class="k">FROM</span><span class="s"> seanlook/nginx:bash_vim</span><span class="err">
+</span><span class="err"></span><span class="k">EXPOSE</span><span class="s"> 80</span><span class="err">
+</span><span class="err"></span><span class="k">ENTRYPOINT</span> /usr/sbin/nginx -c /etc/nginx/nginx.conf <span class="o">&amp;&amp;</span> /bin/bash<span class="err">
+</span><span class="err">
+</span><span class="err"></span><span class="c"># docker build -t seanlook/nginx:bash_vim_Df .</span><span class="err">
+</span><span class="err"></span>Sending build context to Docker daemon 73.45 MB<span class="err">
+</span><span class="err"></span>Sending build context to Docker daemon <span class="err">
+</span><span class="err"></span>Step <span class="m">0</span> : FROM seanlook/nginx:bash_vim<span class="err">
+</span><span class="err"></span> ---&gt; aa8516fa0bb7<span class="err">
+</span><span class="err"></span>Step <span class="m">1</span> : EXPOSE <span class="m">80</span><span class="err">
+</span><span class="err"></span> ---&gt; Using cache<span class="err">
+</span><span class="err"></span> ---&gt; fece07e2b515<span class="err">
+</span><span class="err"></span>Step <span class="m">2</span> : ENTRYPOINT /usr/sbin/nginx -c /etc/nginx/nginx.conf <span class="o">&amp;&amp;</span> /bin/bash<span class="err">
+</span><span class="err"></span> ---&gt; Running in e08963fd5afb<span class="err">
+</span><span class="err"></span> ---&gt; d9bbd13f5066<span class="err">
+</span><span class="err"></span>Removing intermediate container e08963fd5afb<span class="err">
+</span><span class="err"></span>Successfully built d9bbd13f5066 <span class="err">
+</span></code></pre></td></tr></table>
+</div>
+</div><h3 id="给镜像打上标签">给镜像打上标签</h3>
+<p>tag 的作用主要有两点：一是为镜像起一个容易理解的名字，二是可以通过<code>docker tag</code>来重新指定镜像的仓库，这样在<code>push</code>时自动提交到仓库。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="c1"># 将同一IMAGE_ID的所有tag，合并为一个新的</span>
+docker tag 195eb90b5349 seanlook/ubuntu:rm_test
+
+<span class="c1"># 新建一个tag，保留旧的那条记录</span>
+docker tag Registry/Repos:Tag New_Registry/New_Repos:New_Tag
+</code></pre></td></tr></table>
+</div>
+</div>
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">housirvip</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+        2018-05-20
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/docker/">Docker</a>
+          <a href="/tags/linux/">Linux</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/post/docker-consul%E6%9C%8D%E5%8A%A1%E5%8F%91%E7%8E%B0/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">Docker&#43;Consul服务发现</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        <a class="next" href="/post/markdown%E6%95%B0%E5%AD%A6%E5%85%AC%E5%BC%8F/">
+            <span class="next-text nav-default">MarkDown数学公式</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+  <div id="vcomments"></div>
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+  <script type="text/javascript">
+    new Valine({
+        el: '#vcomments' ,
+        appId: 'LGk5vbfMKxE0HrHOrkCC8gKf-gzGzoHsz',
+        appKey: 'Fy59MNy0luXKeogBChUJp2g8',
+        notify:  false ,
+        verify:  false ,
+        avatar:'mm',
+        placeholder: '说点什么吧...',
+        visitor:  false 
+    });
+  </script>
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:housirvip@gmail.com" class="iconfont icon-email" title="email"></a>
+      <a href="https://github.com/housirvip" class="iconfont icon-github" title="github"></a>
+  <a href="https://housirvip.github.com/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2017 - 
+    2020
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">housirvip</span>
+  </span>
+</div>
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.d7b7ada643c9c1a983026e177f141f7363b4640d619caf01d8831a6718cd44ea.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

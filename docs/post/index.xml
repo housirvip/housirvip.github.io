@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Posts on The Blog of housirvip</title>
+    <link>https://housirvip.github.com/post/</link>
+    <description>Recent content in Posts on The Blog of housirvip</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Wed, 02 Sep 2020 21:44:20 +0800</lastBuildDate>
+    
+	<atom:link href="https://housirvip.github.com/post/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>动态代理 Dynamic Proxy</title>
+      <link>https://housirvip.github.com/post/dynamic-proxy/</link>
+      <pubDate>Wed, 02 Sep 2020 21:44:20 +0800</pubDate>
+      
+      <guid>https://housirvip.github.com/post/dynamic-proxy/</guid>
+      <description>静态代理 原始接口和实现类 1 2 3 4 5 6 7 8 9 10 11 12 13 14 package vip.housir.proxy; /** * @author housirvip */ public interface SmsService { /** * send msg * * @param msg String */ public void send(String msg); } 1 2 3 4 5 6 7 8 9 10 11 12 package vip.housir.proxy; /** * @author housirvip</description>
+    </item>
+    
+    <item>
+      <title>Docker&#43;Consul服务发现</title>
+      <link>https://housirvip.github.com/post/docker-consul%E6%9C%8D%E5%8A%A1%E5%8F%91%E7%8E%B0/</link>
+      <pubDate>Sun, 20 May 2018 14:36:37 +0000</pubDate>
+      
+      <guid>https://housirvip.github.com/post/docker-consul%E6%9C%8D%E5%8A%A1%E5%8F%91%E7%8E%B0/</guid>
+      <description>前言 Docker从入门到实践 细节部分讲的不是特别细，很多知识还是得各种查资料。 Docker文档 consul文档 如果你选择 Consul，这个是</description>
+    </item>
+    
+    <item>
+      <title>Docker常见命令与操作</title>
+      <link>https://housirvip.github.com/post/docker%E5%B8%B8%E8%A7%81%E5%91%BD%E4%BB%A4%E4%B8%8E%E6%93%8D%E4%BD%9C/</link>
+      <pubDate>Sun, 20 May 2018 12:03:19 +0000</pubDate>
+      
+      <guid>https://housirvip.github.com/post/docker%E5%B8%B8%E8%A7%81%E5%91%BD%E4%BB%A4%E4%B8%8E%E6%93%8D%E4%BD%9C/</guid>
+      <description>Docker 命令入门 拉取镜像 docker pull &amp;lt;镜像名:tag&amp;gt; 例如 docker pull progrium/consul:latest 列出存在的镜像 docker images 结果显示举例 1 2 3 4 REPOSITORY TAG IMAGE ID CREATED SIZE swaggerapi/swagger-editor latest aaa304fc1b89 2 months ago 35.9MB daocloud.io/library/ubuntu 16.04 14f60031763d 10 months ago 120MB</description>
+    </item>
+    
+    <item>
+      <title>MarkDown数学公式</title>
+      <link>https://housirvip.github.com/post/markdown%E6%95%B0%E5%AD%A6%E5%85%AC%E5%BC%8F/</link>
+      <pubDate>Sun, 20 May 2018 00:19:33 +0000</pubDate>
+      
+      <guid>https://housirvip.github.com/post/markdown%E6%95%B0%E5%AD%A6%E5%85%AC%E5%BC%8F/</guid>
+      <description>在输入数学公式的时候，需要在数学公式的前后加入$$符号，将需要输入的公式加入到$$中间。 上下标 上标 ^ 下标 _ 名称 数学表达式 MarkDown公式</description>
+    </item>
+    
+    <item>
+      <title>manacher算法</title>
+      <link>https://housirvip.github.com/post/manacher/</link>
+      <pubDate>Fri, 26 Jan 2018 09:39:41 +0000</pubDate>
+      
+      <guid>https://housirvip.github.com/post/manacher/</guid>
+      <description>原题再现 LeetCode problem No.5 Given a string s, find the longest palindromic substring in s. You may assume that the maximum length of s is 1000. 从字符串s中找出最长的回文子串，s的长度不会超过1000 Example: Input: &amp;ldquo;babad&amp;rdquo; Output: &amp;ldquo;bab&amp;rdquo; Note: &amp;ldquo;aba&amp;rdquo; is also a valid answer. Example:</description>
+    </item>
+    
+    <item>
+      <title>KMP算法个人理解</title>
+      <link>https://housirvip.github.com/post/kmp/</link>
+      <pubDate>Thu, 18 Jan 2018 18:34:30 +0000</pubDate>
+      
+      <guid>https://housirvip.github.com/post/kmp/</guid>
+      <description>简介 KMP算法是一种改进的字符串匹配算法，由D.E.Knuth，J.H.Morris和V.R.Pratt同时发现，因此人们称它为克努特—莫里</description>
+    </item>
+    
+    <item>
+      <title>Git 和 SVN 基本区别</title>
+      <link>https://housirvip.github.com/post/git%E5%92%8Csvn%E5%8C%BA%E5%88%AB/</link>
+      <pubDate>Tue, 02 Jan 2018 12:25:24 +0000</pubDate>
+      
+      <guid>https://housirvip.github.com/post/git%E5%92%8Csvn%E5%8C%BA%E5%88%AB/</guid>
+      <description>GIT是分布式的，SVN不是 这是GIT和其它非分布式的版本控制系统，例如SVN，CVS等，最核心的区别。如果你能理解这个概念，那么你就已经上</description>
+    </item>
+    
+    <item>
+      <title>DNS 域名系统</title>
+      <link>https://housirvip.github.com/post/dns/</link>
+      <pubDate>Tue, 02 Jan 2018 12:20:24 +0000</pubDate>
+      
+      <guid>https://housirvip.github.com/post/dns/</guid>
+      <description>DNS（Domain Name System，域名系统），因特网上作为域名和IP地址相互映射的一个分布式数据库，能够使用户更方便的访问互联网，而不用去</description>
+    </item>
+    
+    <item>
+      <title>CDN 内容分发网络</title>
+      <link>https://housirvip.github.com/post/cdn/</link>
+      <pubDate>Tue, 02 Jan 2018 12:15:24 +0000</pubDate>
+      
+      <guid>https://housirvip.github.com/post/cdn/</guid>
+      <description>CDN的全称是Content Delivery Network，即内容分发网络。其基本思路是尽可能避开互联网上有可能影响数据传输速度和稳定性的瓶颈和环节，使内</description>
+    </item>
+    
+    <item>
+      <title>NoSQL与SQL对比</title>
+      <link>https://housirvip.github.com/post/sql%E5%92%8Cnosql/</link>
+      <pubDate>Tue, 02 Jan 2018 12:15:24 +0000</pubDate>
+      
+      <guid>https://housirvip.github.com/post/sql%E5%92%8Cnosql/</guid>
+      <description>概念 SQL (Structured Query Language) 数据库，指关系型数据库。主要代表：SQL Server，Oracle，MySQL(开源)，PostgreSQL(开源)。 NoSQL</description>
+    </item>
+    
+    <item>
+      <title>高并发web系统设计</title>
+      <link>https://housirvip.github.com/post/%E9%AB%98%E5%B9%B6%E5%8F%91web%E8%AE%BE%E8%AE%A1/</link>
+      <pubDate>Tue, 02 Jan 2018 12:13:24 +0000</pubDate>
+      
+      <guid>https://housirvip.github.com/post/%E9%AB%98%E5%B9%B6%E5%8F%91web%E8%AE%BE%E8%AE%A1/</guid>
+      <description>核心技术点 前端优化 前端优化主要包括动态内容静态化，增加前端缓存。页面静态化是指将指含有大量动态元素的动态网页，如jsp、php等，转换为ht</description>
+    </item>
+    
+    <item>
+      <title>搭建纯净 DNS 服务</title>
+      <link>https://housirvip.github.com/post/dnscrypt/</link>
+      <pubDate>Thu, 24 Aug 2017 12:53:47 +0000</pubDate>
+      
+      <guid>https://housirvip.github.com/post/dnscrypt/</guid>
+      <description>起因 国内近年来 DNS 污染严重，甚至就连一些地方宽带商都胡乱投毒，整一些花里胡哨的广告页面，什么，你想要干净清爽的网络浏览？ 经过 安装开发环境 1 sudo apt-get</description>
+    </item>
+    
+    <item>
+      <title>编译安装 shadowsocksr-libev</title>
+      <link>https://housirvip.github.com/post/ssr-install/</link>
+      <pubDate>Thu, 24 Aug 2017 12:13:24 +0000</pubDate>
+      
+      <guid>https://housirvip.github.com/post/ssr-install/</guid>
+      <description>起因 作为一个开发者，不能上 google 是有多难受，吃灰的树莓派刚好派上了用场 安装 准备工具 电脑一台 树莓派 ssr 账号一个 ssr-libev 源码 各种依赖 开始动手 安装开发环境 1 sudo</description>
+    </item>
+    
+    <item>
+      <title>在z270平台装黑苹果</title>
+      <link>https://housirvip.github.com/post/hackintosh-z270/</link>
+      <pubDate>Fri, 18 Aug 2017 12:01:23 +0000</pubDate>
+      
+      <guid>https://housirvip.github.com/post/hackintosh-z270/</guid>
+      <description>动机 以前一直在用 win10 最近在开发的几个 web和移动 app 项目，前端是 angular4 或者基于 angular4 的 ionic3，后端是 golang 编写，每次编译的时候，我看着这个进度条，总感</description>
+    </item>
+    
+    <item>
+      <title>在树莓派上搭建软路由</title>
+      <link>https://housirvip.github.com/post/soft-router/</link>
+      <pubDate>Wed, 16 Aug 2017 18:34:30 +0000</pubDate>
+      
+      <guid>https://housirvip.github.com/post/soft-router/</guid>
+      <description>出发点 很早的时候一直在用网件 wndr4300 刷了 openwrt 以及 lede 这种开放式的路由系统，一直沉迷于无界浏览无法自拔。因为笔者最近在学习的一些东西比较新，在国内看不到</description>
+    </item>
+    
+  </channel>
+</rss>
