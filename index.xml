@@ -6,7 +6,7 @@
     <description>Recent content on The Blog of housirvip</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Wed, 02 Sep 2020 21:44:20 +0800</lastBuildDate>
+    <lastBuildDate>Sun, 06 Sep 2020 16:39:51 +0800</lastBuildDate>
     
 	<atom:link href="https://housirvip.github.com/index.xml" rel="self" type="application/rss+xml" />
     
@@ -27,6 +27,15 @@
       
       <guid>https://housirvip.github.com/%E5%85%B3%E4%BA%8E%E6%88%91/</guid>
       <description>Hugo is a static site engine written in Go. It makes use of a variety of open source projects including: Cobra Viper J Walter Weatherman Cast Learn more and contribute on GitHub.</description>
+    </item>
+    
+    <item>
+      <title>Java开发 面试 复习</title>
+      <link>https://housirvip.github.com/post/review/</link>
+      <pubDate>Sun, 06 Sep 2020 16:39:51 +0800</pubDate>
+      
+      <guid>https://housirvip.github.com/post/review/</guid>
+      <description>Java相关 8 种基本类型 String String是不可变对象, 意思是一旦创建,那么整个对象就不可改变. 即使新手觉得String引用变了,实际上只是(指</description>
     </item>
     
     <item>
