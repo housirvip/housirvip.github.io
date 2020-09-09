@@ -49,11 +49,11 @@
 <meta itemprop="description" content="Based on MarkdownPreview test.md. Markdown 1 2 3 4 5 6 7 8 # H1 ## H2 ### H3 #### H4 ##### H5 ###### H6 ### Duplicate Header ### Duplicate Header H1 H2 H3 H4 H5 H6 Duplicate Header Duplicate Header Paragraphs 1 2 3 4 This is a paragraph. I am still part of the paragraph. New paragraph. This is a paragraph. I am still part of the paragraph.">
 <meta itemprop="datePublished" content="2018-07-10T00:00:00+08:00" />
 <meta itemprop="dateModified" content="2018-07-10T00:00:00+08:00" />
-<meta itemprop="wordCount" content="3018">
+<meta itemprop="wordCount" content="3391">
 
 
 
-<meta itemprop="keywords" content="preview,Theme preview,tag-3," />
+<meta itemprop="keywords" content="" />
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Theme preview"/>
 <meta name="twitter:description" content="Based on MarkdownPreview test.md. Markdown 1 2 3 4 5 6 7 8 # H1 ## H2 ### H3 #### H4 ##### H5 ###### H6 ### Duplicate Header ### Duplicate Header H1 H2 H3 H4 H5 H6 Duplicate Header Duplicate Header Paragraphs 1 2 3 4 This is a paragraph. I am still part of the paragraph. New paragraph. This is a paragraph. I am still part of the paragraph."/>
@@ -127,11 +127,7 @@
 
       <div class="post-meta">
         <span class="post-time"> 2018-07-10 </span>
-        <div class="post-category">
-            <a href="/categories/theme-preview/"> Theme preview </a>
-            <a href="/categories/category-2/"> category-2 </a>
-            <a href="/categories/category-3/"> category-3 </a>
-            </div>
+        
         
       </div>
     </header>
@@ -165,27 +161,6 @@
         <li><a href="#blocks">Blocks</a></li>
         <li><a href="#block-quotes">Block Quotes</a></li>
         <li><a href="#fenced-block">Fenced Block</a></li>
-        <li><a href="#tables">Tables</a></li>
-        <li><a href="#smart-strong">Smart Strong</a></li>
-        <li><a href="#smarty">Smarty</a></li>
-        <li><a href="#neseted-fences">Neseted Fences</a></li>
-      </ul>
-    </li>
-    <li><a href="#others">Others</a>
-      <ul>
-        <li><a href="#section-7">Github Emoji</a>
-          <ul>
-            <li><a href="#people">People</a></li>
-            <li><a href="#nature">Nature</a></li>
-            <li><a href="#objects">Objects</a></li>
-            <li><a href="#places">Places</a></li>
-            <li><a href="#symbols">Symbols</a></li>
-          </ul>
-        </li>
-        <li><a href="#insert">Insert</a></li>
-        <li><a href="#math">Math</a></li>
-        <li><a href="#网易云音乐">网易云音乐</a></li>
-        <li><a href="#youtube">YouTube</a></li>
       </ul>
     </li>
   </ul>
@@ -784,9 +759,11 @@ I think it looks good.</p>
 </span><span class="lnt">17
 </span><span class="lnt">18
 </span><span class="lnt">19
+</span><span class="lnt">20
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">```
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">
+```
 // Fenced **without** highlighting
 function doIt() {
     for (var i = 1; i &lt;= slen ; i^^) {
@@ -796,7 +773,7 @@ function doIt() {
 }
 ```
 
-```javascript
+​```javascript
 // Fenced **with** highlighting
 function doIt() {
     for (var i = 1; i &lt;= slen ; i^^) {
@@ -827,41 +804,24 @@ function doIt() {
 }
 </code></pre></td></tr></table>
 </div>
-</div><div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span><span class="lnt">6
-</span><span class="lnt">7
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="c1">// Fenced **with** highlighting
-</span><span class="c1"></span><span class="kd">function</span> <span class="nx">doIt</span><span class="p">()</span> <span class="p">{</span>
-    <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;=</span> <span class="nx">slen</span> <span class="p">;</span> <span class="nx">i</span><span class="o">^^</span><span class="p">)</span> <span class="p">{</span>
-        <span class="nx">setTimeout</span><span class="p">(</span><span class="s2">&#34;document.z.textdisplay.value = newMake()&#34;</span><span class="p">,</span> <span class="nx">i</span><span class="o">*</span><span class="mi">300</span><span class="p">);</span>
-        <span class="nx">setTimeout</span><span class="p">(</span><span class="s2">&#34;window.status = newMake()&#34;</span><span class="p">,</span> <span class="nx">i</span><span class="o">*</span><span class="mi">300</span><span class="p">);</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
-</div>
-</div><h2 id="tables">Tables</h2>
+</div><p>​```javascript
+// Fenced <strong>with</strong> highlighting
+function doIt() {
+for (var i = 1; i &lt;= slen ; i^^) {
+setTimeout(&ldquo;document.z.textdisplay.value = newMake()&rdquo;, i<em>300);
+setTimeout(&ldquo;window.status = newMake()&rdquo;, i</em>300);
+}
+}</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">| _Colors_      | Fruits          | Vegetable         |
-| ------------- |:---------------:| -----------------:|
-| Red           | *Apple*         | [Pepper](#Tables) |
-| ~~Orange~~    | Oranges         | **Carrot**        |
-| Green         | ~~***Pears***~~ | Spinach           |
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">
+## Tables
+
 </code></pre></td></tr></table>
 </div>
 </div><table>
@@ -876,7 +836,7 @@ function doIt() {
 <tr>
 <td>Red</td>
 <td align="center"><em>Apple</em></td>
-<td align="right">Pepper</td>
+<td align="right"><a href="#Tables">Pepper</a></td>
 </tr>
 <tr>
 <td><del>Orange</del></td>
@@ -890,215 +850,65 @@ function doIt() {
 </tr>
 </tbody>
 </table>
-<table>
-<thead>
-<tr>
-<th>Class or Enum</th>
-<th>Year</th>
-<th>Month</th>
-<th align="center">Day</th>
-<th align="center">Hours</th>
-<th align="center">Minutes</th>
-<th>Seconds*</th>
-<th align="center">Zone Offset</th>
-<th align="center">Zone ID</th>
-<th>toString Output</th>
-<th>Where Discussed</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>Instant</code></td>
-<td></td>
-<td></td>
-<td align="center"></td>
-<td align="center"></td>
-<td align="center"></td>
-<td><center><img src="/favicon-16x16.png" alt="checked"></center></td>
-<td align="center"></td>
-<td align="center"></td>
-<td><code>2013-08-20T15:16:26.355Z</code></td>
-<td><a href="https://docs.oracle.com/javase/tutorial/datetime/iso/instant.html">Instant Class</a></td>
-</tr>
-<tr>
-<td><code>LocalDate</code></td>
-<td><center><img src="/favicon-16x16.png" alt="checked"></center></td>
-<td><center><img src="/favicon-16x16.png" alt="checked"></center></td>
-<td align="center"><center><img src="/favicon-16x16.png" alt="checked"></center></td>
-<td align="center"></td>
-<td align="center"></td>
-<td></td>
-<td align="center"></td>
-<td align="center"></td>
-<td><code>2013-08-20</code></td>
-<td><a href="https://docs.oracle.com/javase/tutorial/datetime/iso/date.html">Date Classes</a></td>
-</tr>
-<tr>
-<td><code>LocalDateTime</code></td>
-<td><center><img src="/favicon-16x16.png" alt="checked"></center></td>
-<td><center><img src="/favicon-16x16.png" alt="checked"></center></td>
-<td align="center"><center><img src="/favicon-16x16.png" alt="checked"></center></td>
-<td align="center"><center><img src="/favicon-16x16.png" alt="checked"></center></td>
-<td align="center"><center><img src="/favicon-16x16.png" alt="checked"></center></td>
-<td><center><img src="/favicon-16x16.png" alt="checked"></center></td>
-<td align="center"></td>
-<td align="center"></td>
-<td><code>2013-08-20T08:16:26.937</code></td>
-<td><a href="https://docs.oracle.com/javase/tutorial/datetime/iso/datetime.html">Date and Time Classes</a></td>
-</tr>
-<tr>
-<td><code>ZonedDateTime</code></td>
-<td><center><img src="/favicon-16x16.png" alt="checked"></center></td>
-<td><center><img src="/favicon-16x16.png" alt="checked"></center></td>
-<td align="center"><center><img src="/favicon-16x16.png" alt="checked"></center></td>
-<td align="center"><center><img src="/favicon-16x16.png" alt="checked"></center></td>
-<td align="center"><center><img src="/favicon-16x16.png" alt="checked"></center></td>
-<td><center><img src="/favicon-16x16.png" alt="checked"></center></td>
-<td align="center"><center><img src="/favicon-16x16.png" alt="checked"></center></td>
-<td align="center"><center><img src="/favicon-16x16.png" alt="checked"></center></td>
-<td><code>2013-08-21T00:16:26.941+09:00[Asia/Tokyo]</code></td>
-<td><a href="https://docs.oracle.com/javase/tutorial/datetime/iso/timezones.html">Time Zone and Offset Classes</a></td>
-</tr>
-<tr>
-<td><code>LocalTime</code></td>
-<td></td>
-<td></td>
-<td align="center"></td>
-<td align="center"><center><img src="/favicon-16x16.png" alt="checked"></center></td>
-<td align="center"><center><img src="/favicon-16x16.png" alt="checked"></center></td>
-<td><center><img src="/favicon-16x16.png" alt="checked"></center></td>
-<td align="center"></td>
-<td align="center"></td>
-<td><code>08:16:26.943</code></td>
-<td><a href="https://docs.oracle.com/javase/tutorial/datetime/iso/datetime.html">Date and Time Classes</a></td>
-</tr>
-<tr>
-<td><code>MonthDay</code></td>
-<td></td>
-<td><center><img src="/favicon-16x16.png" alt="checked"></center></td>
-<td align="center"><center><img src="/favicon-16x16.png" alt="checked"></center></td>
-<td align="center"></td>
-<td align="center"></td>
-<td></td>
-<td align="center"></td>
-<td align="center"></td>
-<td><code>--08-20</code></td>
-<td><a href="https://docs.oracle.com/javase/tutorial/datetime/iso/date.html">Date Classes</a></td>
-</tr>
-<tr>
-<td><code>Year</code></td>
-<td><center><img src="/favicon-16x16.png" alt="checked"></center></td>
-<td></td>
-<td align="center"></td>
-<td align="center"></td>
-<td align="center"></td>
-<td></td>
-<td align="center"></td>
-<td align="center"></td>
-<td><code>2013</code></td>
-<td><a href="https://docs.oracle.com/javase/tutorial/datetime/iso/date.html">Date Classes</a></td>
-</tr>
-<tr>
-<td><code>YearMonth</code></td>
-<td><center><img src="/favicon-16x16.png" alt="checked"></center></td>
-<td><center><img src="/favicon-16x16.png" alt="checked"></center></td>
-<td align="center"></td>
-<td align="center"></td>
-<td align="center"></td>
-<td></td>
-<td align="center"></td>
-<td align="center"></td>
-<td><code>2013-08</code></td>
-<td><a href="https://docs.oracle.com/javase/tutorial/datetime/iso/date.html">Date Classes</a></td>
-</tr>
-<tr>
-<td><code>Month</code></td>
-<td></td>
-<td><center><img src="/favicon-16x16.png" alt="checked"></center></td>
-<td align="center"></td>
-<td align="center"></td>
-<td align="center"></td>
-<td></td>
-<td align="center"></td>
-<td align="center"></td>
-<td><code>AUGUST</code></td>
-<td><a href="https://docs.oracle.com/javase/tutorial/datetime/iso/enum.html">DayOfWeek and Month Enums</a></td>
-</tr>
-<tr>
-<td><code>OffsetDateTime</code></td>
-<td><center><img src="/favicon-16x16.png" alt="checked"></center></td>
-<td><center><img src="/favicon-16x16.png" alt="checked"></center></td>
-<td align="center"><center><img src="/favicon-16x16.png" alt="checked"></center></td>
-<td align="center"><center><img src="/favicon-16x16.png" alt="checked"></center></td>
-<td align="center"><center><img src="/favicon-16x16.png" alt="checked"></center></td>
-<td><center><img src="/favicon-16x16.png" alt="checked"></center></td>
-<td align="center"><center><img src="/favicon-16x16.png" alt="checked"></center></td>
-<td align="center"></td>
-<td><code>2013-08-20T08:16:26.954-07:00</code></td>
-<td><a href="https://docs.oracle.com/javase/tutorial/datetime/iso/timezones.html">Time Zone and Offset Classes</a></td>
-</tr>
-<tr>
-<td><code>OffsetTime</code></td>
-<td></td>
-<td></td>
-<td align="center"></td>
-<td align="center"><center><img src="/favicon-16x16.png" alt="checked"></center></td>
-<td align="center"><center><img src="/favicon-16x16.png" alt="checked"></center></td>
-<td><center><img src="/favicon-16x16.png" alt="checked"></center></td>
-<td align="center"><center><img src="/favicon-16x16.png" alt="checked"></center></td>
-<td align="center"></td>
-<td><code>08:16:26.957-07:00</code></td>
-<td><a href="https://docs.oracle.com/javase/tutorial/datetime/iso/timezones.html">Time Zone and Offset Classes</a></td>
-</tr>
-<tr>
-<td><code>Duration</code></td>
-<td></td>
-<td></td>
-<td align="center">**</td>
-<td align="center">**</td>
-<td align="center">**</td>
-<td><center><img src="/favicon-16x16.png" alt="checked"></center></td>
-<td align="center"></td>
-<td align="center"></td>
-<td><code>PT20H</code> (20 hours)</td>
-<td><a href="https://docs.oracle.com/javase/tutorial/datetime/iso/period.html">Period and Duration</a></td>
-</tr>
-<tr>
-<td><code>Period</code></td>
-<td><center><img src="/favicon-16x16.png" alt="checked"></center></td>
-<td><center><img src="/favicon-16x16.png" alt="checked"></center></td>
-<td align="center"><center><img src="/favicon-16x16.png" alt="checked"></center></td>
-<td align="center"></td>
-<td align="center"></td>
-<td></td>
-<td align="center">***</td>
-<td align="center">***</td>
-<td><code>P10D</code> (10 days)</td>
-<td><a href="https://docs.oracle.com/javase/tutorial/datetime/iso/period.html">Period and Duration</a></td>
-</tr>
-</tbody>
-</table>
-<h2 id="smart-strong">Smart Strong</h2>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">Text with double__underscore__words.
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">
+| _Colors_      | Fruits          | Vegetable    |
+| ------------- |:---------------:| ------------:|
+| Red           | *Apple*         | Pepper       |
+| ~~Orange~~    | Oranges         | **Carrot**   |
+| Green         | ~~***Pears***~~ | Spinach      |
 
-__Strong__ still works.
+Class or Enum           | Year                                                                                  | Month                                                                                 |                                          Day                                          |                                         Hours                                         |                                        Minutes                                        | Seconds*                                                                              |                                      Zone Offset                                      |                                        Zone ID                                        | toString Output                                    | Where Discussed                                                                                    
+----------------------- | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- |:-------------------------------------------------------------------------------------:|:-------------------------------------------------------------------------------------:|:-------------------------------------------------------------------------------------:| ------------------------------------------------------------------------------------- |:-------------------------------------------------------------------------------------:|:-------------------------------------------------------------------------------------:| -------------------------------------------------- | ---------------------------------------------------------------------------------------------------
+`Instant`        |                                                                                       |                                                                                       |                                                                                       |                                                                                       |                                                                                       | &lt;center&gt;![checked](/favicon-16x16.png)&lt;/center&gt; |                                                                                       |                                                                                       | `2013-08-20T15:16:26.355Z`                  | [Instant Class](https://docs.oracle.com/javase/tutorial/datetime/iso/instant.html)                 
+`LocalDate`      | &lt;center&gt;![checked](/favicon-16x16.png)&lt;/center&gt; | &lt;center&gt;![checked](/favicon-16x16.png)&lt;/center&gt; | &lt;center&gt;![checked](/favicon-16x16.png)&lt;/center&gt; |                                                                                       |                                                                                       |                                                                                       |                                                                                       |                                                                                       | `2013-08-20`                                | [Date Classes](https://docs.oracle.com/javase/tutorial/datetime/iso/date.html)                     
+`LocalDateTime`  | &lt;center&gt;![checked](/favicon-16x16.png)&lt;/center&gt; | &lt;center&gt;![checked](/favicon-16x16.png)&lt;/center&gt; | &lt;center&gt;![checked](/favicon-16x16.png)&lt;/center&gt; | &lt;center&gt;![checked](/favicon-16x16.png)&lt;/center&gt; | &lt;center&gt;![checked](/favicon-16x16.png)&lt;/center&gt; | &lt;center&gt;![checked](/favicon-16x16.png)&lt;/center&gt; |                                                                                       |                                                                                       | `2013-08-20T08:16:26.937`                   | [Date and Time Classes](https://docs.oracle.com/javase/tutorial/datetime/iso/datetime.html)        
+`ZonedDateTime`  | &lt;center&gt;![checked](/favicon-16x16.png)&lt;/center&gt; | &lt;center&gt;![checked](/favicon-16x16.png)&lt;/center&gt; | &lt;center&gt;![checked](/favicon-16x16.png)&lt;/center&gt; | &lt;center&gt;![checked](/favicon-16x16.png)&lt;/center&gt; | &lt;center&gt;![checked](/favicon-16x16.png)&lt;/center&gt; | &lt;center&gt;![checked](/favicon-16x16.png)&lt;/center&gt; | &lt;center&gt;![checked](/favicon-16x16.png)&lt;/center&gt; | &lt;center&gt;![checked](/favicon-16x16.png)&lt;/center&gt; | `2013-08-21T00:16:26.941+09:00[Asia/Tokyo]` | [Time Zone and Offset Classes](https://docs.oracle.com/javase/tutorial/datetime/iso/timezones.html)
+`LocalTime`      |                                                                                       |                                                                                       |                                                                                       | &lt;center&gt;![checked](/favicon-16x16.png)&lt;/center&gt; | &lt;center&gt;![checked](/favicon-16x16.png)&lt;/center&gt; | &lt;center&gt;![checked](/favicon-16x16.png)&lt;/center&gt; |                                                                                       |                                                                                       | `08:16:26.943`                              | [Date and Time Classes](https://docs.oracle.com/javase/tutorial/datetime/iso/datetime.html)        
+`MonthDay`       |                                                                                       | &lt;center&gt;![checked](/favicon-16x16.png)&lt;/center&gt; | &lt;center&gt;![checked](/favicon-16x16.png)&lt;/center&gt; |                                                                                       |                                                                                       |                                                                                       |                                                                                       |                                                                                       | `--08-20`                                   | [Date Classes](https://docs.oracle.com/javase/tutorial/datetime/iso/date.html)                     
+`Year`           | &lt;center&gt;![checked](/favicon-16x16.png)&lt;/center&gt; |                                                                                       |                                                                                       |                                                                                       |                                                                                       |                                                                                       |                                                                                       |                                                                                       | `2013`                                      | [Date Classes](https://docs.oracle.com/javase/tutorial/datetime/iso/date.html)                     
+`YearMonth`      | &lt;center&gt;![checked](/favicon-16x16.png)&lt;/center&gt; | &lt;center&gt;![checked](/favicon-16x16.png)&lt;/center&gt; |                                                                                       |                                                                                       |                                                                                       |                                                                                       |                                                                                       |                                                                                       | `2013-08`                                   | [Date Classes](https://docs.oracle.com/javase/tutorial/datetime/iso/date.html)                     
+`Month`          |                                                                                       | &lt;center&gt;![checked](/favicon-16x16.png)&lt;/center&gt; |                                                                                       |                                                                                       |                                                                                       |                                                                                       |                                                                                       |                                                                                       | `AUGUST`                                    | [DayOfWeek and Month Enums](https://docs.oracle.com/javase/tutorial/datetime/iso/enum.html)        
+`OffsetDateTime` | &lt;center&gt;![checked](/favicon-16x16.png)&lt;/center&gt; | &lt;center&gt;![checked](/favicon-16x16.png)&lt;/center&gt; | &lt;center&gt;![checked](/favicon-16x16.png)&lt;/center&gt; | &lt;center&gt;![checked](/favicon-16x16.png)&lt;/center&gt; | &lt;center&gt;![checked](/favicon-16x16.png)&lt;/center&gt; | &lt;center&gt;![checked](/favicon-16x16.png)&lt;/center&gt; | &lt;center&gt;![checked](/favicon-16x16.png)&lt;/center&gt; |                                                                                       | `2013-08-20T08:16:26.954-07:00`             | [Time Zone and Offset Classes](https://docs.oracle.com/javase/tutorial/datetime/iso/timezones.html)
+`OffsetTime`     |                                                                                       |                                                                                       |                                                                                       | &lt;center&gt;![checked](/favicon-16x16.png)&lt;/center&gt; | &lt;center&gt;![checked](/favicon-16x16.png)&lt;/center&gt; | &lt;center&gt;![checked](/favicon-16x16.png)&lt;/center&gt; | &lt;center&gt;![checked](/favicon-16x16.png)&lt;/center&gt; |                                                                                       | `08:16:26.957-07:00`                        | [Time Zone and Offset Classes](https://docs.oracle.com/javase/tutorial/datetime/iso/timezones.html)
+`Duration`       |                                                                                       |                                                                                       |                                          \**                                          |                                          \**                                          |                                          \**                                          | &lt;center&gt;![checked](/favicon-16x16.png)&lt;/center&gt; |                                                                                       |                                                                                       | `PT20H` (20 hours)                          | [Period and Duration](https://docs.oracle.com/javase/tutorial/datetime/iso/period.html)            
+`Period`         | &lt;center&gt;![checked](/favicon-16x16.png)&lt;/center&gt; | &lt;center&gt;![checked](/favicon-16x16.png)&lt;/center&gt; | &lt;center&gt;![checked](/favicon-16x16.png)&lt;/center&gt; |                                                                                       |                                                                                       |                                                                                       |                                         \***                                          |                                         \***                                          | `P10D` (10 days)                            | [Period and Duration](https://docs.oracle.com/javase/tutorial/datetime/iso/period.html)            
 
-__this__works__too__
+## Smart Strong
+
 </code></pre></td></tr></table>
 </div>
 </div><p>Text with double__underscore__words.</p>
 <p><strong>Strong</strong> still works.</p>
 <p><strong>this__works__too</strong></p>
-<h2 id="smarty">Smarty</h2>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre class="chroma"><code><span class="lnt">1
@@ -1108,22 +918,133 @@ __this__works__too__
 </span><span class="lnt">5
 </span><span class="lnt">6
 </span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">&#34;double quotes&#34;
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">
+Text with double__underscore__words.
 
-&#39;single quotes&#39;
+__Strong__ still works.
 
-da--sh
+__this__works__too__
 
-elipsis...
+## Smarty
+
 </code></pre></td></tr></table>
 </div>
 </div><p>&ldquo;double quotes&rdquo;</p>
 <p>&lsquo;single quotes&rsquo;</p>
 <p>da&ndash;sh</p>
 <p>elipsis&hellip;</p>
-<h2 id="neseted-fences">Neseted Fences</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">
+&#34;double quotes&#34;
+
+&#39;single quotes&#39;
+
+da--sh
+
+elipsis...
+
+## Neseted Fences
+
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">    This will still be parsed
+    as a normal indented code block.
+    ```
+
+</code></pre></td></tr></table>
+</div>
+</div><p>This will still be parsed
+as a fenced code block.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">
+- This is a list that contains multiple code blocks.
+
+    - Here is an indented block
+
+            ```
+            This will still be parsed
+            as a normal indented code block.
+            ```
+
+    - Here is a fenced code block:
+
+        ```
+        This will still be parsed
+        as a fenced code block.
+        ```
+
+        &gt; ```
+        &gt; Blockquotes?
+        &gt; Not a problem!
+        &gt; ```
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">    This will still be parsed
+    as a normal indented code block.
+    ```
+
+</code></pre></td></tr></table>
+</div>
+</div><p>This will still be parsed
+as a fenced code block.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre class="chroma"><code><span class="lnt"> 1
@@ -1152,22 +1073,9 @@ elipsis...
 </span><span class="lnt">24
 </span><span class="lnt">25
 </span><span class="lnt">26
-</span><span class="lnt">27
-</span><span class="lnt">28
-</span><span class="lnt">29
-</span><span class="lnt">30
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">    ```
-    This will still be parsed
-    as a normal indented code block.
-    ```
-
-```
-This will still be parsed
-as a fenced code block.
-```
-
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">
 - This is a list that contains multiple code blocks.
 
     - Here is an indented block
@@ -1188,85 +1096,14 @@ as a fenced code block.
         &gt; Blockquotes?
         &gt; Not a problem!
         &gt; ```
-</code></pre></td></tr></table>
-</div>
-</div><pre><code>```
-This will still be parsed
-as a normal indented code block.
-```
-</code></pre>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">This will still be parsed
-as a fenced code block.
-</code></pre></td></tr></table>
-</div>
-</div><ul>
-<li>
-<p>This is a list that contains multiple code blocks.</p>
-<ul>
-<li>
-<p>Here is an indented block</p>
-<pre><code>  ```
-  This will still be parsed
-  as a normal indented code block.
-  ```
-</code></pre>
-</li>
-<li>
-<p>Here is a fenced code block:</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">This will still be parsed
-as a fenced code block.
-</code></pre></td></tr></table>
-</div>
-</div><blockquote>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">Blockquotes?
-Not a problem!
-</code></pre></td></tr></table>
-</div>
-</div></blockquote>
-</li>
-</ul>
-</li>
-</ul>
-<h1 id="others">Others</h1>
-<h2 id="section-7">Github Emoji</h2>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">This is a test for emoji 😄.  The emojis are images linked to github assets :octocat:.
+
+# Others
+
+## Github Emoji {#section-7}
+
 </code></pre></td></tr></table>
 </div>
 </div><p>This is a test for emoji 😄.  The emojis are images linked to github assets :octocat:.</p>
-<h3 id="people">People</h3>
-<p>👍👎👽👼💢😠😧😲👶💙😊💥🙇‍♂️:bowtie:👦👰💔👤👥👏😰💥😖😕👷‍♂️👮‍♂️👫👩‍❤️‍👨👩‍❤️‍💋‍👨😢😿💘💃👯‍♀️💨😞😥💫😵💧👂❗😑👀👊👨‍👩‍👦😨:feelsgood:🐾:finnadie:🔥✊😳😦🖕👧:goberserk::godmode:💚❕❔😬😁😀💂‍♂️💇‍♀️✋💩🙉❤️😍😻💓💗:hurtrealbad:😯👿💁‍♀️😇👺👹😂😹💋😗😽😚😘😙😆👄💌👨👲👳‍♂️😷💆‍♀️🤘💪🎵💅:neckbeard:😐🙅‍♀️😶👃🎶👌🙆‍♀️👴👵👐😮😔😣🙍‍♀️👱‍♂️🙎‍♀️👇👈👉☝️👆💩😾🙏👸👊💜❓😡:rage1::rage2::rage3::rage4:✋🙌🙋‍♀️☺️😌💞🏃‍♂️🏃😆😱🙀🙈💩💀😴😪😄😸😃😺😈😏😼😭✨💖🙊💬⭐🌟😛😝😜😎:suspect:😓💦😅💭👎👍😫👅😤:trollface:💕👬👭😒✌️🚶‍♂️👋😩😉👩😟💛😋💤</p>
-<h3 id="nature">Nature</h3>
-<p>🐜🐤🐻🐝🐞🐦🌼🐡🐗💐🐛🌵🐫🐱🐈🌸🌰🐔☁️🐮🐄🌙🐊🌀🌳🐶🐕🐬🐉🐲🐪🌾🌍🌎🌏🐘🌲🍂🌓🌛🐟🌁🍀🐸🌕🌝🌐🐐🐹🐥🐣🌿🌺🐝🐴🐨🌗🌜🍃🐆🍁🌌🐒🐵🌔🐭🐁🍄🌑🌚🌃🌊:octocat:🐙🐂🌴🐼⛅🐾🐧🐷🐖🐽🐩🐰🐇🐎🐏🐀🐓🌹🌱🐑🐚🐌🐍❄️☃️:squirrel:🌞🌻☀️🐯🐅🐠🌷🐢☂️🌋🌘🌖🐃🌒🌔🐳🐋🐺⚡</p>
-<h3 id="objects">Objects</h3>
-<p>🎱⏰🍎🎨👟🍼🎈🎍🍌📊⚾🏀🛀🛁🔋🍺🍻🔔🍱🚴‍♂️👙🎂🃏✒️📘💣📖🔖📑📚👢🎳🍞💼💡🍰📆📲📷🍬📇💿📉📈🍒🍫🎄🎬📋📕🔐🌂♣️🍸☕💻🎊🍪🌽💳👑🔮🍛🍮🍡🎯📅♦️💵🎎🚪🍩👗📀📧🥚🍆🔌✉️✉📩💶👓📠📁🎆🍥🎣🎏🔦🐬💾🎴🏈👣🍴🍤🍟🎲💎👻🎁💝⛳🍇🍏📗🎸🔫🍔🔨👜🎧♥️🔆👠🔪🍯🏇⌛⏳🍨🍦📥📨📱🎃👖🔑👘🏮📒🍋💄🔒🔏🍭➿🔊📢🔅🔍🔎🀄📫📪📬📭👞🍖📣🍈📝🎤🔬💽💸💰🎓🚵‍♂️🎥🎹🎼🔇📛👔📰🔕📓📔🔩🍢📖📂📙📤📦📄📃📟📎🍑🍐✏✏️☎️💊🍍🍕📯📮👝🍗💷👛📌📻🍜🎀🍚🍙🍘🎑💍🏉🎽🍶👡🎅🛰️🎷🎒✂️📜💺🍧👕👞🚿🎿🚬🏂⚽🔉👾♠️🍝❇️🎇🔈🍲📏🍓🏄‍♂️🍣🍠🏊‍♂️💉🎉🎋🍊🍵☎📞🔭🎾🚽🍅🎩📐🏆🍹🎺👕📺🔓📼📹🎮🎻⌚🍉🎐🍷👚👒🔧💴</p>
-<h3 id="places">Places</h3>
-<p>🚡✈️🚑⚓🚛🏧🏦💈🔰🚲🚙⛵🌉🚅🚄🚌🚏🚗🎠🏁⛪🎪🌇🌆🇨🇳🚧🏪🎌🇩🇪🏬🇪🇸🏰🏤🏭🎡🚒⛲🇫🇷⛽🇬🇧🚁🏥🏨♨️🏠🏡🇮🇹🏮🗾🏯🇯🇵🇰🇷🚈🏩🚐🚝🗻🚠🚞🗿🏢🚘🚍🚔🚖🎭🚓🏣🚃🌈🚗🚀🎢🚨📍🚣‍♂️🇷🇺⛵🏫🚢🎰🚤🌠🚉🗽🚂🌅🌄🚟🚕⛺🎫🗼🚜🚥🚋🚆🚊🚩🚎🚚🇬🇧🇺🇸🚦⚠️💒</p>
-<h3 id="symbols">Symbols</h3>
-<p>💯🔢🅰️🆎🔤🔡🉑♒♈◀️⏬⏫⬇️🔽▶️⤵️⤴️⬅️↙️↘️➡️↪️⬆️↕️🔼↖️↗️🔃🔄🅱️🚼🔙🛄☑️‼️⚫⬛◾◼️▪️🔲♋🔠♑💹🚸🎦🆑🕐🕙🕥🕚🕦🕛🕧🕜🕑🕝🕒🕞🕓🕟🕔🕠🕕🕡🕖🕢🕗🕣🕘🕤㊗️🆒©️➰💱🛃💠🚯8️⃣✴️✳️🔚⏩5️⃣4️⃣🆓♊#️⃣💟✔️➗💲❗➖✖️➕🆔🉐ℹ️⁉️🔟🈁🔵🔷🔶🛅↔️↩️♌♎🔗ⓜ️🚹🚇📴❎🆕🆖9️⃣🚳⛔🚫📵🚷🚭🚱⭕🅾️🆗🔛1️⃣⛎🅿️〽️🛂♓🚰🚮🔘♻️🔴®️🔁🔂🚻⏪🈂️♐♏㊙️7️⃣:shipit:📶6️⃣🔯🔹🔸🔺🔻🔜🆘🔣♉3️⃣™️🔝🔱🔀2️⃣🈹🈴🈺🈯🈷️🈶🈵🈚🈸🈲🈳🔞🆙📳♍🆚〰️🚾♿✅⚪💮⬜◽◻️▫️🔳🚺❌0️⃣</p>
-<h2 id="insert">Insert</h2>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre class="chroma"><code><span class="lnt"> 1
@@ -1290,9 +1127,81 @@ Not a problem!
 </span><span class="lnt">19
 </span><span class="lnt">20
 </span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">^^insert^^
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">
+This is a test for emoji 😄.  The emojis are images linked to github assets :octocat:.
+
+### People
+
+👍👎👽👼💢😠😧😲👶💙😊💥🙇‍♂️:bowtie:👦👰💔👤👥👏😰💥😖😕👷‍♂️👮‍♂️👫👩‍❤️‍👨👩‍❤️‍💋‍👨😢😿💘💃👯‍♀️💨😞😥💫😵💧👂❗😑👀👊👨‍👩‍👦😨:feelsgood:🐾:finnadie:🔥✊😳😦🖕👧:goberserk::godmode:💚❕❔😬😁😀💂‍♂️💇‍♀️✋💩🙉❤️😍😻💓💗:hurtrealbad:😯👿💁‍♀️😇👺👹😂😹💋😗😽😚😘😙😆👄💌👨👲👳‍♂️😷💆‍♀️🤘💪🎵💅:neckbeard:😐🙅‍♀️😶👃🎶👌🙆‍♀️👴👵👐😮😔😣🙍‍♀️👱‍♂️🙎‍♀️👇👈👉☝️👆💩😾🙏👸👊💜❓😡:rage1::rage2::rage3::rage4:✋🙌🙋‍♀️☺️😌💞🏃‍♂️🏃😆😱🙀🙈💩💀😴😪😄😸😃😺😈😏😼😭✨💖🙊💬⭐🌟😛😝😜😎:suspect:😓💦😅💭👎👍😫👅😤:trollface:💕👬👭😒✌️🚶‍♂️👋😩😉👩😟💛😋💤
+
+### Nature
+
+🐜🐤🐻🐝🐞🐦🌼🐡🐗💐🐛🌵🐫🐱🐈🌸🌰🐔☁️🐮🐄🌙🐊🌀🌳🐶🐕🐬🐉🐲🐪🌾🌍🌎🌏🐘🌲🍂🌓🌛🐟🌁🍀🐸🌕🌝🌐🐐🐹🐥🐣🌿🌺🐝🐴🐨🌗🌜🍃🐆🍁🌌🐒🐵🌔🐭🐁🍄🌑🌚🌃🌊:octocat:🐙🐂🌴🐼⛅🐾🐧🐷🐖🐽🐩🐰🐇🐎🐏🐀🐓🌹🌱🐑🐚🐌🐍❄️☃️:squirrel:🌞🌻☀️🐯🐅🐠🌷🐢☂️🌋🌘🌖🐃🌒🌔🐳🐋🐺⚡
+
+### Objects
+
+🎱⏰🍎🎨👟🍼🎈🎍🍌📊⚾🏀🛀🛁🔋🍺🍻🔔🍱🚴‍♂️👙🎂🃏✒️📘💣📖🔖📑📚👢🎳🍞💼💡🍰📆📲📷🍬📇💿📉📈🍒🍫🎄🎬📋📕🔐🌂♣️🍸☕💻🎊🍪🌽💳👑🔮🍛🍮🍡🎯📅♦️💵🎎🚪🍩👗📀📧🥚🍆🔌✉️✉📩💶👓📠📁🎆🍥🎣🎏🔦🐬💾🎴🏈👣🍴🍤🍟🎲💎👻🎁💝⛳🍇🍏📗🎸🔫🍔🔨👜🎧♥️🔆👠🔪🍯🏇⌛⏳🍨🍦📥📨📱🎃👖🔑👘🏮📒🍋💄🔒🔏🍭➿🔊📢🔅🔍🔎🀄📫📪📬📭👞🍖📣🍈📝🎤🔬💽💸💰🎓🚵‍♂️🎥🎹🎼🔇📛👔📰🔕📓📔🔩🍢📖📂📙📤📦📄📃📟📎🍑🍐✏✏️☎️💊🍍🍕📯📮👝🍗💷👛📌📻🍜🎀🍚🍙🍘🎑💍🏉🎽🍶👡🎅🛰️🎷🎒✂️📜💺🍧👕👞🚿🎿🚬🏂⚽🔉👾♠️🍝❇️🎇🔈🍲📏🍓🏄‍♂️🍣🍠🏊‍♂️💉🎉🎋🍊🍵☎📞🔭🎾🚽🍅🎩📐🏆🍹🎺👕📺🔓📼📹🎮🎻⌚🍉🎐🍷👚👒🔧💴
+
+### Places
+
+🚡✈️🚑⚓🚛🏧🏦💈🔰🚲🚙⛵🌉🚅🚄🚌🚏🚗🎠🏁⛪🎪🌇🌆🇨🇳🚧🏪🎌🇩🇪🏬🇪🇸🏰🏤🏭🎡🚒⛲🇫🇷⛽🇬🇧🚁🏥🏨♨️🏠🏡🇮🇹🏮🗾🏯🇯🇵🇰🇷🚈🏩🚐🚝🗻🚠🚞🗿🏢🚘🚍🚔🚖🎭🚓🏣🚃🌈🚗🚀🎢🚨📍🚣‍♂️🇷🇺⛵🏫🚢🎰🚤🌠🚉🗽🚂🌅🌄🚟🚕⛺🎫🗼🚜🚥🚋🚆🚊🚩🚎🚚🇬🇧🇺🇸🚦⚠️💒
+
+### Symbols
+
+💯🔢🅰️🆎🔤🔡🉑♒♈◀️⏬⏫⬇️🔽▶️⤵️⤴️⬅️↙️↘️➡️↪️⬆️↕️🔼↖️↗️🔃🔄🅱️🚼🔙🛄☑️‼️⚫⬛◾◼️▪️🔲♋🔠♑💹🚸🎦🆑🕐🕙🕥🕚🕦🕛🕧🕜🕑🕝🕒🕞🕓🕟🕔🕠🕕🕡🕖🕢🕗🕣🕘🕤㊗️🆒©️➰💱🛃💠🚯8️⃣✴️✳️🔚⏩5️⃣4️⃣🆓♊#️⃣💟✔️➗💲❗➖✖️➕🆔🉐ℹ️⁉️🔟🈁🔵🔷🔶🛅↔️↩️♌♎🔗ⓜ️🚹🚇📴❎🆕🆖9️⃣🚳⛔🚫📵🚷🚭🚱⭕🅾️🆗🔛1️⃣⛎🅿️〽️🛂♓🚰🚮🔘♻️🔴®️🔁🔂🚻⏪🈂️♐♏㊙️7️⃣:shipit:📶6️⃣🔯🔹🔸🔺🔻🔜🆘🔣♉3️⃣™️🔝🔱🔀2️⃣🈹🈴🈺🈯🈷️🈶🈵🈚🈸🈲🈳🔞🆙📳♍🆚〰️🚾♿✅⚪💮⬜◽◻️▫️🔳🚺❌0️⃣
+
+## Insert
+
+</code></pre></td></tr></table>
+</div>
+</div><p>^^insert^^</p>
+<p>^^<em>insert italic</em>^^  <em>^^insert italic 2^^</em></p>
+<p>^^_insert italic_^^  <em>^^insert italic 2^^</em></p>
+<p>^^<strong>insert bold</strong>^^  <strong>^^insert bold 2^^</strong></p>
+<p>^^__insert bold__^^  <strong>^^insert bold 2^^</strong></p>
+<p>^^<em><strong>insert italic bold</strong></em>^^  <em><strong>^^insert italic bold 2^^</strong></em></p>
+<p>^^___insert italic bold___^^  <em><strong>^^insert italic bold 2^^</strong></em></p>
+<p><strong>^^<em>insert italic bold</em>^^</strong>  <em>^^<strong>insert italic bold 2</strong>^^</em></p>
+<p><strong>^^_insert italic bold_^^</strong>  <em>^^__insert italic bold 2__^^</em></p>
+<p><strong>^^_insert italic bold_^^</strong>  <em>^^<strong>insert italic bold 2</strong>^^</em></p>
+<p><strong>^^<em>insert italic bold</em>^^</strong>  <em>^^__insert italic bold 2__^^</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">
+^^insert^^
 
 ^^*insert italic*^^  *^^insert italic 2^^*
 
@@ -1313,20 +1222,60 @@ __^^_insert italic bold_^^__  _^^__insert italic bold 2__^^_
 **^^_insert italic bold_^^**  _^^**insert italic bold 2**^^_
 
 __^^*insert italic bold*^^__  *^^__insert italic bold 2__^^*
+
+## Math
+
 </code></pre></td></tr></table>
 </div>
-</div><p>^^insert^^</p>
-<p>^^<em>insert italic</em>^^  <em>^^insert italic 2^^</em></p>
-<p>^^_insert italic_^^  <em>^^insert italic 2^^</em></p>
-<p>^^<strong>insert bold</strong>^^  <strong>^^insert bold 2^^</strong></p>
-<p>^^__insert bold__^^  <strong>^^insert bold 2^^</strong></p>
-<p>^^<em><strong>insert italic bold</strong></em>^^  <em><strong>^^insert italic bold 2^^</strong></em></p>
-<p>^^___insert italic bold___^^  <em><strong>^^insert italic bold 2^^</strong></em></p>
-<p><strong>^^<em>insert italic bold</em>^^</strong>  <em>^^<strong>insert italic bold 2</strong>^^</em></p>
-<p><strong>^^_insert italic bold_^^</strong>  <em>^^__insert italic bold 2__^^</em></p>
-<p><strong>^^_insert italic bold_^^</strong>  <em>^^<strong>insert italic bold 2</strong>^^</em></p>
-<p><strong>^^<em>insert italic bold</em>^^</strong>  <em>^^__insert italic bold 2__^^</em></p>
-<h2 id="math">Math</h2>
+</div><p>$$ evidence_{i}=\sum_{j}W_{ij}x_{j}+b_{i} $$</p>
+<p>$p(x|y) = \frac{p(y|x)p(x)}{p(y)}$, (p(x|y) = \frac{p(y|x)p(x)}{p(y)}).</p>
+<p>$$
+E(\mathbf{v}, \mathbf{h}) = -\sum_{i,j}w_{ij}v_i h_j - \sum_i b_i v_i - \sum_j c_j h_j
+$$</p>
+<p>\[3 &lt; 4\]</p>
+<p>\begin{align}
+p(v_i=1|\mathbf{h}) &amp; = \sigma\left(\sum_j w_{ij}h_j + b_i\right) \<br>
+p(h_j=1|\mathbf{v}) &amp; = \sigma\left(\sum_i w_{ij}v_i + c_j\right)
+\end{align}</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">
+$$ evidence\_{i}=\sum\_{j}W\_{ij}x\_{j}+b\_{i} $$
+
+$p(x|y) = \frac{p(y|x)p(x)}{p(y)}$, \(p(x|y) = \frac{p(y|x)p(x)}{p(y)}\).
+
+$$ E(\mathbf{v}, \mathbf{h}) = -\sum_{i,j}w_{ij}v_i h_j - \sum_i b_i v_i - \sum_j c_j h_j $$
+
+\\[3 &lt; 4\\]
+
+\begin{align}
+    p(v_i=1|\mathbf{h}) &amp; = \sigma\left(\sum_j w_{ij}h_j + b_i\right) \\
+    p(h_j=1|\mathbf{v}) &amp; = \sigma\left(\sum_i w_{ij}v_i + c_j\right)
+\end{align}
+
+## 网易云音乐
+
+</code></pre></td></tr></table>
+</div>
+</div><p>{{% music &ldquo;28196554&rdquo; %}}</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre class="chroma"><code><span class="lnt"> 1
@@ -1345,62 +1294,42 @@ __^^*insert italic bold*^^__  *^^__insert italic bold 2__^^*
 </span><span class="lnt">14
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">$$ evidence\_{i}=\sum\_{j}W\_{ij}x\_{j}+b\_{i} $$
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">
+  &lt;iframe style=&#34;max-width: 100%&#34;
+      class=&#34;music163&#34;
+      frameborder=&#34;no&#34;
+      border=&#34;0&#34;
+      marginwidth=&#34;0&#34;
+      marginheight=&#34;0&#34;
+      width=&#34;330&#34;
+      height=&#34;86&#34;
+      src=&#34;//music.163.com/outchain/player?type=2&amp;id=28196554&amp;auto=0&amp;height=66&#34;&gt;
+    &lt;/iframe&gt;
 
-$p(x|y) = \frac{p(y|x)p(x)}{p(y)}$, \(p(x|y) = \frac{p(y|x)p(x)}{p(y)}\).
+## YouTube
 
-$$
-E(\mathbf{v}, \mathbf{h}) = -\sum_{i,j}w_{ij}v_i h_j - \sum_i b_i v_i - \sum_j c_j h_j
-$$
-
-\\[3 &lt; 4\\]
-
-\begin{align}
-    p(v_i=1|\mathbf{h}) &amp; = \sigma\left(\sum_j w_{ij}h_j + b_i\right) \\
-    p(h_j=1|\mathbf{v}) &amp; = \sigma\left(\sum_i w_{ij}v_i + c_j\right)
-\end{align}
 </code></pre></td></tr></table>
 </div>
-</div><p>$$ evidence_{i}=\sum_{j}W_{ij}x_{j}+b_{i} $$</p>
-<p>$p(x|y) = \frac{p(y|x)p(x)}{p(y)}$, (p(x|y) = \frac{p(y|x)p(x)}{p(y)}).</p>
-<p>$$ E(\mathbf{v}, \mathbf{h}) = -\sum_{i,j}w_{ij}v_i h_j - \sum_i b_i v_i - \sum_j c_j h_j $$</p>
-<p>\[3 &lt; 4\]</p>
-<p>\begin{align}
-p(v_i=1|\mathbf{h}) &amp; = \sigma\left(\sum_j w_{ij}h_j + b_i\right) \<br>
-p(h_j=1|\mathbf{v}) &amp; = \sigma\left(\sum_i w_{ij}v_i + c_j\right)
-\end{align}</p>
-<h2 id="网易云音乐">网易云音乐</h2>
+</div><p>{{% youtube &ldquo;wC5pJm8RAu4&rdquo; %}}</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">{{% music &#34;28196554&#34; %}}
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">
+
+&lt;div style=&#34;position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;&#34;&gt;
+  &lt;iframe src=&#34;https://www.youtube-nocookie.com/embed/wC5pJm8RAu4&#34; style=&#34;position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;&#34; allowfullscreen title=&#34;YouTube Video&#34;&gt;&lt;/iframe&gt;
+&lt;/div&gt;
+
 </code></pre></td></tr></table>
 </div>
-</div>  <iframe style="max-width: 100%"
-      class="music163"
-      frameborder="no"
-      border="0"
-      marginwidth="0"
-      marginheight="0"
-      width="330"
-      height="86"
-      src="//music.163.com/outchain/player?type=2&id=28196554&auto=0&height=66">
-    </iframe>
-<h2 id="youtube">YouTube</h2>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">{{% youtube &#34;wC5pJm8RAu4&#34; %}}
-</code></pre></td></tr></table>
-</div>
-</div><div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
-  <iframe src="https://www.youtube-nocookie.com/embed/wC5pJm8RAu4" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" allowfullscreen title="YouTube Video"></iframe>
-</div>
-<section class="footnotes" role="doc-endnotes">
+</div><section class="footnotes" role="doc-endnotes">
 <hr>
 <ol>
 <li id="fn:1" role="doc-endnote">
@@ -1439,15 +1368,15 @@ p(h_j=1|\mathbf{v}) &amp; = \sigma\left(\sum_i w_{ij}v_i + c_j\right)
   </p>
 </div>
 <footer class="post-footer">
-      <div class="post-tags">
-          <a href="/tags/preview/">preview</a>
-          <a href="/tags/theme-preview/">Theme preview</a>
-          <a href="/tags/tag-3/">tag-3</a>
-          </div>
+      
       <nav class="post-nav">
-        
-        <a class="next" href="/post/hashmap/">
-            <span class="next-text nav-default">哈希表 Hashmap</span>
+        <a class="prev" href="/post/dynamic-proxy/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">动态代理 Dynamic Proxy</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        <a class="next" href="/post/docker-consul%E6%9C%8D%E5%8A%A1%E5%8F%91%E7%8E%B0/">
+            <span class="next-text nav-default">Docker&#43;Consul服务发现</span>
             <span class="next-text nav-mobile">下一篇</span>
             <i class="iconfont icon-right"></i>
           </a>
