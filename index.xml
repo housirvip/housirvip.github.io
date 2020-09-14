@@ -6,7 +6,7 @@
     <description>Recent content on The Blog of housirvip</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Mon, 14 Sep 2020 16:07:55 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 14 Sep 2020 19:32:15 +0800</lastBuildDate>
     
 	<atom:link href="https://housirvip.github.com/index.xml" rel="self" type="application/rss+xml" />
     
@@ -18,6 +18,15 @@
       
       <guid>https://housirvip.github.com/%E5%85%B3%E4%BA%8E%E6%88%91/</guid>
       <description>We&amp;rsquo;d be playing in the sand Holding hands just one last chance No more hurts no more goodbyes We&amp;rsquo;d dance We&amp;rsquo;re never going back Never turning back</description>
+    </item>
+    
+    <item>
+      <title>博客图床升级 HTTPS</title>
+      <link>https://housirvip.github.com/post/pic-server-upgrade-https/</link>
+      <pubDate>Mon, 14 Sep 2020 19:32:15 +0800</pubDate>
+      
+      <guid>https://housirvip.github.com/post/pic-server-upgrade-https/</guid>
+      <description>今天更新一篇博客时发现图片显示不出来了 F12 发现是 github.io 限制图片需要 https 才能访问 被迫升级下图床到 https，好在还有免费证书 Let’s Encrypt 用，太强了 安装</description>
     </item>
     
     <item>

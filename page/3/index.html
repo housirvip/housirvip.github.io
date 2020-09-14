@@ -45,7 +45,7 @@
 <meta property="og:description" content="The Blog of housirvip." />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://housirvip.github.com/" />
-<meta property="og:updated_time" content="2020-09-09T10:54:44+08:00" />
+<meta property="og:updated_time" content="2020-09-14T19:32:15+08:00" />
 <meta itemprop="name" content="The Blog of housirvip">
 <meta itemprop="description" content="The Blog of housirvip.">
 <meta name="twitter:card" content="summary"/>
@@ -81,8 +81,6 @@
         <li class="mobile-menu-item">时间线</li>
       </a><a href="/tags/">
         <li class="mobile-menu-item">标签</li>
-      </a><a href="/categories/">
-        <li class="mobile-menu-item">目录</li>
       </a><a href="/%E5%85%B3%E4%BA%8E%E6%88%91/">
         <li class="mobile-menu-item">关于我</li>
       </a>
@@ -103,8 +101,6 @@
       </li><li class="menu-item">
         <a class="menu-item-link" href="/tags/">标签</a>
       </li><li class="menu-item">
-        <a class="menu-item-link" href="/categories/">目录</a>
-      </li><li class="menu-item">
         <a class="menu-item-link" href="/%E5%85%B3%E4%BA%8E%E6%88%91/">关于我</a>
       </li>
   </ul>
@@ -117,95 +113,59 @@
           <section id="posts" class="posts">
     <article class="post">
   <header class="post-header">
-    <h1 class="post-title"><a class="post-link" href="/post/dns/">DNS 域名系统</a></h1>
+    <h1 class="post-title"><a class="post-link" href="/post/shortcodes/">Shortcodes</a></h1>
     <div class="post-meta">
-      <span class="post-time"> 2018-01-02 </span>
+      <span class="post-time"> 2016-08-30 </span>
       
     </div>
   </header>
   
   <div class="post-content">
     <div class="post-summary">
-      DNS（Domain Name System，域名系统），因特网上作为域名和IP地址相互映射的一个分布式数据库，能够使用户更方便的访问互联网，而不用去
-    </div>
-    <div class="read-more">
-      <a href="/post/dns/" class="read-more-link">阅读更多</a>
-    </div>
-  </div>
-</article>
+      <h1 id="admonition">Admonition</h1>
+<div class="admonition note"><p class="admonition-title">I&#39;m title!</p>
+<p>biu biu biu.</p>
+<details class="admonition note"><summary class="admonition-title">note</summary>
+  <p>biu biu biu.</p>
+</details>
+<div class="admonition example">
+  <p>Without title.</p>
+</div>
+</div>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-markdown" data-lang="markdown">{{% admonition note &#34;I&#39;m title!&#34; false %}}
+biu biu biu.
 
-    <article class="post">
-  <header class="post-header">
-    <h1 class="post-title"><a class="post-link" href="/post/cdn/">CDN 内容分发网络</a></h1>
-    <div class="post-meta">
-      <span class="post-time"> 2018-01-02 </span>
-      
-    </div>
-  </header>
-  
-  <div class="post-content">
-    <div class="post-summary">
-      CDN的全称是Content Delivery Network，即内容分发网络。其基本思路是尽可能避开互联网上有可能影响数据传输速度和稳定性的瓶颈和环节，使内
-    </div>
-    <div class="read-more">
-      <a href="/post/cdn/" class="read-more-link">阅读更多</a>
-    </div>
-  </div>
-</article>
+{{% admonition type=&#34;note&#34; title=&#34;note&#34; details=&#34;true&#34; %}}
+biu biu biu.
+{{% /admonition %}}
 
-    <article class="post">
-  <header class="post-header">
-    <h1 class="post-title"><a class="post-link" href="/post/sql%E5%92%8Cnosql/">NoSQL与SQL对比</a></h1>
-    <div class="post-meta">
-      <span class="post-time"> 2018-01-02 </span>
-      
-    </div>
-  </header>
-  
-  <div class="post-content">
-    <div class="post-summary">
-      概念 SQL (Structured Query Language) 数据库，指关系型数据库。主要代表：SQL Server，Oracle，MySQL(开源)，PostgreSQL(开源)。 NoSQL
-    </div>
-    <div class="read-more">
-      <a href="/post/sql%E5%92%8Cnosql/" class="read-more-link">阅读更多</a>
-    </div>
-  </div>
-</article>
+{{% admonition example %}}
+Without title.
+{{% /admonition %}}
 
-    <article class="post">
-  <header class="post-header">
-    <h1 class="post-title"><a class="post-link" href="/post/%E9%AB%98%E5%B9%B6%E5%8F%91web%E8%AE%BE%E8%AE%A1/">高并发web系统设计</a></h1>
-    <div class="post-meta">
-      <span class="post-time"> 2018-01-02 </span>
-      
-    </div>
-  </header>
-  
-  <div class="post-content">
-    <div class="post-summary">
-      核心技术点 前端优化 前端优化主要包括动态内容静态化，增加前端缓存。页面静态化是指将指含有大量动态元素的动态网页，如jsp、php等，转换为ht
+{{% /admonition %}}
+</code></pre></td></tr></table>
+</div>
+</div>
     </div>
     <div class="read-more">
-      <a href="/post/%E9%AB%98%E5%B9%B6%E5%8F%91web%E8%AE%BE%E8%AE%A1/" class="read-more-link">阅读更多</a>
-    </div>
-  </div>
-</article>
-
-    <article class="post">
-  <header class="post-header">
-    <h1 class="post-title"><a class="post-link" href="/post/dnscrypt/">搭建纯净 DNS 服务</a></h1>
-    <div class="post-meta">
-      <span class="post-time"> 2017-08-24 </span>
-      
-    </div>
-  </header>
-  
-  <div class="post-content">
-    <div class="post-summary">
-      起因 国内近年来 DNS 污染严重，甚至就连一些地方宽带商都胡乱投毒，整一些花里胡哨的广告页面，什么，你想要干净清爽的网络浏览？ 经过 安装开发环境 1 sudo apt-get
-    </div>
-    <div class="read-more">
-      <a href="/post/dnscrypt/" class="read-more-link">阅读更多</a>
+      <a href="/post/shortcodes/" class="read-more-link">阅读更多</a>
     </div>
   </div>
 </article>
@@ -217,10 +177,7 @@
         <i class="iconfont icon-left"></i>
         <span class="prev-text">上一页</span>
       </a>
-    <a class="next" href="/page/4/">
-        <span class="next-text">下一页</span>
-        <i class="iconfont icon-right"></i>
-      </a>
+    
   </nav>
         </div>
         

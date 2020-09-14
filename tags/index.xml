@@ -6,10 +6,19 @@
     <description>Recent content in Tags on The Blog of housirvip</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Mon, 14 Sep 2020 16:07:55 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 14 Sep 2020 19:32:15 +0800</lastBuildDate>
     
 	<atom:link href="https://housirvip.github.com/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Web</title>
+      <link>https://housirvip.github.com/tags/web/</link>
+      <pubDate>Mon, 14 Sep 2020 19:32:15 +0800</pubDate>
+      
+      <guid>https://housirvip.github.com/tags/web/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>Java</title>
@@ -62,15 +71,6 @@
       <pubDate>Sun, 20 May 2018 14:36:37 +0000</pubDate>
       
       <guid>https://housirvip.github.com/tags/docker/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Web</title>
-      <link>https://housirvip.github.com/tags/web/</link>
-      <pubDate>Sun, 20 May 2018 14:36:37 +0000</pubDate>
-      
-      <guid>https://housirvip.github.com/tags/web/</guid>
       <description></description>
     </item>
     
