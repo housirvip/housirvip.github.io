@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <title>Java 复习 面经总结（未完成） - The Blog of housirvip</title>
+  <title>Java 复习 面经总结 - The Blog of housirvip</title>
   <meta name="renderer" content="webkit" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
@@ -39,23 +39,23 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
 
 
-<meta property="og:title" content="Java 复习 面经总结（未完成）" />
+<meta property="og:title" content="Java 复习 面经总结" />
 <meta property="og:description" content="Java相关 8 种基本类型 String String是不可变对象, 意思是一旦创建,那么整个对象就不可改变. 即使新手觉得String引用变了,实际上只是(指" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://housirvip.github.com/post/java-review/" />
 <meta property="article:published_time" content="2020-09-06T16:39:51+08:00" />
 <meta property="article:modified_time" content="2020-09-06T16:39:51+08:00" />
-<meta itemprop="name" content="Java 复习 面经总结（未完成）">
+<meta itemprop="name" content="Java 复习 面经总结">
 <meta itemprop="description" content="Java相关 8 种基本类型 String String是不可变对象, 意思是一旦创建,那么整个对象就不可改变. 即使新手觉得String引用变了,实际上只是(指">
 <meta itemprop="datePublished" content="2020-09-06T16:39:51+08:00" />
 <meta itemprop="dateModified" content="2020-09-06T16:39:51+08:00" />
-<meta itemprop="wordCount" content="7365">
+<meta itemprop="wordCount" content="9204">
 
 
 
 <meta itemprop="keywords" content="Java,面经," />
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Java 复习 面经总结（未完成）"/>
+<meta name="twitter:title" content="Java 复习 面经总结"/>
 <meta name="twitter:description" content="Java相关 8 种基本类型 String String是不可变对象, 意思是一旦创建,那么整个对象就不可改变. 即使新手觉得String引用变了,实际上只是(指"/>
 
 <!--[if lte IE 9]>
@@ -119,7 +119,7 @@
           <article class="post">
     
     <header class="post-header">
-      <h1 class="post-title">Java 复习 面经总结（未完成）</h1>
+      <h1 class="post-title">Java 复习 面经总结</h1>
 
       <div class="post-meta">
         <span class="post-time"> 2020-09-06 </span>
@@ -525,27 +525,184 @@
 <p>newCap=oldCap+(oldCap&raquo;1)</p>
 </blockquote>
 <h3 id="多线程">多线程</h3>
+<h4 id="synchronized">Synchronized</h4>
+<ul>
+<li>同步普通方法，锁的是当前对象。</li>
+<li>同步静态方法，锁的是当前 <code>Class</code> 对象。</li>
+<li>同步块，锁的是 <code>()</code> 中的对象。</li>
+</ul>
+<p><img src="http://static.nicesite.vip/blog/20200914173634.png" alt=""></p>
 <blockquote>
-<p>使用场景</p>
-<p>Synchronized</p>
-<p>CAS（乐观）</p>
-<p>Lock（悲观）</p>
-<p>死锁</p>
-<p>线程池（4种类型，拒绝策略）</p>
-<p>ThreadLocal</p>
-<p>volatile关键字（指令重排，内存屏障）</p>
+<p><code>synchronized</code> 很多都称之为重量锁，<code>JDK1.6</code> 中对 <code>synchronized</code> 进行了各种优化，为了能减少获取和释放锁带来的消耗引入了<code>偏向锁</code>和<code>轻量锁</code>。</p>
 </blockquote>
+<p><img src="http://static.nicesite.vip/blog/20200914174129.png" alt=""></p>
+<h4 id="cas乐观">CAS（乐观）</h4>
+<blockquote>
+<p>通过原子性来保证数据的同步，比如说数据库的乐观锁，通过版本控制来实现等，所以CAS不会保证线程同步。乐观的认为在数据更新期间没有其他线程影响</p>
+</blockquote>
+<ul>
+<li>优点
+非阻塞的轻量级的乐观锁，通过CPU指令实现，在资源竞争不激烈的情况下性能高，相比synchronized重量锁，synchronized会进行比较复杂的加锁，解锁和唤醒操作。</li>
+<li>缺点
+<ul>
+<li>ABA问题 线程C、D,线程D将A修改为B后又修改为A,此时C线程以为A没有改变过，java的原子类AtomicStampedReference，通过控制变量值的版本来保证CAS的正确性。</li>
+<li>自旋时间过长，消耗CPU资源， 如果资源竞争激烈，多线程自旋长时间消耗资源。</li>
+</ul>
+</li>
+</ul>
+<h4 id="线程池4种类型拒绝策略">线程池（4种类型，拒绝策略）</h4>
+<ul>
+<li><code>Executors.newCachedThreadPool()</code>：无限线程池。</li>
+<li><code>Executors.newFixedThreadPool(nThreads)</code>：创建固定大小的线程池。</li>
+<li><code>Executors.newSingleThreadExecutor()</code>：创建单个线程的线程池。</li>
+<li><code>newScheduledThreadPool()</code> 创建一个定长线程池，支持定时及周期性任务执行。</li>
+</ul>
+<p>优点</p>
+<ol>
+<li>减少了创建和销毁线程的次数，每个工作线程都可以被重复利用，可执行多个任务。</li>
+<li>可以根据系统的承受能力，调整线程池中工作线线程的数目，防止因为消耗过多的内存，而把服务器累趴下(每个线程需要大约1MB内存，线程开的越多，消耗的内存也就越大，最后死机)。</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="n">ThreadPoolExecutor</span><span class="o">(</span><span class="kt">int</span> <span class="n">corePoolSize</span><span class="o">,</span> 
+                   <span class="kt">int</span> <span class="n">maximumPoolSize</span><span class="o">,</span> 
+                   <span class="kt">long</span> <span class="n">keepAliveTime</span><span class="o">,</span> 
+                   <span class="n">TimeUnit</span> <span class="n">unit</span><span class="o">,</span> 
+                   <span class="n">BlockingQueue</span><span class="o">&lt;</span><span class="n">Runnable</span><span class="o">&gt;</span> <span class="n">workQueue</span><span class="o">,</span>
+                   <span class="n">RejectedExecutionHandler</span> <span class="n">handler</span><span class="o">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><ul>
+<li><code>corePoolSize</code> 为线程池的基本大小。</li>
+<li><code>maximumPoolSize</code> 为线程池最大线程大小。</li>
+<li><code>keepAliveTime</code> 和 <code>unit</code> 则是线程空闲后的存活时间。</li>
+<li><code>workQueue</code> 用于存放任务的阻塞队列。</li>
+<li><code>handler</code> 当队列和最大线程池都满了之后的饱和策略。</li>
+</ul>
+<p><img src="http://static.nicesite.vip/blog/20200914174915.png" alt=""></p>
+<p>线程池的5种状态</p>
+<ol>
+<li><strong>RUNNING</strong> ：能接受新提交的任务，并且也能处理阻塞队列中的任务；</li>
+<li><strong>SHUTDOWN</strong>：关闭状态，不再接受新提交的任务，但却可以继续处理阻塞队列中已保存的任务。在线程池处于 RUNNING 状态时，调用 shutdown()方法会使线程池进入到该状态。（finalize() 方法在执行过程中也会调用shutdown()方法进入该状态）；</li>
+<li><strong>STOP</strong>：不能接受新任务，也不处理队列中的任务，会中断正在处理任务的线程。在线程池处于 RUNNING 或 SHUTDOWN 状态时，调用 shutdownNow() 方法会使线程池进入到该状态；</li>
+<li><strong>TIDYING</strong>：如果所有的任务都已终止了，workerCount (有效线程数) 为0，线程池进入该状态后会调用 terminated() 方法进入TERMINATED 状态。</li>
+<li><strong>TERMINATED</strong>：在terminated() 方法执行完后进入该状态，默认terminated()方法中什么也没有做。</li>
+</ol>
+<p><img src="http://static.nicesite.vip/blog/20200914175048.png" alt=""></p>
+<h4 id="threadlocal">ThreadLocal</h4>
+<blockquote>
+<p>每个线程中都有一个<code>ThreadLocalMap</code>数据结构，当执行set方法时，其值是保存在当前线程的<code>threadLocals</code>变量中，当执行set方法中，是从当前线程的<code>threadLocals</code>变量获取</p>
+</blockquote>
+<p><img src="http://static.nicesite.vip/blog/20200914180411.png" alt=""></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">static</span> <span class="kd">class</span> <span class="nc">Entry</span> <span class="kd">extends</span> <span class="n">WeakReference</span><span class="o">&lt;</span><span class="n">ThreadLocal</span><span class="o">&lt;?&gt;&gt;</span> <span class="o">{</span>
+    <span class="cm">/** The value associated with this ThreadLocal. */</span>
+    <span class="n">Object</span> <span class="n">value</span><span class="o">;</span>
+
+    <span class="n">Entry</span><span class="o">(</span><span class="n">ThreadLocal</span><span class="o">&lt;?&gt;</span> <span class="n">k</span><span class="o">,</span> <span class="n">Object</span> <span class="n">v</span><span class="o">)</span> <span class="o">{</span>
+        <span class="kd">super</span><span class="o">(</span><span class="n">k</span><span class="o">);</span>
+        <span class="n">value</span> <span class="o">=</span> <span class="n">v</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>当使用ThreadLocal保存一个value时，会在ThreadLocalMap中的数组插入一个Entry对象，在ThreadLocalMap的实现中，key被保存到了WeakReference对象中。</p>
+<p>这就导致ThreadLocal在没有外部强引用时，发生GC时会被回收，如果创建ThreadLocal的线程一直持续运行，那么这个Entry对象中的value就有可能一直得不到回收，发生内存泄露。</p>
 <h3 id="stringbuilder-和-stringbuffer">StringBuilder 和 StringBuffer</h3>
 <blockquote>
-<p>StringBuffer如何实现线程安全</p>
-<p>StringBuilder.append() 和 String 相加</p>
+<p>StringBuffer线程安全，StringBuilder线程不安全</p>
+<p>StringBuilder的效率比StringBuffer高一些</p>
 </blockquote>
+<p>字符串连接操作中StringBuffer的效率要比String高:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="n">String</span> <span class="n">str</span> <span class="o">=</span> <span class="k">new</span> <span class="n">String</span><span class="o">(</span><span class="s">&#34;hello &#34;</span><span class="o">);</span>
+<span class="n">str</span> <span class="o">+=</span> <span class="s">&#34;world&#34;</span><span class="o">;</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>以上代码的处理步骤实际上是通过建立一个StringBuffer</p>
+<p>然后调用append(),最后再将StringBuffer toSting();</p>
+<p>这样的话String的连接操作就比StringBuffer多出了一些附加操作,当然效率上要打折扣.</p>
 <h3 id="springboot">SpringBoot</h3>
+<h4 id="相关设计模式">相关设计模式</h4>
+<p>代理</p>
 <blockquote>
-<p>相关设计模式</p>
-<p>区别Spring</p>
-<p>控制反转（IoC），依赖注入（DI）</p>
+<p>动态代理</p>
+<p>AOP</p>
+<p>JDK代理和Cglib代理</p>
 </blockquote>
+<p>观察者</p>
+<blockquote>
+<p>ApplicationEvent</p>
+<p>ApplicationListener</p>
+<p>ApplicationEventPublisher</p>
+</blockquote>
+<p>适配器</p>
+<blockquote>
+<p>DispatcherServlet</p>
+<p>Handler</p>
+<p>Controller</p>
+</blockquote>
+<p>单例</p>
+<blockquote>
+<p>Bean</p>
+<p>Component</p>
+</blockquote>
+<p>工厂</p>
+<blockquote>
+<p>BeanFactory</p>
+<p>DataSourceFactory</p>
+</blockquote>
+<p>模板</p>
+<blockquote>
+<p>JdbcTemplate</p>
+<p>HibernateTemplate</p>
+</blockquote>
+<p>装饰器</p>
+<blockquote>
+<p>InputStream</p>
+<p>Wrapper</p>
+</blockquote>
+<p>上下文</p>
+<blockquote>
+<p>ApplicationContext</p>
+</blockquote>
+<h4 id="区别spring">区别Spring</h4>
+<blockquote>
+<p><code>Spring Boot</code>基本上是<code>Spring</code>框架的扩展，它消除了设置<code>Spring</code>应用程序所需的<code>XML配置</code>，为更快，更高效的开发生态系统铺平了道路。</p>
+</blockquote>
+<ol>
+<li>创建独立的<code>Spring</code>应用。</li>
+<li>嵌入式<code>Tomcat</code>、<code>Jetty</code>、 <code>Undertow</code>容器（无需部署war文件）。</li>
+<li>提供的<code>starters</code> 简化构建配置</li>
+<li>尽可能自动配置<code>spring</code>应用。</li>
+<li>提供生产指标,例如指标、健壮检查和外部化配置</li>
+<li>完全没有代码生成和<code>XML</code>配置要求</li>
+</ol>
 
     </div>
 

@@ -6,10 +6,19 @@
     <description>Recent content in Java on The Blog of housirvip</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Wed, 09 Sep 2020 10:54:44 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 14 Sep 2020 16:07:55 +0800</lastBuildDate>
     
 	<atom:link href="https://housirvip.github.com/tags/java/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>手撕雪花 Snow Flake</title>
+      <link>https://housirvip.github.com/post/snow-flake/</link>
+      <pubDate>Mon, 14 Sep 2020 16:07:55 +0800</pubDate>
+      
+      <guid>https://housirvip.github.com/post/snow-flake/</guid>
+      <description>分布式系统中，有一些需要使用全局唯一ID的场景，这种时候为了防止ID冲突可以使用36位的UUID，但是UUID有一些缺点，首先他相对比较长，</description>
+    </item>
     
     <item>
       <title>哈希表 Hashmap</title>
@@ -21,7 +30,7 @@
     </item>
     
     <item>
-      <title>Java 复习 面经总结（未完成）</title>
+      <title>Java 复习 面经总结</title>
       <link>https://housirvip.github.com/post/java-review/</link>
       <pubDate>Sun, 06 Sep 2020 16:39:51 +0800</pubDate>
       

@@ -6,7 +6,7 @@
     <description>Recent content in Tags on The Blog of housirvip</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Wed, 09 Sep 2020 10:54:44 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 14 Sep 2020 16:07:55 +0800</lastBuildDate>
     
 	<atom:link href="https://housirvip.github.com/tags/index.xml" rel="self" type="application/rss+xml" />
     
@@ -14,9 +14,18 @@
     <item>
       <title>Java</title>
       <link>https://housirvip.github.com/tags/java/</link>
-      <pubDate>Wed, 09 Sep 2020 10:54:44 +0800</pubDate>
+      <pubDate>Mon, 14 Sep 2020 16:07:55 +0800</pubDate>
       
       <guid>https://housirvip.github.com/tags/java/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>分布式</title>
+      <link>https://housirvip.github.com/tags/%E5%88%86%E5%B8%83%E5%BC%8F/</link>
+      <pubDate>Mon, 14 Sep 2020 16:07:55 +0800</pubDate>
+      
+      <guid>https://housirvip.github.com/tags/%E5%88%86%E5%B8%83%E5%BC%8F/</guid>
       <description></description>
     </item>
     
