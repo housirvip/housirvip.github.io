@@ -49,7 +49,7 @@
 <meta itemprop="description" content="分布式系统中，有一些需要使用全局唯一ID的场景，这种时候为了防止ID冲突可以使用36位的UUID，但是UUID有一些缺点，首先他相对比较长，">
 <meta itemprop="datePublished" content="2020-09-14T16:07:55+08:00" />
 <meta itemprop="dateModified" content="2020-09-14T16:07:55+08:00" />
-<meta itemprop="wordCount" content="1440">
+<meta itemprop="wordCount" content="1438">
 
 
 
@@ -173,7 +173,6 @@
 </span><span class="lnt">6
 </span><span class="lnt">7
 </span><span class="lnt">8
-</span><span class="lnt">9
 </span></code></pre></td>
 <td class="lntd">
 <pre class="chroma"><code class="language-shell" data-lang="shell">  <span class="nv">1L</span> <span class="o">==</span> <span class="m">0000</span> <span class="m">0000</span> <span class="m">0000</span> <span class="m">0001</span>
@@ -184,7 +183,6 @@
  ^ <span class="m">1111</span> <span class="m">1100</span> <span class="m">0000</span> <span class="m">0000</span>
  ---------------------
  <span class="o">=</span> <span class="m">0000</span> <span class="m">0011</span> <span class="m">1111</span> <span class="m">1111</span>
- 取反也可以
 </code></pre></td></tr></table>
 </div>
 </div><h2 id="补充说明">补充说明</h2>
@@ -338,12 +336,12 @@
 </span><span class="cm">     * 或者
 </span><span class="cm">     * ~(-1L &lt;&lt; MACHINE_LEN)
 </span><span class="cm">     */</span>
-    <span class="kd">private</span> <span class="kd">final</span> <span class="kd">static</span> <span class="kt">long</span> <span class="n">MAX_MACHINE</span> <span class="o">=</span> <span class="o">~(-</span><span class="n">1L</span> <span class="o">&lt;&lt;</span> <span class="n">MACHINE_LEN</span><span class="o">);</span>
+    <span class="kd">private</span> <span class="kd">final</span> <span class="kd">static</span> <span class="kt">long</span> <span class="n">MAX_MACHINE</span> <span class="o">=</span> <span class="o">-</span><span class="n">1L</span> <span class="o">^</span> <span class="o">(-</span><span class="n">1L</span> <span class="o">&lt;&lt;</span> <span class="n">MACHINE_LEN</span><span class="o">);</span>
 
     <span class="cm">/**
 </span><span class="cm">     * 用位运算计算出12位能存储的最大正整数：4095
 </span><span class="cm">     */</span>
-    <span class="kd">private</span> <span class="kd">final</span> <span class="kd">static</span> <span class="kt">long</span> <span class="n">MAX_SERIAL</span> <span class="o">=</span> <span class="o">~(-</span><span class="n">1L</span> <span class="o">&lt;&lt;</span> <span class="n">SERIAL_LEN</span><span class="o">);</span>
+    <span class="kd">private</span> <span class="kd">final</span> <span class="kd">static</span> <span class="kt">long</span> <span class="n">MAX_SERIAL</span> <span class="o">=</span> <span class="o">-</span><span class="n">1L</span> <span class="o">^</span> <span class="o">(-</span><span class="n">1L</span> <span class="o">&lt;&lt;</span> <span class="n">SERIAL_LEN</span><span class="o">);</span>
 
     <span class="cm">/**
 </span><span class="cm">     * 机器标志的偏移量
