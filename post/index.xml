@@ -6,10 +6,19 @@
     <description>Recent content in Posts on The Blog of housirvip</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Mon, 14 Sep 2020 19:32:15 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 15 Sep 2020 23:35:40 +0800</lastBuildDate>
     
 	<atom:link href="https://housirvip.github.com/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>手写RPC 之 Hrpc Version 1.0</title>
+      <link>https://housirvip.github.com/post/hrpc-version-1/</link>
+      <pubDate>Tue, 15 Sep 2020 23:35:40 +0800</pubDate>
+      
+      <guid>https://housirvip.github.com/post/hrpc-version-1/</guid>
+      <description>原理 客户端，通过接口调用，如 UserService，UserService.login(username, password)，实际上是通过动</description>
+    </item>
     
     <item>
       <title>博客图床升级 HTTPS</title>

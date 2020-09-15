@@ -9,29 +9,43 @@
   </url>
   
   <url>
+    <loc>https://housirvip.github.com/tags/java/</loc>
+    <lastmod>2020-09-15T23:35:40+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
     <loc>https://housirvip.github.com/post/</loc>
-    <lastmod>2020-09-14T19:32:15+08:00</lastmod>
+    <lastmod>2020-09-15T23:35:40+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://housirvip.github.com/tags/</loc>
-    <lastmod>2020-09-14T19:32:15+08:00</lastmod>
+    <lastmod>2020-09-15T23:35:40+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://housirvip.github.com/</loc>
-    <lastmod>2020-09-14T19:32:15+08:00</lastmod>
+    <lastmod>2020-09-15T23:35:40+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://housirvip.github.com/tags/web/</loc>
-    <lastmod>2020-09-14T19:32:15+08:00</lastmod>
+    <lastmod>2020-09-15T23:35:40+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://housirvip.github.com/post/hrpc-version-1/</loc>
+    <lastmod>2020-09-15T23:35:40+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
@@ -39,13 +53,6 @@
   <url>
     <loc>https://housirvip.github.com/post/pic-server-upgrade-https/</loc>
     <lastmod>2020-09-14T19:32:15+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://housirvip.github.com/tags/java/</loc>
-    <lastmod>2020-09-14T16:07:55+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
