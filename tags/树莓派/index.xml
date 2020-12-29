@@ -6,11 +6,7 @@
     <description>Recent content in 树莓派 on The Blog of housirvip</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Thu, 24 Aug 2017 12:53:47 +0000</lastBuildDate>
-    
-	<atom:link href="https://housirvip.github.com/tags/%E6%A0%91%E8%8E%93%E6%B4%BE/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Thu, 24 Aug 2017 12:53:47 +0000</lastBuildDate><atom:link href="https://housirvip.github.com/tags/%E6%A0%91%E8%8E%93%E6%B4%BE/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>搭建纯净 DNS 服务</title>
       <link>https://housirvip.github.com/post/dnscrypt/</link>

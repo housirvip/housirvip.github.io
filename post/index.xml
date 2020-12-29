@@ -6,10 +6,15 @@
     <description>Recent content in Posts on The Blog of housirvip</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Tue, 15 Sep 2020 23:35:40 +0800</lastBuildDate>
-    
-	<atom:link href="https://housirvip.github.com/post/index.xml" rel="self" type="application/rss+xml" />
-    
+    <lastBuildDate>Tue, 29 Dec 2020 11:22:58 +0800</lastBuildDate><atom:link href="https://housirvip.github.com/post/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>PVE 使用与硬件直通</title>
+      <link>https://housirvip.github.com/post/pve-tutorial/</link>
+      <pubDate>Tue, 29 Dec 2020 11:22:58 +0800</pubDate>
+      
+      <guid>https://housirvip.github.com/post/pve-tutorial/</guid>
+      <description>Proxmox虚拟环境（简称PVE）是用于操作来宾操作系统的基于 Debian 和 KVM 的虚拟化平台。 PVE 安装 下载并烧录 下载iso文件后，烧录到u盘中 https://www.proxmox.com/en/downloads 如果要在</description>
+    </item>
     
     <item>
       <title>手写RPC 之 Hrpc Version 1.0</title>

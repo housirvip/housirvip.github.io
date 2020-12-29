@@ -6,11 +6,7 @@
     <description>Recent content in 算法 on The Blog of housirvip</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Fri, 26 Jan 2018 09:39:41 +0000</lastBuildDate>
-    
-	<atom:link href="https://housirvip.github.com/tags/%E7%AE%97%E6%B3%95/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Fri, 26 Jan 2018 09:39:41 +0000</lastBuildDate><atom:link href="https://housirvip.github.com/tags/%E7%AE%97%E6%B3%95/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>manacher算法</title>
       <link>https://housirvip.github.com/post/manacher/</link>

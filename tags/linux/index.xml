@@ -6,11 +6,7 @@
     <description>Recent content in Linux on The Blog of housirvip</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Sun, 20 May 2018 12:03:19 +0000</lastBuildDate>
-    
-	<atom:link href="https://housirvip.github.com/tags/linux/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Sun, 20 May 2018 12:03:19 +0000</lastBuildDate><atom:link href="https://housirvip.github.com/tags/linux/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Docker常见命令与操作</title>
       <link>https://housirvip.github.com/post/docker%E5%B8%B8%E8%A7%81%E5%91%BD%E4%BB%A4%E4%B8%8E%E6%93%8D%E4%BD%9C/</link>

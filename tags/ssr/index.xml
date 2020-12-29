@@ -6,11 +6,7 @@
     <description>Recent content in SSR on The Blog of housirvip</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Thu, 24 Aug 2017 12:13:24 +0000</lastBuildDate>
-    
-	<atom:link href="https://housirvip.github.com/tags/ssr/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Thu, 24 Aug 2017 12:13:24 +0000</lastBuildDate><atom:link href="https://housirvip.github.com/tags/ssr/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>编译安装 shadowsocksr-libev</title>
       <link>https://housirvip.github.com/post/ssr-install/</link>

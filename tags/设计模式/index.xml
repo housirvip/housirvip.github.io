@@ -6,11 +6,7 @@
     <description>Recent content in 设计模式 on The Blog of housirvip</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Wed, 02 Sep 2020 21:44:20 +0800</lastBuildDate>
-    
-	<atom:link href="https://housirvip.github.com/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Wed, 02 Sep 2020 21:44:20 +0800</lastBuildDate><atom:link href="https://housirvip.github.com/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>动态代理 Dynamic Proxy</title>
       <link>https://housirvip.github.com/post/dynamic-proxy/</link>

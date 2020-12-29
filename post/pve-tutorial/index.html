@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>PVE 使用与硬件直通 - The Blog of housirvip</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="housirvip" /><meta name="description" content="Proxmox虚拟环境（简称PVE）是用于操作来宾操作系统的基于 Debian 和 KVM 的虚拟化平台。 PVE 安装 下载并烧录 下载iso文件后，烧录到u盘中 https://www.proxmox.com/en/downloads 如果要在" /><meta name="keywords" content="Blog, web, blog" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.79.1 with theme even" />
+
+
+<link rel="canonical" href="https://housirvip.github.com/post/pve-tutorial/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.651e6917abb0239242daa570c2bec9867267bbcd83646da5a850afe573347b44.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="PVE 使用与硬件直通" />
+<meta property="og:description" content="Proxmox虚拟环境（简称PVE）是用于操作来宾操作系统的基于 Debian 和 KVM 的虚拟化平台。 PVE 安装 下载并烧录 下载iso文件后，烧录到u盘中 https://www.proxmox.com/en/downloads 如果要在" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://housirvip.github.com/post/pve-tutorial/" />
+<meta property="article:published_time" content="2020-12-29T11:22:58+08:00" />
+<meta property="article:modified_time" content="2020-12-29T11:22:58+08:00" />
+<meta itemprop="name" content="PVE 使用与硬件直通">
+<meta itemprop="description" content="Proxmox虚拟环境（简称PVE）是用于操作来宾操作系统的基于 Debian 和 KVM 的虚拟化平台。 PVE 安装 下载并烧录 下载iso文件后，烧录到u盘中 https://www.proxmox.com/en/downloads 如果要在">
+<meta itemprop="datePublished" content="2020-12-29T11:22:58+08:00" />
+<meta itemprop="dateModified" content="2020-12-29T11:22:58+08:00" />
+<meta itemprop="wordCount" content="674">
+
+
+
+<meta itemprop="keywords" content="pve," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="PVE 使用与硬件直通"/>
+<meta name="twitter:description" content="Proxmox虚拟环境（简称PVE）是用于操作来宾操作系统的基于 Debian 和 KVM 的虚拟化平台。 PVE 安装 下载并烧录 下载iso文件后，烧录到u盘中 https://www.proxmox.com/en/downloads 如果要在"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Housirvip</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">首页</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">时间线</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">标签</li>
+      </a><a href="/%E5%85%B3%E4%BA%8E%E6%88%91/">
+        <li class="mobile-menu-item">关于我</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Housirvip</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">首页</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">时间线</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">标签</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/%E5%85%B3%E4%BA%8E%E6%88%91/">关于我</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">PVE 使用与硬件直通</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2020-12-29 </span>
+        
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#pve-安装">PVE 安装</a>
+          <ul>
+            <li><a href="#下载并烧录">下载并烧录</a></li>
+          </ul>
+        </li>
+        <li><a href="#pve-更新源">PVE 更新源</a></li>
+        <li><a href="#pve-直通">PVE 直通</a>
+          <ul>
+            <li><a href="#grub文件修改">grub文件修改</a></li>
+            <li><a href="#系统模块修改">系统模块修改</a></li>
+            <li><a href="#屏蔽需要直通的设备">屏蔽需要直通的设备</a></li>
+          </ul>
+        </li>
+        <li><a href="#rtl8125b-网卡驱动">RTL8125B 网卡驱动</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <blockquote>
+<p>Proxmox虚拟环境（简称PVE）是<strong>用于操作来宾操作系统</strong>的基于 Debian 和 KVM 的<strong>虚拟化平台</strong>。</p>
+</blockquote>
+<h2 id="pve-安装">PVE 安装</h2>
+<h3 id="下载并烧录">下载并烧录</h3>
+<p>下载iso文件后，烧录到u盘中</p>
+<p><a href="https://www.proxmox.com/en/downloads">https://www.proxmox.com/en/downloads</a></p>
+<p><img src="http://static.nicesite.vip/blog/20201229114819.png" alt=""></p>
+<p>如果要在虚拟机中配置openwrt，建议断网安装</p>
+<p><img src="http://static.nicesite.vip/blog/20201229115431.png" alt=""></p>
+<p>设置你希望用来管理pve的网卡，和网段，我一般都是192.168.1.1、192.168.10.1、192.168.100.1这几个网段</p>
+<h2 id="pve-更新源">PVE 更新源</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">vi /etc/apt/sources.list.d/pve-no-subscription.list 
+<span class="c1"># 添加</span>
+deb http://download.proxmox.com/debian/pve buster pve-no-subscription
+<span class="c1"># 或者</span>
+<span class="nb">echo</span> <span class="s2">&#34;deb http://download.proxmox.com/debian/pve buster pve-no-subscription&#34;</span> &gt; /etc/apt/sources.list.d/pve-no-subscription.list 
+
+<span class="c1"># 注释 pve-enterprise.list</span>
+vi /etc/apt/sources.list.d/pve-enterprise.list
+<span class="c1"># deb https://enterprise.proxmox.com/debian/pve buster pve-enterprise</span>
+
+apt update
+apt install -y vim git net-tools
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="pve-直通">PVE 直通</h2>
+<h3 id="grub文件修改">grub文件修改</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="c1"># 编辑grub文件</span>
+vim /etc/default/grub
+
+<span class="c1"># 开启IOMMU，intel</span>
+<span class="nv">GRUB_CMDLINE_LINUX_DEFAULT</span><span class="o">=</span><span class="s2">&#34;quiet intel_iommu=on&#34;</span>
+<span class="c1"># 开启IOMMU，amd</span>
+<span class="nv">GRUB_CMDLINE_LINUX_DEFAULT</span><span class="o">=</span><span class="s2">&#34;quiet amd_iommu=on&#34;</span>
+<span class="c1"># 希望核显直通，再加个 video=efifb:off</span>
+<span class="nv">GRUB_CMDLINE_LINUX_DEFAULT</span><span class="o">=</span><span class="s2">&#34;quiet intel_iommu=on video=efifb:off&#34;</span>
+<span class="c1"># 分组直通 pcie_acs_override=downstream</span>
+<span class="nv">GRUB_CMDLINE_LINUX_DEFAULT</span><span class="o">=</span><span class="s2">&#34;quiet intel_iommu=on pcie_acs_override=downstream&#34;</span>
+
+<span class="c1">#更新grub</span>
+update-grub
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="系统模块修改">系统模块修改</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="c1"># 添加系统模块</span>
+<span class="nb">echo</span> <span class="s2">&#34;vfio&#34;</span> &gt;&gt; /etc/modules
+<span class="nb">echo</span> <span class="s2">&#34;vfio_iommu_type1&#34;</span> &gt;&gt; /etc/modules
+<span class="nb">echo</span> <span class="s2">&#34;vfio_pci&#34;</span> &gt;&gt; /etc/modules
+<span class="nb">echo</span> <span class="s2">&#34;vfio_virqfd&#34;</span> &gt;&gt; /etc/modules
+
+<span class="c1"># 添加模块黑名单</span>
+<span class="c1"># 核显</span>
+<span class="nb">echo</span> <span class="s2">&#34;blacklist snd_hda_intel&#34;</span> &gt;&gt; /etc/modprobe.d/pve-blacklist.conf
+<span class="nb">echo</span> <span class="s2">&#34;blacklist snd_hda_codec_hdmi&#34;</span> &gt;&gt; /etc/modprobe.d/pve-blacklist.conf
+<span class="nb">echo</span> <span class="s2">&#34;blacklist i915&#34;</span> &gt;&gt; /etc/modprobe.d/pve-blacklist.conf
+<span class="c1"># 独显</span>
+<span class="nb">echo</span> <span class="s2">&#34;blacklist nouveau&#34;</span> &gt;&gt; /etc/modprobe.d/pve-blacklist.conf
+<span class="nb">echo</span> <span class="s2">&#34;blacklist radeon&#34;</span> &gt;&gt; /etc/modprobe.d/pve-blacklist.conf
+<span class="c1"># N卡需要额外添加</span>
+<span class="nb">echo</span> <span class="s2">&#34;options kvm ignore_msrs=1&#34;</span> &gt; /etc/modprobe.d/kvm.conf
+
+<span class="c1"># 更新内核</span>
+update-initramfs -u -k all
+<span class="c1"># 重启后，pve直连显示器无输出</span>
+reboot
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="屏蔽需要直通的设备">屏蔽需要直通的设备</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="c1"># 检查模块信息</span>
+lsmod <span class="p">|</span> grep vfio
+<span class="c1"># 回显，直通正常</span>
+vfio_pci               <span class="m">53248</span>  <span class="m">0</span>
+vfio_virqfd            <span class="m">16384</span>  <span class="m">1</span> vfio_pci
+irqbypass              <span class="m">16384</span>  <span class="m">12</span> vfio_pci,kvm
+vfio_iommu_type1       <span class="m">32768</span>  <span class="m">0</span>
+vfio                   <span class="m">32768</span>  <span class="m">2</span> vfio_iommu_type1,vfio_pci
+
+<span class="c1"># 查看显卡设配ID</span>
+lspci -nn <span class="p">|</span> grep VGA
+<span class="c1"># 回显，本人i3 10100核显代号8086:9bc8</span>
+00:02.0 VGA compatible controller <span class="o">[</span>0300<span class="o">]</span>: Intel Corporation Device <span class="o">[</span>8086:9bc8<span class="o">]</span> <span class="o">(</span>rev 03<span class="o">)</span>
+<span class="c1"># 查看 00:02.0 设备占用情况</span>
+lspci -vvv -s 00:02.0
+<span class="c1"># 如下显示表示核显直通正常</span>
+Kernel driver in use: vfio-pci
+Kernel modules: i915
+
+<span class="c1"># 把需要直通给虚拟机的设备ID写到vfio.conf</span>
+<span class="nb">echo</span> <span class="s2">&#34;options vfio-pci ids=8086:9bc8&#34;</span> &gt;&gt; /etc/modprobe.d/vfio.conf
+</code></pre></td></tr></table>
+</div>
+</div><p>选择虚拟机-&gt;硬件-&gt;添加-&gt;pci设备</p>
+<p><img src="http://static.nicesite.vip/blog/20201229125258.png" alt=""></p>
+<h2 id="rtl8125b-网卡驱动">RTL8125B 网卡驱动</h2>
+<p>GitHub 驱动安装脚本</p>
+<p><a href="https://github.com/tubaxiaosiji/RTL8125-Driver-for-Proxmox-VE5-6-and-debian">https://github.com/tubaxiaosiji/RTL8125-Driver-for-Proxmox-VE5-6-and-debian</a></p>
+<p>官网最新驱动</p>
+<p><a href="https://www.realtek.com/en/component/zoo/category/network-interface-controllers-10-100-1000m-gigabit-ethernet-pci-express-software">https://www.realtek.com/en/component/zoo/category/network-interface-controllers-10-100-1000m-gigabit-ethernet-pci-express-software</a></p>
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">housirvip</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+        2020-12-29
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/pve/">pve</a>
+          </div>
+      <nav class="post-nav">
+        
+        <a class="next" href="/post/hrpc-version-1/">
+            <span class="next-text nav-default">手写RPC 之 Hrpc Version 1.0</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+  <div id="vcomments"></div>
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+  <script type="text/javascript">
+    new Valine({
+        el: '#vcomments' ,
+        appId: 'LGk5vbfMKxE0HrHOrkCC8gKf-gzGzoHsz',
+        appKey: 'Fy59MNy0luXKeogBChUJp2g8',
+        notify:  false ,
+        verify:  false ,
+        avatar:'mm',
+        placeholder: '说点什么吧...',
+        visitor:  false 
+    });
+  </script>
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:housirvip@gmail.com" class="iconfont icon-email" title="email"></a>
+      <a href="https://github.com/housirvip" class="iconfont icon-github" title="github"></a>
+  <a href="https://housirvip.github.com/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2017 - 
+    2020
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">housirvip</span>
+  </span>
+</div>
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.d7b7ada643c9c1a983026e177f141f7363b4640d619caf01d8831a6718cd44ea.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

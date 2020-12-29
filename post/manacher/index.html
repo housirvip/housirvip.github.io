@@ -23,7 +23,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.74.3 with theme even" />
+<meta name="generator" content="Hugo 0.79.1 with theme even" />
 
 
 <link rel="canonical" href="https://housirvip.github.com/post/manacher/" />
@@ -49,7 +49,7 @@
 <meta itemprop="description" content="原题再现 LeetCode problem No.5 Given a string s, find the longest palindromic substring in s. You may assume that the maximum length of s is 1000. 从字符串s中找出最长的回文子串，s的长度不会超过1000 Example: Input: &ldquo;babad&rdquo; Output: &ldquo;bab&rdquo; Note: &ldquo;aba&rdquo; is also a valid answer. Example:">
 <meta itemprop="datePublished" content="2018-01-26T09:39:41+00:00" />
 <meta itemprop="dateModified" content="2018-01-26T09:39:41+00:00" />
-<meta itemprop="wordCount" content="1363">
+<meta itemprop="wordCount" content="1357">
 
 
 
@@ -290,8 +290,8 @@ prGroup[i]是指以i为下标的字符，它的回文长度（去掉字符本身
 <ul>
 <li>当 i &lt;= R 时：
 <ul>
-<li>若有 prGroup[i&rsquo;] &lt; R-i  我们已经知道了C=11处是对称点，如果C左侧的某个点的prGroup长度能够保证在[L,C]区间内，那么对称点必然相同。i=13时，有 prGroup[i&rsquo;]==prGroup[i]</li>
-<li>prGroup[i&rsquo;] &gt;= R-i 那么此时的情况呢？当然不在保证 prGroup[i&rsquo;]==prGroup[i] 一定成立，因为从R之后的点都是未知的，但可以保证 prGroup[i] &gt;= R-i。例如下图，i=15时，prGroup[i&rsquo;]已经超出[L,C]区间，有prGroup[i]&gt;= R-i，R之后的字符是否符合需要一步一步往后验证，并更新R，L，C
+<li>若有 prGroup[i'] &lt; R-i  我们已经知道了C=11处是对称点，如果C左侧的某个点的prGroup长度能够保证在[L,C]区间内，那么对称点必然相同。i=13时，有 prGroup[i']==prGroup[i]</li>
+<li>prGroup[i'] &gt;= R-i 那么此时的情况呢？当然不在保证 prGroup[i']==prGroup[i] 一定成立，因为从R之后的点都是未知的，但可以保证 prGroup[i] &gt;= R-i。例如下图，i=15时，prGroup[i']已经超出[L,C]区间，有prGroup[i]&gt;= R-i，R之后的字符是否符合需要一步一步往后验证，并更新R，L，C
 <img src="http://static.nicesite.vip/2018-06-12-084925.jpg" alt=""></li>
 </ul>
 </li>

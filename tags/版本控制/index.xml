@@ -6,11 +6,7 @@
     <description>Recent content in 版本控制 on The Blog of housirvip</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Tue, 02 Jan 2018 12:25:24 +0000</lastBuildDate>
-    
-	<atom:link href="https://housirvip.github.com/tags/%E7%89%88%E6%9C%AC%E6%8E%A7%E5%88%B6/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Tue, 02 Jan 2018 12:25:24 +0000</lastBuildDate><atom:link href="https://housirvip.github.com/tags/%E7%89%88%E6%9C%AC%E6%8E%A7%E5%88%B6/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Git 和 SVN 基本区别</title>
       <link>https://housirvip.github.com/post/git%E5%92%8Csvn%E5%8C%BA%E5%88%AB/</link>

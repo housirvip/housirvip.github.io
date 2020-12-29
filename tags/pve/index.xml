@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>pve on The Blog of housirvip</title>
+    <link>https://housirvip.github.com/tags/pve/</link>
+    <description>Recent content in pve on The Blog of housirvip</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Tue, 29 Dec 2020 11:22:58 +0800</lastBuildDate><atom:link href="https://housirvip.github.com/tags/pve/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>PVE 使用与硬件直通</title>
+      <link>https://housirvip.github.com/post/pve-tutorial/</link>
+      <pubDate>Tue, 29 Dec 2020 11:22:58 +0800</pubDate>
+      
+      <guid>https://housirvip.github.com/post/pve-tutorial/</guid>
+      <description>Proxmox虚拟环境（简称PVE）是用于操作来宾操作系统的基于 Debian 和 KVM 的虚拟化平台。 PVE 安装 下载并烧录 下载iso文件后，烧录到u盘中 https://www.proxmox.com/en/downloads 如果要在</description>
+    </item>
+    
+  </channel>
+</rss>

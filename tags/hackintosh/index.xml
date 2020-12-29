@@ -6,11 +6,7 @@
     <description>Recent content in Hackintosh on The Blog of housirvip</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Fri, 18 Aug 2017 12:01:23 +0000</lastBuildDate>
-    
-	<atom:link href="https://housirvip.github.com/tags/hackintosh/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Fri, 18 Aug 2017 12:01:23 +0000</lastBuildDate><atom:link href="https://housirvip.github.com/tags/hackintosh/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>在z270平台装黑苹果</title>
       <link>https://housirvip.github.com/post/hackintosh-z270/</link>
