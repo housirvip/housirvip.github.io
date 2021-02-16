@@ -49,7 +49,7 @@
 <meta itemprop="description" content="今天更新一篇博客时发现图片显示不出来了 F12 发现是 github.io 限制图片需要 https 才能访问 被迫升级下图床到 https，好在还有免费证书 Let’s Encrypt 用，太强了 安装">
 <meta itemprop="datePublished" content="2020-09-14T19:32:15+08:00" />
 <meta itemprop="dateModified" content="2020-09-14T19:32:15+08:00" />
-<meta itemprop="wordCount" content="183">
+<meta itemprop="wordCount" content="328">
 
 
 
@@ -139,6 +139,9 @@
         <li><a href="#standalone-模式">Standalone 模式</a></li>
         <li><a href="#dns-手动模式">DNS 手动模式</a></li>
         <li><a href="#添加证书到七牛云">添加证书到七牛云</a></li>
+        <li><a href="#aliyun-自动模式">Aliyun 自动模式</a></li>
+        <li><a href="#将证书部署到七牛">将证书部署到七牛</a></li>
+        <li><a href="#定时脚本">定时脚本</a></li>
       </ul>
     </li>
   </ul>
@@ -171,10 +174,12 @@ wget -O -  https://get.acme.sh <span class="p">|</span> sh
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
+</span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
 <pre class="chroma"><code class="language-shell" data-lang="shell"><span class="c1"># 确保你的 80 端口未被占用，域名自己写，可以添加多个</span>
 acme.sh  --issue  -d exp.example.com  --standalone
+
 <span class="c1"># 使用 443 端口</span>
 acme.sh  --issue  -d exp.example.com  --standalone --tls
 </code></pre></td></tr></table>
@@ -187,7 +192,7 @@ acme.sh  --issue  -d exp.example.com  --standalone --tls
 </span></code></pre></td>
 <td class="lntd">
 <pre class="chroma"><code class="language-shell" data-lang="shell"><span class="c1"># 手动执行</span>
-acme.sh --issue --dns --yes-I-know-dns-manual-mode-enough-go-ahead-please -d exp.example.com 
+acme.sh --issue --dns --yes-I-know-dns-manual-mode-enough-go-ahead-please -d www.example.com 
 </code></pre></td></tr></table>
 </div>
 </div><p><img src="http://static.nicesite.vip/blog/20200914194357.png" alt=""></p>
@@ -198,14 +203,69 @@ acme.sh --issue --dns --yes-I-know-dns-manual-mode-enough-go-ahead-please -d exp
 </span></code></pre></td>
 <td class="lntd">
 <pre class="chroma"><code class="language-shell" data-lang="shell"><span class="c1"># 手动添加 txt 到域名控制台以后</span>
-acme.sh --renew --yes-I-know-dns-manual-mode-enough-go-ahead-please  -d exp.example.com
+acme.sh --renew --yes-I-know-dns-manual-mode-enough-go-ahead-please  -d www.example.com
 </code></pre></td></tr></table>
 </div>
 </div><p><img src="http://static.nicesite.vip/blog/20200914194713.png" alt=""></p>
 <h2 id="添加证书到七牛云">添加证书到七牛云</h2>
 <p><img src="http://static.nicesite.vip/blog/20200914194810.png" alt=""></p>
 <p><img src="http://static.nicesite.vip/blog/20200914194903.png" alt=""></p>
+<h2 id="aliyun-自动模式">Aliyun 自动模式</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="c1"># 设置环境变量</span>
+<span class="nb">export</span> <span class="nv">Ali_Key</span><span class="o">=</span><span class="s2">&#34;foo&#34;</span>
+<span class="nb">export</span> <span class="nv">Ali_Secret</span><span class="o">=</span><span class="s2">&#34;bar&#34;</span>
 
+<span class="c1"># 使用 aliyun dns 自动更新证书</span>
+acme.sh --issue --dns dns_ali -d www.example.com
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="将证书部署到七牛">将证书部署到七牛</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="c1"># 设置环境变量</span>
+<span class="nb">export</span> <span class="nv">QINIU_AK</span><span class="o">=</span><span class="s2">&#34;foo&#34;</span>
+<span class="nb">export</span> <span class="nv">QINIU_SK</span><span class="o">=</span><span class="s2">&#34;bar&#34;</span>
+
+<span class="c1"># 运行 acme.sh 命令部署到七牛</span>
+acme.sh --deploy -d www.example.com --deploy-hook qiniu
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="定时脚本">定时脚本</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="c1"># acme.sh 已经创建了定时任务，会定期更新证书</span>
+<span class="m">10</span> <span class="m">0</span> * * * <span class="s2">&#34;/root/.acme.sh&#34;</span>/acme.sh --cron --home <span class="s2">&#34;/root/.acme.sh&#34;</span> &gt; /dev/null
+
+<span class="c1"># 设置每月1号执行</span>
+<span class="m">0</span> <span class="m">0</span> <span class="m">1</span> * * <span class="s2">&#34;/root/.acme.sh&#34;</span>/acme.sh --deploy -d www.example.com --deploy-hook qiniu --home <span class="s2">&#34;/root/.acme.sh&#34;</span> &gt; /dev/null
+</code></pre></td></tr></table>
+</div>
+</div>
     </div>
 
     <div class="post-copyright">
