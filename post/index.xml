@@ -6,7 +6,16 @@
     <description>Recent content in Posts on The Blog of housirvip</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Tue, 29 Dec 2020 11:22:58 +0800</lastBuildDate><atom:link href="https://housirvip.github.com/post/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 22 Mar 2021 23:12:05 +0800</lastBuildDate><atom:link href="https://housirvip.github.com/post/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>MacOS app 已损坏，无法打开，你应该将它移到废纸篓</title>
+      <link>https://housirvip.github.com/post/macos-app%E5%B7%B2%E6%8D%9F%E5%9D%8F/</link>
+      <pubDate>Mon, 22 Mar 2021 23:12:05 +0800</pubDate>
+      
+      <guid>https://housirvip.github.com/post/macos-app%E5%B7%B2%E6%8D%9F%E5%9D%8F/</guid>
+      <description>允许任何来源 1 2 sudo spctl --master-disable # 并输入密码 绕过公证 1 2 3 sudo xattr -rd com.apple.quarantine /Applications xxxxxx.app # 并输入密码 # xxxxxx.app 为安装的应用程序名称 给软件签名 1 2 3 4 5 # 没有安装xcode的 xcode-select</description>
+    </item>
+    
     <item>
       <title>PVE 使用与硬件直通</title>
       <link>https://housirvip.github.com/post/pve-tutorial/</link>
