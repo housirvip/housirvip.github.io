@@ -122,7 +122,26 @@
           <section id="posts" class="posts">
     <article class="post">
   <header class="post-header">
-    <h1 class="post-title"><a class="post-link" href="/post/gogs-drone/">Gogs &#43; Drone 搭建自动化编译测试平台</a></h1>
+    <h1 class="post-title"><a class="post-link" href="/post/ubuntu-docker/">Ubuntu 下安装 Docker 和 Portainer</a></h1>
+    <div class="post-meta">
+      <span class="post-time"> 2021-03-25 </span>
+      
+    </div>
+  </header>
+  
+  <div class="post-content">
+    <div class="post-summary">
+      卸载原有的 docker 组件 1 sudo apt-get remove docker docker-engine docker.io containerd runc 安装依赖 1 2 3 4 # 更新apt sudo apt-get update # 安装依赖 sudo apt-get install -y apt-transport-https ca-certificates curl gnupg lsb-release 安装 Docker 1 2 3 4 5 6 7 8 9 # Add Docker’s
+    </div>
+    <div class="read-more">
+      <a href="/post/ubuntu-docker/" class="read-more-link">阅读更多</a>
+    </div>
+  </div>
+</article>
+
+    <article class="post">
+  <header class="post-header">
+    <h1 class="post-title"><a class="post-link" href="/post/gogs-drone/">Gogs &#43; Drone 在 Docker 下搭建自动化编译测试平台</a></h1>
     <div class="post-meta">
       <span class="post-time"> 2021-03-25 </span>
       
@@ -287,25 +306,6 @@
     </div>
     <div class="read-more">
       <a href="/post/java-review/" class="read-more-link">阅读更多</a>
-    </div>
-  </div>
-</article>
-
-    <article class="post">
-  <header class="post-header">
-    <h1 class="post-title"><a class="post-link" href="/post/dynamic-proxy/">动态代理 Dynamic Proxy</a></h1>
-    <div class="post-meta">
-      <span class="post-time"> 2020-09-02 </span>
-      
-    </div>
-  </header>
-  
-  <div class="post-content">
-    <div class="post-summary">
-      静态代理 原始接口和实现类 1 2 3 4 5 6 7 8 9 10 11 12 13 14 package vip.housir.proxy; /** * @author housirvip */ public interface SmsService { /** * send msg * * @param msg String */ public void send(String msg); } 1 2 3 4 5 6 7 8 9 10 11 12 package vip.housir.proxy; /** * @author housirvip
-    </div>
-    <div class="read-more">
-      <a href="/post/dynamic-proxy/" class="read-more-link">阅读更多</a>
     </div>
   </div>
 </article>

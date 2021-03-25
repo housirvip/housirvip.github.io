@@ -6,18 +6,27 @@
     <description>Recent content on The Blog of housirvip</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Thu, 25 Mar 2021 21:15:07 +0800</lastBuildDate><atom:link href="https://housirvip.github.com/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 25 Mar 2021 22:22:59 +0800</lastBuildDate><atom:link href="https://housirvip.github.com/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>关于我</title>
       <link>https://housirvip.github.com/%E5%85%B3%E4%BA%8E%E6%88%91/</link>
       <pubDate>Mon, 20 Aug 2018 21:38:52 +0800</pubDate>
       
       <guid>https://housirvip.github.com/%E5%85%B3%E4%BA%8E%E6%88%91/</guid>
-      <description>We&amp;rsquo;d be playing in the sand Holding hands just one last chance No more hurts no more goodbyes We&amp;rsquo;d dance We&amp;rsquo;re never going back Never turning back</description>
+      <description>笔者通常用个人博客来记录一些技术或者其他 方便在之后再次使用时可以进行查阅 毕竟好记性不如烂笔头 We&amp;rsquo;d be playing in the sand Holding hands just one last chance No more hurts no more goodbyes We&amp;rsquo;d dance We&amp;rsquo;re never going back</description>
     </item>
     
     <item>
-      <title>Gogs &#43; Drone 搭建自动化编译测试平台</title>
+      <title>Ubuntu 下安装 Docker 和 Portainer</title>
+      <link>https://housirvip.github.com/post/ubuntu-docker/</link>
+      <pubDate>Thu, 25 Mar 2021 22:22:59 +0800</pubDate>
+      
+      <guid>https://housirvip.github.com/post/ubuntu-docker/</guid>
+      <description>卸载原有的 docker 组件 1 sudo apt-get remove docker docker-engine docker.io containerd runc 安装依赖 1 2 3 4 # 更新apt sudo apt-get update # 安装依赖 sudo apt-get install -y apt-transport-https ca-certificates curl gnupg lsb-release 安装 Docker 1 2 3 4 5 6 7 8 9 # Add Docker’s</description>
+    </item>
+    
+    <item>
+      <title>Gogs &#43; Drone 在 Docker 下搭建自动化编译测试平台</title>
       <link>https://housirvip.github.com/post/gogs-drone/</link>
       <pubDate>Thu, 25 Mar 2021 21:15:07 +0800</pubDate>
       

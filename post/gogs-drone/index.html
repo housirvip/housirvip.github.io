@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <title>Gogs &#43; Drone 搭建自动化编译测试平台 - The Blog of housirvip</title>
+  <title>Gogs &#43; Drone 在 Docker 下搭建自动化编译测试平台 - The Blog of housirvip</title>
   <meta name="renderer" content="webkit" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
@@ -39,19 +39,19 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
 
 
-<meta property="og:title" content="Gogs &#43; Drone 搭建自动化编译测试平台" />
+<meta property="og:title" content="Gogs &#43; Drone 在 Docker 下搭建自动化编译测试平台" />
 <meta property="og:description" content="安装 Gogs 建议使用 docker 1 2 sudo docker run -d --name=gogs -p 3022:22 -p 3000:3000 -v /gogs/data:/data gogs/gogs # 输入密码 设置数据库连接方式，连接Mysql，待配置完成后，可登陆使用，可以作为私有 git 仓库，UI" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://housirvip.github.com/post/gogs-drone/" /><meta property="article:section" content="post" />
 <meta property="article:published_time" content="2021-03-25T21:15:07&#43;08:00" />
 <meta property="article:modified_time" content="2021-03-25T21:15:07&#43;08:00" />
 
-<meta itemprop="name" content="Gogs &#43; Drone 搭建自动化编译测试平台">
+<meta itemprop="name" content="Gogs &#43; Drone 在 Docker 下搭建自动化编译测试平台">
 <meta itemprop="description" content="安装 Gogs 建议使用 docker 1 2 sudo docker run -d --name=gogs -p 3022:22 -p 3000:3000 -v /gogs/data:/data gogs/gogs # 输入密码 设置数据库连接方式，连接Mysql，待配置完成后，可登陆使用，可以作为私有 git 仓库，UI"><meta itemprop="datePublished" content="2021-03-25T21:15:07&#43;08:00" />
 <meta itemprop="dateModified" content="2021-03-25T21:15:07&#43;08:00" />
-<meta itemprop="wordCount" content="623">
+<meta itemprop="wordCount" content="609">
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Gogs &#43; Drone 搭建自动化编译测试平台"/>
+<meta name="twitter:title" content="Gogs &#43; Drone 在 Docker 下搭建自动化编译测试平台"/>
 <meta name="twitter:description" content="安装 Gogs 建议使用 docker 1 2 sudo docker run -d --name=gogs -p 3022:22 -p 3000:3000 -v /gogs/data:/data gogs/gogs # 输入密码 设置数据库连接方式，连接Mysql，待配置完成后，可登陆使用，可以作为私有 git 仓库，UI"/>
 
 <!--[if lte IE 9]>
@@ -125,7 +125,7 @@
           <article class="post">
     
     <header class="post-header">
-      <h1 class="post-title">Gogs &#43; Drone 搭建自动化编译测试平台</h1>
+      <h1 class="post-title">Gogs &#43; Drone 在 Docker 下搭建自动化编译测试平台</h1>
 
       <div class="post-meta">
         <span class="post-time"> 2021-03-25 </span>
@@ -213,10 +213,10 @@
 </span></code></pre></td>
 <td class="lntd">
 <pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 在 docker 下先创建一个网络 drone，之后 drone server 和 runner 都加入这个网络</span>
-$ sudo docker network create drone
+sudo docker network create drone
 
 <span class="c1"># 先安装 drone server</span>
-$ sudo docker run -d <span class="se">\
+sudo docker run -d <span class="se">\
 </span><span class="se"></span>  -e <span class="nv">DRONE_AGENTS_ENABLED</span><span class="o">=</span><span class="nb">true</span> <span class="se">\
 </span><span class="se"></span>  -e <span class="nv">DRONE_GOGS_SERVER</span><span class="o">=</span>http://192.168.100.3:3000 <span class="se">\
 </span><span class="se"></span>  -e <span class="nv">DRONE_RPC_SECRET</span><span class="o">=</span>RdZneT4mOT2v1MCOdA3tLW2CtyHxnWaU <span class="se">\
@@ -232,7 +232,7 @@ $ sudo docker run -d <span class="se">\
 </span><span class="se"></span>  drone/drone:1
   
 <span class="c1"># 在安装 drone runner</span>
-$ sudo docker run -d <span class="se">\
+sudo docker run -d <span class="se">\
 </span><span class="se"></span>  -v /var/run/docker.sock:/var/run/docker.sock <span class="se">\
 </span><span class="se"></span>  -e <span class="nv">DRONE_RPC_PROTO</span><span class="o">=</span>http <span class="se">\
 </span><span class="se"></span>  -e <span class="nv">DRONE_RPC_HOST</span><span class="o">=</span>drone <span class="se">\
@@ -262,20 +262,22 @@ $ sudo docker run -d <span class="se">\
 </span><span class="lnt">10
 </span><span class="lnt">11
 </span><span class="lnt">12
+</span><span class="lnt">13
 </span></code></pre></td>
 <td class="lntd">
 <pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># mac 上</span>
-$ brew tap drone/drone
-$ brew install drone
+brew tap drone/drone
+brew install drone
 
 <span class="c1"># linux 上</span>
-$ curl -L https://github.com/drone/drone-cli/releases/latest/download/drone_linux_amd64.tar.gz <span class="p">|</span> tar zx
-$ sudo install -t /usr/local/bin drone
+curl -L https://github.com/drone/drone-cli/releases/latest/download/drone_linux_amd64.tar.gz <span class="p">|</span> tar zx
+sudo install -t /usr/local/bin drone
 
 <span class="c1"># 配置 cli 登陆，建议写入 .bashrc .zshrc 等文件中</span>
 <span class="nb">export</span> <span class="nv">DRONE_SERVER</span><span class="o">=</span>http://192.168.100.226:8080
 <span class="nb">export</span> <span class="nv">DRONE_TOKEN</span><span class="o">=</span>RZtKdJC32PNT1EeE93xBkcqTasdGwqbv
-$ drone info
+
+drone info
 </code></pre></td></tr></table>
 </div>
 </div><h2 id="drone-设置-cronjob">Drone 设置 CronJob</h2>
@@ -289,12 +291,12 @@ $ drone info
 </span><span class="lnt">6
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-bash" data-lang="bash">$ drone cron add <span class="o">[</span>repo<span class="o">]</span> <span class="o">[</span>name<span class="o">]</span> <span class="o">[</span>time<span class="o">]</span>
+<pre class="chroma"><code class="language-bash" data-lang="bash">drone cron add <span class="o">[</span>repo<span class="o">]</span> <span class="o">[</span>name<span class="o">]</span> <span class="o">[</span>time<span class="o">]</span>
 
 <span class="c1"># 每天执行一次</span>
-$ drone cron add <span class="s2">&#34;org/repo&#34;</span> <span class="s2">&#34;name&#34;</span> <span class="s2">&#34;0 0 0 * * *&#34;</span>
+drone cron add <span class="s2">&#34;org/repo&#34;</span> <span class="s2">&#34;name&#34;</span> <span class="s2">&#34;0 0 0 * * *&#34;</span>
 <span class="c1"># 每小时执行一次</span>
-$ drone cron add <span class="s2">&#34;org/repo&#34;</span> <span class="s2">&#34;name&#34;</span> <span class="s2">&#34;0 0 * * * *&#34;</span>
+drone cron add <span class="s2">&#34;org/repo&#34;</span> <span class="s2">&#34;name&#34;</span> <span class="s2">&#34;0 0 * * * *&#34;</span>
 </code></pre></td></tr></table>
 </div>
 </div><p><img src="http://static.nicesite.vip/blog/20210325214731.png" alt=""></p>
@@ -313,14 +315,14 @@ $ drone cron add <span class="s2">&#34;org/repo&#34;</span> <span class="s2">&#3
 </span><span class="lnt">8
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-bash" data-lang="bash">$ drone secret add <span class="o">[</span>repo<span class="o">]</span> <span class="o">[</span>name<span class="o">]</span> <span class="o">[</span>value<span class="o">]</span>
+<pre class="chroma"><code class="language-bash" data-lang="bash">drone secret add <span class="o">[</span>repo<span class="o">]</span> <span class="o">[</span>name<span class="o">]</span> <span class="o">[</span>value<span class="o">]</span>
 <span class="c1"># 例如在 housirvip/hello-world 项目下设置 my_token=e72e16c7e42f29</span>
-$ drone secret add housirvip/hello-world my_token e72e16c7e42f29
+drone secret add housirvip/hello-world my_token e72e16c7e42f29
 
 <span class="c1"># 针对 organization 设置，在这个组织下的所有项目都会生效</span>
-$ drone orgsecret add <span class="o">[</span>organization<span class="o">]</span> <span class="o">[</span>name<span class="o">]</span> <span class="o">[</span>data<span class="o">]</span>
+drone orgsecret add <span class="o">[</span>organization<span class="o">]</span> <span class="o">[</span>name<span class="o">]</span> <span class="o">[</span>data<span class="o">]</span>
 <span class="c1"># 例如在 housirvip 下设置 my_token=e72e16c7e42f29</span>
-$ drone orgsecret add housirvip my_token e72e16c7e42f29
+drone orgsecret add housirvip my_token e72e16c7e42f29
 </code></pre></td></tr></table>
 </div>
 </div><p>也可以在 UI中设置，但是不能设置 orgsecret</p>
@@ -392,7 +394,11 @@ $ drone orgsecret add housirvip my_token e72e16c7e42f29
 <footer class="post-footer">
       
       <nav class="post-nav">
-        
+        <a class="prev" href="/post/ubuntu-docker/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">Ubuntu 下安装 Docker 和 Portainer</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
         <a class="next" href="/post/zerotier/">
             <span class="next-text nav-default">Zerotier 组网，访问路由器内网</span>
             <span class="next-text nav-mobile">下一篇</span>
@@ -404,7 +410,7 @@ $ drone orgsecret add housirvip my_token e72e16c7e42f29
         </div>
         
 
-  <span id="/post/gogs-drone/" class="leancloud_visitors" data-flag-title="Gogs &#43; Drone 搭建自动化编译测试平台">
+  <span id="/post/gogs-drone/" class="leancloud_visitors" data-flag-title="Gogs &#43; Drone 在 Docker 下搭建自动化编译测试平台">
 		<span class="post-meta-item-text">文章阅读量 </span>
 		<span class="leancloud-visitors-count">0</span>
 		<p></p>

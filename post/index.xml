@@ -6,9 +6,18 @@
     <description>Recent content in Posts on The Blog of housirvip</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Thu, 25 Mar 2021 21:15:07 +0800</lastBuildDate><atom:link href="https://housirvip.github.com/post/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 25 Mar 2021 22:22:59 +0800</lastBuildDate><atom:link href="https://housirvip.github.com/post/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Gogs &#43; Drone 搭建自动化编译测试平台</title>
+      <title>Ubuntu 下安装 Docker 和 Portainer</title>
+      <link>https://housirvip.github.com/post/ubuntu-docker/</link>
+      <pubDate>Thu, 25 Mar 2021 22:22:59 +0800</pubDate>
+      
+      <guid>https://housirvip.github.com/post/ubuntu-docker/</guid>
+      <description>卸载原有的 docker 组件 1 sudo apt-get remove docker docker-engine docker.io containerd runc 安装依赖 1 2 3 4 # 更新apt sudo apt-get update # 安装依赖 sudo apt-get install -y apt-transport-https ca-certificates curl gnupg lsb-release 安装 Docker 1 2 3 4 5 6 7 8 9 # Add Docker’s</description>
+    </item>
+    
+    <item>
+      <title>Gogs &#43; Drone 在 Docker 下搭建自动化编译测试平台</title>
       <link>https://housirvip.github.com/post/gogs-drone/</link>
       <pubDate>Thu, 25 Mar 2021 21:15:07 +0800</pubDate>
       

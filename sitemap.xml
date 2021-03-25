@@ -9,21 +9,28 @@
   </url>
   
   <url>
-    <loc>https://housirvip.github.com/post/gogs-drone/</loc>
-    <lastmod>2021-03-25T21:15:07+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
     <loc>https://housirvip.github.com/post/</loc>
-    <lastmod>2021-03-25T21:15:07+08:00</lastmod>
+    <lastmod>2021-03-25T22:22:59+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://housirvip.github.com/</loc>
+    <lastmod>2021-03-25T22:22:59+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://housirvip.github.com/post/ubuntu-docker/</loc>
+    <lastmod>2021-03-25T22:22:59+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://housirvip.github.com/post/gogs-drone/</loc>
     <lastmod>2021-03-25T21:15:07+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>

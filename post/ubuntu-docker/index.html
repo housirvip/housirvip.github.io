@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Ubuntu 下安装 Docker 和 Portainer - The Blog of housirvip</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="housirvip" /><meta name="description" content="卸载原有的 docker 组件 1 sudo apt-get remove docker docker-engine docker.io containerd runc 安装依赖 1 2 3 4 # 更新apt sudo apt-get update # 安装依赖 sudo apt-get install -y apt-transport-https ca-certificates curl gnupg lsb-release 安装 Docker 1 2 3 4 5 6 7 8 9 # Add Docker’s" /><meta name="keywords" content="Blog, web, blog" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.81.0 with theme even" />
+
+
+<link rel="canonical" href="https://housirvip.github.com/post/ubuntu-docker/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.af7fd1da18d66c2b017df5b4cae508ef44cfcac3fb4c7c7a327fe4f4f9e28b08.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="Ubuntu 下安装 Docker 和 Portainer" />
+<meta property="og:description" content="卸载原有的 docker 组件 1 sudo apt-get remove docker docker-engine docker.io containerd runc 安装依赖 1 2 3 4 # 更新apt sudo apt-get update # 安装依赖 sudo apt-get install -y apt-transport-https ca-certificates curl gnupg lsb-release 安装 Docker 1 2 3 4 5 6 7 8 9 # Add Docker’s" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://housirvip.github.com/post/ubuntu-docker/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2021-03-25T22:22:59&#43;08:00" />
+<meta property="article:modified_time" content="2021-03-25T22:22:59&#43;08:00" />
+
+<meta itemprop="name" content="Ubuntu 下安装 Docker 和 Portainer">
+<meta itemprop="description" content="卸载原有的 docker 组件 1 sudo apt-get remove docker docker-engine docker.io containerd runc 安装依赖 1 2 3 4 # 更新apt sudo apt-get update # 安装依赖 sudo apt-get install -y apt-transport-https ca-certificates curl gnupg lsb-release 安装 Docker 1 2 3 4 5 6 7 8 9 # Add Docker’s"><meta itemprop="datePublished" content="2021-03-25T22:22:59&#43;08:00" />
+<meta itemprop="dateModified" content="2021-03-25T22:22:59&#43;08:00" />
+<meta itemprop="wordCount" content="164">
+<meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Ubuntu 下安装 Docker 和 Portainer"/>
+<meta name="twitter:description" content="卸载原有的 docker 组件 1 sudo apt-get remove docker docker-engine docker.io containerd runc 安装依赖 1 2 3 4 # 更新apt sudo apt-get update # 安装依赖 sudo apt-get install -y apt-transport-https ca-certificates curl gnupg lsb-release 安装 Docker 1 2 3 4 5 6 7 8 9 # Add Docker’s"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Housirvip</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">首页</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">时间线</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">标签</li>
+      </a><a href="/%E5%85%B3%E4%BA%8E%E6%88%91/">
+        <li class="mobile-menu-item">关于我</li>
+      </a>
+  </ul>
+
+  
+
+
+</nav>
+
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Housirvip</a>
+</div>
+
+
+
+
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">首页</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">时间线</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">标签</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/%E5%85%B3%E4%BA%8E%E6%88%91/">关于我</a>
+      </li>
+  </ul>
+</nav>
+
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">Ubuntu 下安装 Docker 和 Portainer</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2021-03-25 </span>
+        
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#卸载原有的-docker-组件">卸载原有的 docker 组件</a></li>
+        <li><a href="#安装依赖">安装依赖</a></li>
+        <li><a href="#安装-docker">安装 Docker</a></li>
+        <li><a href="#安装-portainer">安装 Portainer</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <h2 id="卸载原有的-docker-组件">卸载原有的 docker 组件</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">sudo apt-get remove docker docker-engine docker.io containerd runc
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="安装依赖">安装依赖</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 更新apt</span>
+sudo apt-get update
+<span class="c1"># 安装依赖</span>
+sudo apt-get install -y apt-transport-https ca-certificates curl gnupg lsb-release
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="安装-docker">安装 Docker</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># Add Docker’s official GPG key</span>
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg <span class="p">|</span> sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
+
+<span class="c1"># set up the stable repository</span>
+<span class="nb">echo</span> <span class="s2">&#34;deb [arch=amd64 signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu </span><span class="k">$(</span>lsb_release -cs<span class="k">)</span><span class="s2"> stable&#34;</span> <span class="p">|</span> sudo tee /etc/apt/sources.list.d/docker.list &gt; /dev/null
+
+<span class="c1"># 更新 apt 并安装 docker</span>
+sudo apt-get update
+sudo apt-get install docker-ce docker-ce-cli containerd.io
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="安装-portainer">安装 Portainer</h2>
+<blockquote>
+<p>Portainer 是 docker 的一个可视化操作界面，用起来比较方便</p>
+</blockquote>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">sudo docker run -d -p 8000:8000 -p 9000:9000 --name<span class="o">=</span>portainer --restart<span class="o">=</span>always <span class="se">\
+</span><span class="se"></span>  -v /var/run/docker.sock:/var/run/docker.sock <span class="se">\
+</span><span class="se"></span>  -v /home/housirvip/docker/portainer:/data <span class="se">\
+</span><span class="se"></span>  portainer/portainer-ce
+</code></pre></td></tr></table>
+</div>
+</div><p><img src="http://static.nicesite.vip/blog/20210325223109.png" alt=""></p>
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">housirvip</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+        2021-03-25
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      
+      <nav class="post-nav">
+        
+        <a class="next" href="/post/gogs-drone/">
+            <span class="next-text nav-default">Gogs &#43; Drone 在 Docker 下搭建自动化编译测试平台</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  <span id="/post/ubuntu-docker/" class="leancloud_visitors" data-flag-title="Ubuntu 下安装 Docker 和 Portainer">
+		<span class="post-meta-item-text">文章阅读量 </span>
+		<span class="leancloud-visitors-count">0</span>
+		<p></p>
+	  </span>
+  <div id="vcomments"></div>
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+  <script type="text/javascript">
+    new Valine({
+        el: '#vcomments' ,
+        appId: 'LGk5vbfMKxE0HrHOrkCC8gKf-gzGzoHsz',
+        appKey: 'Fy59MNy0luXKeogBChUJp2g8',
+        notify:  false ,
+        verify:  false ,
+        avatar:'mm',
+        placeholder: '说点什么吧...',
+        visitor:  true 
+    });
+  </script>
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:housirvip@gmail.com" class="iconfont icon-email" title="email"></a>
+      <a href="https://github.com/housirvip" class="iconfont icon-github" title="github"></a>
+  <a href="https://housirvip.github.com/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2017 - 
+    2021<span class="heart"><i class="iconfont icon-heart"></i></span><span>housirvip</span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.c99b103c33d1539acf3025e1913697534542c4a5aa5af0ccc20475ed2863603b.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>
