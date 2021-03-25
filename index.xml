@@ -6,7 +6,7 @@
     <description>Recent content on The Blog of housirvip</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Mon, 22 Mar 2021 23:12:05 +0800</lastBuildDate><atom:link href="https://housirvip.github.com/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 25 Mar 2021 20:36:13 +0800</lastBuildDate><atom:link href="https://housirvip.github.com/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>关于我</title>
       <link>https://housirvip.github.com/%E5%85%B3%E4%BA%8E%E6%88%91/</link>
@@ -14,6 +14,15 @@
       
       <guid>https://housirvip.github.com/%E5%85%B3%E4%BA%8E%E6%88%91/</guid>
       <description>We&amp;rsquo;d be playing in the sand Holding hands just one last chance No more hurts no more goodbyes We&amp;rsquo;d dance We&amp;rsquo;re never going back Never turning back</description>
+    </item>
+    
+    <item>
+      <title>Zerotier 组网，访问路由器内网</title>
+      <link>https://housirvip.github.com/post/zerotier/</link>
+      <pubDate>Thu, 25 Mar 2021 20:36:13 +0800</pubDate>
+      
+      <guid>https://housirvip.github.com/post/zerotier/</guid>
+      <description>介绍 ZeroTier 这一类 P2P VPN 是在互联网的基础上将自己的所有设备组成一个私有的网络，可以理解为互联网连接的局域网。最常见的场景就是在公司可以用手机直接访问</description>
     </item>
     
     <item>
