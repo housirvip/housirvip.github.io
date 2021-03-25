@@ -6,7 +6,7 @@
     <description>Recent content on The Blog of housirvip</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Thu, 25 Mar 2021 20:36:13 +0800</lastBuildDate><atom:link href="https://housirvip.github.com/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 25 Mar 2021 21:15:07 +0800</lastBuildDate><atom:link href="https://housirvip.github.com/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>关于我</title>
       <link>https://housirvip.github.com/%E5%85%B3%E4%BA%8E%E6%88%91/</link>
@@ -14,6 +14,15 @@
       
       <guid>https://housirvip.github.com/%E5%85%B3%E4%BA%8E%E6%88%91/</guid>
       <description>We&amp;rsquo;d be playing in the sand Holding hands just one last chance No more hurts no more goodbyes We&amp;rsquo;d dance We&amp;rsquo;re never going back Never turning back</description>
+    </item>
+    
+    <item>
+      <title>Gogs &#43; Drone 搭建自动化编译测试平台</title>
+      <link>https://housirvip.github.com/post/gogs-drone/</link>
+      <pubDate>Thu, 25 Mar 2021 21:15:07 +0800</pubDate>
+      
+      <guid>https://housirvip.github.com/post/gogs-drone/</guid>
+      <description>安装 Gogs 建议使用 docker 1 2 sudo docker run -d --name=gogs -p 3022:22 -p 3000:3000 -v /gogs/data:/data gogs/gogs # 输入密码 设置数据库连接方式，连接Mysql，待配置完成后，可登陆使用，可以作为私有 git 仓库，UI</description>
     </item>
     
     <item>

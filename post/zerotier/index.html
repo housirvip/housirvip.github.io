@@ -49,7 +49,7 @@
 <meta itemprop="name" content="Zerotier 组网，访问路由器内网">
 <meta itemprop="description" content="介绍 ZeroTier 这一类 P2P VPN 是在互联网的基础上将自己的所有设备组成一个私有的网络，可以理解为互联网连接的局域网。最常见的场景就是在公司可以用手机直接访问"><meta itemprop="datePublished" content="2021-03-25T20:36:13&#43;08:00" />
 <meta itemprop="dateModified" content="2021-03-25T20:36:13&#43;08:00" />
-<meta itemprop="wordCount" content="571">
+<meta itemprop="wordCount" content="545">
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Zerotier 组网，访问路由器内网"/>
 <meta name="twitter:description" content="介绍 ZeroTier 这一类 P2P VPN 是在互联网的基础上将自己的所有设备组成一个私有的网络，可以理解为互联网连接的局域网。最常见的场景就是在公司可以用手机直接访问"/>
@@ -153,13 +153,13 @@
 </div>
     <div class="post-content">
       <h2 id="介绍">介绍</h2>
-<p><code>ZeroTier</code> 这一类 <code>P2P VPN</code> 是在互联网的基础上将自己的所有设备组成一个私有的网络，可以理解为互联网连接的局域网。最常见的场景就是在公司可以用手机直接访问家里的 <code>NAS</code>，而且是点对点直连，数据传输并不经由第三方服务器中转。</p>
+<p><a href="https://www.zerotier.com/">ZeroTier</a> 这一类 <code>P2P VPN</code> 是在互联网的基础上将自己的所有设备组成一个私有的网络，可以理解为互联网连接的局域网。最常见的场景就是在公司可以用手机直接访问家里的 <code>NAS</code>，而且是点对点直连，数据传输并不经由第三方服务器中转。</p>
 <p><code>Zerotier</code> 在多设备之间建立了一个 <code>Peer to Peer VPN（P2PVPN）</code> 连接，如：在笔记本电脑、台式机、嵌入式设备、云资源和应用。这些设备只需要通过 <code>ZeroTier One</code> ( ZeroTier 的客户端) 在不同设备之间建立直接连接，即使它们位于 <code>NAT</code> 之后。连接到虚拟 <code>LAN</code> 的任何计算机和设备通常通过 <code>NAT</code> 或路由器设备与 <code>Internet</code> 连接，<code>ZeroTier One</code> 使用 <code>STUN</code> 和隧道来建立 <code>NAT</code> 后设备之间的 <code>VPN</code> 直连。</p>
 <p><img src="http://static.nicesite.vip/blog/20210325203911.png" alt=""></p>
 <h2 id="开始操作">开始操作</h2>
 <p><img src="http://static.nicesite.vip/blog/20210325204036.png" alt=""></p>
 <ol>
-<li>如果没有账号请先注册，https://www.zerotier.com/</li>
+<li>如果没有账号请先注册</li>
 <li>点击 Create A Network，创建一个网段</li>
 <li>设置 Managed Routes</li>
 </ol>
@@ -254,7 +254,11 @@ iptables -t nat -I POSTROUTING -o zt2lrwm2qj -j MASQUERADE
 <footer class="post-footer">
       
       <nav class="post-nav">
-        
+        <a class="prev" href="/post/gogs-drone/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">Gogs &#43; Drone 搭建自动化编译测试平台</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
         <a class="next" href="/post/macos-app%E5%B7%B2%E6%8D%9F%E5%9D%8F/">
             <span class="next-text nav-default">MacOS app 已损坏，无法打开，你应该将它移到废纸篓</span>
             <span class="next-text nav-mobile">下一篇</span>

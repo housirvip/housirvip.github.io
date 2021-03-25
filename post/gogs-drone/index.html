@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Gogs &#43; Drone 搭建自动化编译测试平台 - The Blog of housirvip</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="housirvip" /><meta name="description" content="安装 Gogs 建议使用 docker 1 2 sudo docker run -d --name=gogs -p 3022:22 -p 3000:3000 -v /gogs/data:/data gogs/gogs # 输入密码 设置数据库连接方式，连接Mysql，待配置完成后，可登陆使用，可以作为私有 git 仓库，UI" /><meta name="keywords" content="Blog, web, blog" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.81.0 with theme even" />
+
+
+<link rel="canonical" href="https://housirvip.github.com/post/gogs-drone/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.af7fd1da18d66c2b017df5b4cae508ef44cfcac3fb4c7c7a327fe4f4f9e28b08.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="Gogs &#43; Drone 搭建自动化编译测试平台" />
+<meta property="og:description" content="安装 Gogs 建议使用 docker 1 2 sudo docker run -d --name=gogs -p 3022:22 -p 3000:3000 -v /gogs/data:/data gogs/gogs # 输入密码 设置数据库连接方式，连接Mysql，待配置完成后，可登陆使用，可以作为私有 git 仓库，UI" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://housirvip.github.com/post/gogs-drone/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2021-03-25T21:15:07&#43;08:00" />
+<meta property="article:modified_time" content="2021-03-25T21:15:07&#43;08:00" />
+
+<meta itemprop="name" content="Gogs &#43; Drone 搭建自动化编译测试平台">
+<meta itemprop="description" content="安装 Gogs 建议使用 docker 1 2 sudo docker run -d --name=gogs -p 3022:22 -p 3000:3000 -v /gogs/data:/data gogs/gogs # 输入密码 设置数据库连接方式，连接Mysql，待配置完成后，可登陆使用，可以作为私有 git 仓库，UI"><meta itemprop="datePublished" content="2021-03-25T21:15:07&#43;08:00" />
+<meta itemprop="dateModified" content="2021-03-25T21:15:07&#43;08:00" />
+<meta itemprop="wordCount" content="623">
+<meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Gogs &#43; Drone 搭建自动化编译测试平台"/>
+<meta name="twitter:description" content="安装 Gogs 建议使用 docker 1 2 sudo docker run -d --name=gogs -p 3022:22 -p 3000:3000 -v /gogs/data:/data gogs/gogs # 输入密码 设置数据库连接方式，连接Mysql，待配置完成后，可登陆使用，可以作为私有 git 仓库，UI"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Housirvip</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">首页</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">时间线</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">标签</li>
+      </a><a href="/%E5%85%B3%E4%BA%8E%E6%88%91/">
+        <li class="mobile-menu-item">关于我</li>
+      </a>
+  </ul>
+
+  
+
+
+</nav>
+
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Housirvip</a>
+</div>
+
+
+
+
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">首页</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">时间线</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">标签</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/%E5%85%B3%E4%BA%8E%E6%88%91/">关于我</a>
+      </li>
+  </ul>
+</nav>
+
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">Gogs &#43; Drone 搭建自动化编译测试平台</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2021-03-25 </span>
+        
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#安装-gogs">安装 Gogs</a></li>
+        <li><a href="#安装-drone">安装 Drone</a></li>
+        <li><a href="#drone-设置-cli">Drone 设置 CLI</a></li>
+        <li><a href="#drone-设置-cronjob">Drone 设置 CronJob</a></li>
+        <li><a href="#drone-设置-secret">Drone 设置 Secret</a></li>
+        <li><a href="#drone-设置-pipeline">Drone 设置 Pipeline</a></li>
+        <li><a href="#配置完成">配置完成</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <h2 id="安装-gogs">安装 Gogs</h2>
+<blockquote>
+<p>建议使用 docker</p>
+</blockquote>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">sudo docker run -d --name<span class="o">=</span>gogs -p 3022:22 -p 3000:3000 -v /gogs/data:/data gogs/gogs
+<span class="c1"># 输入密码</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><img src="http://static.nicesite.vip/blog/20210325213202.png" alt=""></p>
+<p>设置数据库连接方式，连接Mysql，待配置完成后，可登陆使用，可以作为私有 git 仓库，UI 比较简洁，基于 go 开发，性能很不错，而且占用系统资源非常少。</p>
+<p><img src="http://static.nicesite.vip/blog/20210325212600.png" alt=""></p>
+<h2 id="安装-drone">安装 Drone</h2>
+<blockquote>
+<p>建议使用 docker</p>
+</blockquote>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 在 docker 下先创建一个网络 drone，之后 drone server 和 runner 都加入这个网络</span>
+$ sudo docker network create drone
+
+<span class="c1"># 先安装 drone server</span>
+$ sudo docker run -d <span class="se">\
+</span><span class="se"></span>  -e <span class="nv">DRONE_AGENTS_ENABLED</span><span class="o">=</span><span class="nb">true</span> <span class="se">\
+</span><span class="se"></span>  -e <span class="nv">DRONE_GOGS_SERVER</span><span class="o">=</span>http://192.168.100.3:3000 <span class="se">\
+</span><span class="se"></span>  -e <span class="nv">DRONE_RPC_SECRET</span><span class="o">=</span>RdZneT4mOT2v1MCOdA3tLW2CtyHxnWaU <span class="se">\
+</span><span class="se"></span>  -e <span class="nv">DRONE_SERVER_HOST</span><span class="o">=</span>192.168.100.226:8080 <span class="se">\
+</span><span class="se"></span>  -e <span class="nv">DRONE_SERVER_PROTO</span><span class="o">=</span>http <span class="se">\
+</span><span class="se"></span>  -e <span class="nv">DRONE_DATABASE_DRIVER</span><span class="o">=</span>mysql <span class="se">\
+</span><span class="se"></span>  -e <span class="nv">DRONE_DATABASE_DATASOURCE</span><span class="o">=</span><span class="s1">&#39;root:housirvip@tcp(192.168.100.3:3306)/drone?parseTime=true&#39;</span> <span class="se">\
+</span><span class="se"></span>  -e <span class="nv">TZ</span><span class="o">=</span>Asia/Shanghai <span class="se">\
+</span><span class="se"></span>  -p 8080:80 <span class="se">\
+</span><span class="se"></span>  -p 8443:443 <span class="se">\
+</span><span class="se"></span>  --name<span class="o">=</span>drone <span class="se">\
+</span><span class="se"></span>  --network drone <span class="se">\
+</span><span class="se"></span>  drone/drone:1
+  
+<span class="c1"># 在安装 drone runner</span>
+$ sudo docker run -d <span class="se">\
+</span><span class="se"></span>  -v /var/run/docker.sock:/var/run/docker.sock <span class="se">\
+</span><span class="se"></span>  -e <span class="nv">DRONE_RPC_PROTO</span><span class="o">=</span>http <span class="se">\
+</span><span class="se"></span>  -e <span class="nv">DRONE_RPC_HOST</span><span class="o">=</span>drone <span class="se">\
+</span><span class="se"></span>  -e <span class="nv">DRONE_RPC_SECRET</span><span class="o">=</span>RdZneT4mOT2v1MCOdA3tLW2CtyHxnWaU <span class="se">\
+</span><span class="se"></span>  -e <span class="nv">DRONE_RUNNER_CAPACITY</span><span class="o">=</span><span class="m">2</span> <span class="se">\
+</span><span class="se"></span>  -e <span class="nv">DRONE_RUNNER_NAME</span><span class="o">=</span><span class="si">${</span><span class="nv">HOSTNAME</span><span class="si">}</span> <span class="se">\
+</span><span class="se"></span>  -e <span class="nv">TZ</span><span class="o">=</span>Asia/Shanghai <span class="se">\
+</span><span class="se"></span>  -p 3000:3000 <span class="se">\
+</span><span class="se"></span>  --name runner <span class="se">\
+</span><span class="se"></span>  --network drone <span class="se">\
+</span><span class="se"></span>  drone/drone-runner-docker:1
+</code></pre></td></tr></table>
+</div>
+</div><p><img src="http://static.nicesite.vip/blog/20210325214009.png" alt=""></p>
+<h2 id="drone-设置-cli">Drone 设置 CLI</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># mac 上</span>
+$ brew tap drone/drone
+$ brew install drone
+
+<span class="c1"># linux 上</span>
+$ curl -L https://github.com/drone/drone-cli/releases/latest/download/drone_linux_amd64.tar.gz <span class="p">|</span> tar zx
+$ sudo install -t /usr/local/bin drone
+
+<span class="c1"># 配置 cli 登陆，建议写入 .bashrc .zshrc 等文件中</span>
+<span class="nb">export</span> <span class="nv">DRONE_SERVER</span><span class="o">=</span>http://192.168.100.226:8080
+<span class="nb">export</span> <span class="nv">DRONE_TOKEN</span><span class="o">=</span>RZtKdJC32PNT1EeE93xBkcqTasdGwqbv
+$ drone info
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="drone-设置-cronjob">Drone 设置 CronJob</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">$ drone cron add <span class="o">[</span>repo<span class="o">]</span> <span class="o">[</span>name<span class="o">]</span> <span class="o">[</span>time<span class="o">]</span>
+
+<span class="c1"># 每天执行一次</span>
+$ drone cron add <span class="s2">&#34;org/repo&#34;</span> <span class="s2">&#34;name&#34;</span> <span class="s2">&#34;0 0 0 * * *&#34;</span>
+<span class="c1"># 每小时执行一次</span>
+$ drone cron add <span class="s2">&#34;org/repo&#34;</span> <span class="s2">&#34;name&#34;</span> <span class="s2">&#34;0 0 * * * *&#34;</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><img src="http://static.nicesite.vip/blog/20210325214731.png" alt=""></p>
+<p>也可以在 UI 中设置，但是没法设置时间，只能选择预设</p>
+<p><img src="http://static.nicesite.vip/blog/20210325214935.png" alt=""></p>
+<h2 id="drone-设置-secret">Drone 设置 Secret</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">$ drone secret add <span class="o">[</span>repo<span class="o">]</span> <span class="o">[</span>name<span class="o">]</span> <span class="o">[</span>value<span class="o">]</span>
+<span class="c1"># 例如在 housirvip/hello-world 项目下设置 my_token=e72e16c7e42f29</span>
+$ drone secret add housirvip/hello-world my_token e72e16c7e42f29
+
+<span class="c1"># 针对 organization 设置，在这个组织下的所有项目都会生效</span>
+$ drone orgsecret add <span class="o">[</span>organization<span class="o">]</span> <span class="o">[</span>name<span class="o">]</span> <span class="o">[</span>data<span class="o">]</span>
+<span class="c1"># 例如在 housirvip 下设置 my_token=e72e16c7e42f29</span>
+$ drone orgsecret add housirvip my_token e72e16c7e42f29
+</code></pre></td></tr></table>
+</div>
+</div><p>也可以在 UI中设置，但是不能设置 orgsecret</p>
+<p><img src="http://static.nicesite.vip/blog/20210325220718.png" alt=""></p>
+<h2 id="drone-设置-pipeline">Drone 设置 Pipeline</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="nn">---</span><span class="w">
+</span><span class="w"></span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l">pipeline</span><span class="w">
+</span><span class="w"></span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">node14</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="nt">steps</span><span class="p">:</span><span class="w">
+</span><span class="w"></span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">npm_run_start</span><span class="w">
+</span><span class="w">  </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l">node:14</span><span class="w">
+</span><span class="w">  </span><span class="nt">commands</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span>- <span class="l">npm install</span><span class="w">
+</span><span class="w">  </span>- <span class="l">npm run start</span><span class="w">
+</span><span class="w">  </span><span class="nt">environment</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span><span class="nt">JD_COOKIE</span><span class="p">:</span><span class="w">
+</span><span class="w">      </span><span class="nt">from_secret</span><span class="p">:</span><span class="w"> </span><span class="l">JD_COOKIE</span><span class="w">
+</span><span class="w">    </span><span class="nt">JD_COOKIE_2</span><span class="p">:</span><span class="w">
+</span><span class="w">      </span><span class="nt">from_secret</span><span class="p">:</span><span class="w"> </span><span class="l">JD_COOKIE_2</span><span class="w">
+</span><span class="w">    </span><span class="nt">SERVER_CHAN</span><span class="p">:</span><span class="w">
+</span><span class="w">      </span><span class="nt">from_secret</span><span class="p">:</span><span class="w"> </span><span class="l">SERVER_CHAN</span><span class="w">
+</span><span class="w">    </span><span class="nt">UPDATE</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span></code></pre></td></tr></table>
+</div>
+</div><h2 id="配置完成">配置完成</h2>
+<p>配置完成后不仅可以自动对新提交的代码进行编译测试，也可以定时执行脚本，如签到、打卡之类的脚本，下图就是京东 APP 自动签到，领京豆的一个小脚本，蚊子腿，积少成多~</p>
+<p><img src="http://static.nicesite.vip/blog/20210325220551.png" alt=""></p>
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">housirvip</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+        2021-03-25
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      
+      <nav class="post-nav">
+        
+        <a class="next" href="/post/zerotier/">
+            <span class="next-text nav-default">Zerotier 组网，访问路由器内网</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  <span id="/post/gogs-drone/" class="leancloud_visitors" data-flag-title="Gogs &#43; Drone 搭建自动化编译测试平台">
+		<span class="post-meta-item-text">文章阅读量 </span>
+		<span class="leancloud-visitors-count">0</span>
+		<p></p>
+	  </span>
+  <div id="vcomments"></div>
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+  <script type="text/javascript">
+    new Valine({
+        el: '#vcomments' ,
+        appId: 'LGk5vbfMKxE0HrHOrkCC8gKf-gzGzoHsz',
+        appKey: 'Fy59MNy0luXKeogBChUJp2g8',
+        notify:  false ,
+        verify:  false ,
+        avatar:'mm',
+        placeholder: '说点什么吧...',
+        visitor:  true 
+    });
+  </script>
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:housirvip@gmail.com" class="iconfont icon-email" title="email"></a>
+      <a href="https://github.com/housirvip" class="iconfont icon-github" title="github"></a>
+  <a href="https://housirvip.github.com/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2017 - 
+    2021<span class="heart"><i class="iconfont icon-heart"></i></span><span>housirvip</span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.c99b103c33d1539acf3025e1913697534542c4a5aa5af0ccc20475ed2863603b.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>
