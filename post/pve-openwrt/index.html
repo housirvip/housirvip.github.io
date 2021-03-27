@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>PVE 下安装 Openwrt 软路由 - The Blog of housirvip</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="housirvip" /><meta name="description" content="本文主要是想在 PVE 环境下打造一个 All in One 的小主机，这一部分是软路由部分，毕竟做开发对 Google Github 之列的需求比较大， Openwrt 的终极目标：出国留学 下载 Openwrt 镜像 从恩山" /><meta name="keywords" content="Blog, web, blog" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.81.0 with theme even" />
+
+
+<link rel="canonical" href="https://housirvip.github.com/post/pve-openwrt/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.af7fd1da18d66c2b017df5b4cae508ef44cfcac3fb4c7c7a327fe4f4f9e28b08.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="PVE 下安装 Openwrt 软路由" />
+<meta property="og:description" content="本文主要是想在 PVE 环境下打造一个 All in One 的小主机，这一部分是软路由部分，毕竟做开发对 Google Github 之列的需求比较大， Openwrt 的终极目标：出国留学 下载 Openwrt 镜像 从恩山" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://housirvip.github.com/post/pve-openwrt/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2021-03-27T12:18:14&#43;08:00" />
+<meta property="article:modified_time" content="2021-03-27T12:18:14&#43;08:00" />
+
+<meta itemprop="name" content="PVE 下安装 Openwrt 软路由">
+<meta itemprop="description" content="本文主要是想在 PVE 环境下打造一个 All in One 的小主机，这一部分是软路由部分，毕竟做开发对 Google Github 之列的需求比较大， Openwrt 的终极目标：出国留学 下载 Openwrt 镜像 从恩山"><meta itemprop="datePublished" content="2021-03-27T12:18:14&#43;08:00" />
+<meta itemprop="dateModified" content="2021-03-27T12:18:14&#43;08:00" />
+<meta itemprop="wordCount" content="617">
+<meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="PVE 下安装 Openwrt 软路由"/>
+<meta name="twitter:description" content="本文主要是想在 PVE 环境下打造一个 All in One 的小主机，这一部分是软路由部分，毕竟做开发对 Google Github 之列的需求比较大， Openwrt 的终极目标：出国留学 下载 Openwrt 镜像 从恩山"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Housirvip</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">首页</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">时间线</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">标签</li>
+      </a><a href="/%E5%85%B3%E4%BA%8E%E6%88%91/">
+        <li class="mobile-menu-item">关于我</li>
+      </a>
+  </ul>
+
+  
+
+
+</nav>
+
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Housirvip</a>
+</div>
+
+
+
+
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">首页</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">时间线</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">标签</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/%E5%85%B3%E4%BA%8E%E6%88%91/">关于我</a>
+      </li>
+  </ul>
+</nav>
+
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">PVE 下安装 Openwrt 软路由</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2021-03-27 </span>
+        
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#下载-openwrt-镜像">下载 Openwrt 镜像</a></li>
+        <li><a href="#pve-下安装">PVE 下安装</a></li>
+        <li><a href="#openwrt-下配置-docker">Openwrt 下配置 Docker</a></li>
+        <li><a href="#openwrt-设置-adguardhome">Openwrt 设置 AdguardHome</a></li>
+        <li><a href="#出国留学">出国留学</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <blockquote>
+<p>本文主要是想在 PVE 环境下打造一个 All in One 的小主机，这一部分是软路由部分，毕竟做开发对 Google Github 之列的需求比较大， Openwrt 的终极目标：出国留学</p>
+</blockquote>
+<h2 id="下载-openwrt-镜像">下载 Openwrt 镜像</h2>
+<p>从恩山下载<strong>高大全Openwrt x86软路由固件</strong> <a href="https://www.right.com.cn/forum/thread-4059320-1-1.html">https://www.right.com.cn/forum/thread-4059320-1-1.html</a> ，这个固件包括了出国留学的功能，很关键~</p>
+<p><img src="http://static.nicesite.vip/blog/20210327130152.png" alt=""></p>
+<h2 id="pve-下安装">PVE 下安装</h2>
+<p>新建一台虚拟机，主要设置如下：</p>
+<p><img src="http://static.nicesite.vip/blog/20210327134929.png" alt=""></p>
+<p><img src="http://static.nicesite.vip/blog/20210327140449.png" alt=""></p>
+<p><img src="http://static.nicesite.vip/blog/20210327135045.png" alt=""></p>
+<p>选择刚创建完成的虚拟机，将原来的硬盘分离，并删除</p>
+<p><img src="http://static.nicesite.vip/blog/20210327135740.png" alt=""></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 将下载的 openwrt img 文件拷贝到 pve 中，执行如下命令</span>
+<span class="c1"># 100 为虚拟机 id，可以根据实际情况修改</span>
+qm importdisk <span class="m">100</span> openwrt-x86-64-generic-squashfs-combined.img local-lvm
+</code></pre></td></tr></table>
+</div>
+</div><p><img src="http://static.nicesite.vip/blog/20210327140816.png" alt=""></p>
+<p><img src="http://static.nicesite.vip/blog/20210327141022.png" alt=""></p>
+<p>安装完成后，默认地址为 192.168.1.1，账号密码为 root：password，后面可以对网段进行设置</p>
+<p><img src="http://static.nicesite.vip/blog/20210327141351.png" alt=""></p>
+<h2 id="openwrt-下配置-docker">Openwrt 下配置 Docker</h2>
+<blockquote>
+<p>这一步是为 docker 分配空间，不然固件刷完后，内存太少，只有几百兆</p>
+</blockquote>
+<p>在侧边栏中选择<code>Docker-&gt;概览</code> ，关闭Docker</p>
+<p><img src="http://static.nicesite.vip/blog/20210327170841.png" alt=""></p>
+<p>在侧边栏中选择<code>系统-&gt;磁盘管理</code> 分区格式设置为MBR</p>
+<p><img src="http://static.nicesite.vip/blog/20210327141449.png" alt=""></p>
+<p>挂载选择<code>sdb</code>挂载点设置为<code>/opt</code></p>
+<p><img src="http://static.nicesite.vip/blog/20210327170548.png" alt=""></p>
+<p>然后重新启用 Docker 就设置完成了</p>
+<p><img src="http://static.nicesite.vip/blog/20210327171015.png" alt=""></p>
+<h2 id="openwrt-设置-adguardhome">Openwrt 设置 AdguardHome</h2>
+<blockquote>
+<p>AdguardHome 是一个 DNS 服务器，防止 DNS 污染，加速 DNS 查询速度，还能对域名进行 blacklist，也可以用于去广告</p>
+</blockquote>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 主要端口为 53，3000</span>
+<span class="c1"># 53 端口提供 dns 查询服务</span>
+<span class="c1"># 3000 端口是固件 web ui 默认的端口</span>
+
+<span class="c1"># adg 访问国内的网络</span>
+docker run --name adg <span class="se">\
+</span><span class="se"></span>  -v /opt/docker-data/adg/work:/opt/adguardhome/work <span class="se">\
+</span><span class="se"></span>  -v /opt/docker-data/adg/conf:/opt/adguardhome/conf <span class="se">\
+</span><span class="se"></span>  -p 3053:53/tcp <span class="se">\
+</span><span class="se"></span>  -p 3053:53/udp <span class="se">\
+</span><span class="se"></span>  -p 3080:3000/tcp <span class="se">\
+</span><span class="se"></span>  -d adguard/adguardhome
+
+<span class="c1"># adg-ssr 访问国外的网络</span>
+docker run --name adg-ssr <span class="se">\
+</span><span class="se"></span>  -v /opt/docker-data/adg-ssr/work:/opt/adguardhome/work <span class="se">\
+</span><span class="se"></span>  -v /opt/docker-data/adg-ssr/conf:/opt/adguardhome/conf <span class="se">\
+</span><span class="se"></span>  -p 5335:53/tcp <span class="se">\
+</span><span class="se"></span>  -p 5335:53/udp <span class="se">\
+</span><span class="se"></span>  -p 3090:3000/tcp <span class="se">\
+</span><span class="se"></span>  -d adguard/adguardhome
+</code></pre></td></tr></table>
+</div>
+</div><p>访问 http://192.168.1.1:3000 进入 Web UI 中，进行首次设置</p>
+<p><img src="http://static.nicesite.vip/blog/20210327173833.png" alt=""></p>
+<p>进入 Openwrt 中，对<code>网络-&gt;DHCP/DNS</code>进行设置，DNS 转发设置为：<code>127.0.0.1：3053</code></p>
+<p><img src="http://static.nicesite.vip/blog/20210327173533.png" alt=""></p>
+<p><img src="http://static.nicesite.vip/blog/20210327173711.png" alt=""></p>
+<p><img src="http://static.nicesite.vip/blog/20210327173950.png" alt=""></p>
+<h2 id="出国留学">出国留学</h2>
+<p><img src="http://static.nicesite.vip/blog/20210327174649.png" alt=""></p>
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">housirvip</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+        2021-03-27
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      
+      <nav class="post-nav">
+        
+        <a class="next" href="/post/ubuntu-docker/">
+            <span class="next-text nav-default">Ubuntu 下安装 Docker 和 Portainer</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  <span id="/post/pve-openwrt/" class="leancloud_visitors" data-flag-title="PVE 下安装 Openwrt 软路由">
+		<span class="post-meta-item-text">文章阅读量 </span>
+		<span class="leancloud-visitors-count">0</span>
+		<p></p>
+	  </span>
+  <div id="vcomments"></div>
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+  <script type="text/javascript">
+    new Valine({
+        el: '#vcomments' ,
+        appId: 'LGk5vbfMKxE0HrHOrkCC8gKf-gzGzoHsz',
+        appKey: 'Fy59MNy0luXKeogBChUJp2g8',
+        notify:  false ,
+        verify:  false ,
+        avatar:'mm',
+        placeholder: '说点什么吧...',
+        visitor:  true 
+    });
+  </script>
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:housirvip@gmail.com" class="iconfont icon-email" title="email"></a>
+      <a href="https://github.com/housirvip" class="iconfont icon-github" title="github"></a>
+  <a href="https://housirvip.github.com/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2017 - 
+    2021<span class="heart"><i class="iconfont icon-heart"></i></span><span>housirvip</span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.c99b103c33d1539acf3025e1913697534542c4a5aa5af0ccc20475ed2863603b.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

@@ -6,7 +6,16 @@
     <description>Recent content in Posts on The Blog of housirvip</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Thu, 25 Mar 2021 22:22:59 +0800</lastBuildDate><atom:link href="https://housirvip.github.com/post/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 27 Mar 2021 12:18:14 +0800</lastBuildDate><atom:link href="https://housirvip.github.com/post/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>PVE 下安装 Openwrt 软路由</title>
+      <link>https://housirvip.github.com/post/pve-openwrt/</link>
+      <pubDate>Sat, 27 Mar 2021 12:18:14 +0800</pubDate>
+      
+      <guid>https://housirvip.github.com/post/pve-openwrt/</guid>
+      <description>本文主要是想在 PVE 环境下打造一个 All in One 的小主机，这一部分是软路由部分，毕竟做开发对 Google Github 之列的需求比较大， Openwrt 的终极目标：出国留学 下载 Openwrt 镜像 从恩山</description>
+    </item>
+    
     <item>
       <title>Ubuntu 下安装 Docker 和 Portainer</title>
       <link>https://housirvip.github.com/post/ubuntu-docker/</link>
@@ -17,7 +26,7 @@
     </item>
     
     <item>
-      <title>Gogs &#43; Drone 在 Docker 下搭建自动化编译测试平台</title>
+      <title>Gogs &#43; Drone 在 Docker 下配置持续集成</title>
       <link>https://housirvip.github.com/post/gogs-drone/</link>
       <pubDate>Thu, 25 Mar 2021 21:15:07 +0800</pubDate>
       
