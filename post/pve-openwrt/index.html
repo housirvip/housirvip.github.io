@@ -49,7 +49,7 @@
 <meta itemprop="name" content="PVE 下安装 Openwrt 软路由">
 <meta itemprop="description" content="本文主要是想在 PVE 环境下打造一个 All in One 的小主机，这一部分是软路由部分，毕竟做开发对 Google Github 之列的需求比较大， Openwrt 的终极目标：出国留学 下载 Openwrt 镜像 从恩山"><meta itemprop="datePublished" content="2021-03-27T12:18:14&#43;08:00" />
 <meta itemprop="dateModified" content="2021-03-27T12:18:14&#43;08:00" />
-<meta itemprop="wordCount" content="617">
+<meta itemprop="wordCount" content="876">
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="PVE 下安装 Openwrt 软路由"/>
 <meta name="twitter:description" content="本文主要是想在 PVE 环境下打造一个 All in One 的小主机，这一部分是软路由部分，毕竟做开发对 Google Github 之列的需求比较大， Openwrt 的终极目标：出国留学 下载 Openwrt 镜像 从恩山"/>
@@ -145,6 +145,7 @@
         <li><a href="#pve-下安装">PVE 下安装</a></li>
         <li><a href="#openwrt-下配置-docker">Openwrt 下配置 Docker</a></li>
         <li><a href="#openwrt-设置-adguardhome">Openwrt 设置 AdguardHome</a></li>
+        <li><a href="#adguard-home-设置">Adguard Home 设置</a></li>
         <li><a href="#出国留学">出国留学</a></li>
       </ul>
     </li>
@@ -252,6 +253,108 @@ docker run --name adg-ssr <span class="se">\
 <p><img src="http://static.nicesite.vip/blog/20210327173533.png" alt=""></p>
 <p><img src="http://static.nicesite.vip/blog/20210327173711.png" alt=""></p>
 <p><img src="http://static.nicesite.vip/blog/20210327173950.png" alt=""></p>
+<h2 id="adguard-home-设置">Adguard Home 设置</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback"># DNS 设置
+tls://8.8.8.8
+tls://8.8.4.4
+tls://dns.google
+https://dns.google/dns-query
+tls://208.67.222.222
+tls://208.67.220.220
+https://doh.opendns.com/dns-query
+
+# Bootstrap DNS
+208.67.222.222
+8.8.8.8
+8.8.4.4
+1.1.1.1
+</code></pre></td></tr></table>
+</div>
+</div><p><img src="http://static.nicesite.vip/blog/20210330104153.png" alt=""></p>
+<table>
+<thead>
+<tr>
+<th>名称</th>
+<th>简介</th>
+<th style="text-align:left">地址</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>AdGuard DNS Filter</td>
+<td>AdGuard 官方维护的广告规则，涵盖多种过滤规则</td>
+<td style="text-align:left"><a href="https://raw.githubusercontent.com/AdguardTeam/FiltersRegistry/master/filters/filter_15_DnsFilter/filter.txt">https://raw.githubusercontent.com/AdguardTeam/FiltersRegistry/master/filters/filter_15_DnsFilter/filter.txt</a></td>
+</tr>
+<tr>
+<td>EasyList</td>
+<td>Adblock Plus 官方维护的广告规则</td>
+<td style="text-align:left"><a href="https://easylist-downloads.adblockplus.org/easylist.txt">https://easylist-downloads.adblockplus.org/easylist.txt</a></td>
+</tr>
+<tr>
+<td>EasyList China</td>
+<td>面向中文用户的 EasyList 去广告规则</td>
+<td style="text-align:left"><a href="https://easylist-downloads.adblockplus.org/easylistchina.txt">https://easylist-downloads.adblockplus.org/easylistchina.txt</a></td>
+</tr>
+<tr>
+<td>EasyPrivacy</td>
+<td>反隐私跟踪、挖矿规则</td>
+<td style="text-align:left"><a href="https://easylist-downloads.adblockplus.org/easyprivacy.txt">https://easylist-downloads.adblockplus.org/easyprivacy.txt</a></td>
+</tr>
+<tr>
+<td>Halflife 规则</td>
+<td>涵盖了 EasyList China、EasyList Lite、CJX ’s Annoyance、乘风视频过滤规则，以及补充的其它规则</td>
+<td style="text-align:left"><a href="https://gitee.com/halflife/list/raw/master/ad.txt">https://gitee.com/halflife/list/raw/master/ad.txt</a></td>
+</tr>
+<tr>
+<td>Xinggsf 乘风过滤</td>
+<td>国内网站广告过滤规则</td>
+<td style="text-align:left"><a href="https://gitee.com/xinggsf/Adblock-Rule/raw/master/rule.txt">https://gitee.com/xinggsf/Adblock-Rule/raw/master/rule.txt</a></td>
+</tr>
+<tr>
+<td>Xinggsf 乘风视频过滤</td>
+<td>视频网站广告过滤规则</td>
+<td style="text-align:left"><a href="https://gitee.com/xinggsf/Adblock-Rule/raw/master/mv.txt">https://gitee.com/xinggsf/Adblock-Rule/raw/master/mv.txt</a></td>
+</tr>
+<tr>
+<td>MalwareDomainList</td>
+<td>恶意软件过滤规则</td>
+<td style="text-align:left"><a href="https://www.malwaredomainlist.com/hostslist/hosts.txt">https://www.malwaredomainlist.com/hostslist/hosts.txt</a></td>
+</tr>
+<tr>
+<td>Adblock Warning Removal List</td>
+<td>去除禁止广告拦截提示规则</td>
+<td style="text-align:left"><a href="https://easylist-downloads.adblockplus.org/antiadblockfilters.txt">https://easylist-downloads.adblockplus.org/antiadblockfilters.txt</a></td>
+</tr>
+<tr>
+<td>Anti-AD</td>
+<td>命中率高、兼容性强</td>
+<td style="text-align:left"><a href="https://anti-ad.net/easylist.txt">https://anti-ad.net/easylist.txt</a></td>
+</tr>
+<tr>
+<td>Fanboy’s Annoyances List</td>
+<td>去除页面弹窗广告规则</td>
+<td style="text-align:left"><a href="https://easylist-downloads.adblockplus.org/fanboy-annoyance.txt">https://easylist-downloads.adblockplus.org/fanboy-annoyance.txt</a></td>
+</tr>
+</tbody>
+</table>
 <h2 id="出国留学">出国留学</h2>
 <p><img src="http://static.nicesite.vip/blog/20210327174649.png" alt=""></p>
 
