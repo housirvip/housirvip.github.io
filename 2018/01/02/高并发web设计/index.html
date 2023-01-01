@@ -1,0 +1,252 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>高并发web系统设计 - Hexo</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="housirvip"><meta name="msapplication-TileImage" content="https://housirvip-blog.oss-cn-hangzhou.aliyuncs.com/logo/housirvip%400.25x.jpg"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="housirvip"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="description" content="housirvip&amp;#39;s personal blog"><meta property="og:type" content="blog"><meta property="og:title" content="高并发web系统设计"><meta property="og:url" content="http://example.com/2018/01/02/%E9%AB%98%E5%B9%B6%E5%8F%91web%E8%AE%BE%E8%AE%A1/"><meta property="og:site_name" content="housirvip"><meta property="og:description" content="housirvip&amp;#39;s personal blog"><meta property="og:locale" content="en_US"><meta property="og:image" content="https://housirvip-blog.oss-cn-hangzhou.aliyuncs.com/static/2018-06-12-085459.jpg"><meta property="article:published_time" content="2018-01-02T04:13:24.000Z"><meta property="article:modified_time" content="2023-01-01T12:38:18.058Z"><meta property="article:author" content="housirvip"><meta property="article:tag" content="Web"><meta property="article:tag" content="面经"><meta property="article:tag" content="高并发"><meta property="twitter:card" content="summary"><meta property="twitter:image:src" content="https://housirvip-blog.oss-cn-hangzhou.aliyuncs.com/static/2018-06-12-085459.jpg"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"http://example.com/2018/01/02/%E9%AB%98%E5%B9%B6%E5%8F%91web%E8%AE%BE%E8%AE%A1/"},"headline":"高并发web系统设计","image":["https://housirvip-blog.oss-cn-hangzhou.aliyuncs.com/static/2018-06-12-085459.jpg"],"datePublished":"2018-01-02T04:13:24.000Z","dateModified":"2023-01-01T12:38:18.058Z","author":{"@type":"Person","name":"John Doe"},"publisher":{"@type":"Organization","name":"Hexo","logo":{"@type":"ImageObject","url":"https://housirvip-blog.oss-cn-hangzhou.aliyuncs.com/logo/housirvip%400.25x.jpg"}},"description":"设计一个高并发web系统的知识点整理"}</script><link rel="canonical" href="http://example.com/2018/01/02/%E9%AB%98%E5%B9%B6%E5%8F%91web%E8%AE%BE%E8%AE%A1/"><link rel="icon" href="https://housirvip-blog.oss-cn-hangzhou.aliyuncs.com/logo/housirvip%400.25x.jpg"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.0.0/css/all.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-light.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link rel="stylesheet" href="/css/default.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><!--!--><!--!--><script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" defer></script><!--!--><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/css/justifiedGallery.min.css"><!--!--><!--!--><style>.pace{-webkit-pointer-events:none;pointer-events:none;-webkit-user-select:none;-moz-user-select:none;user-select:none}.pace-inactive{display:none}.pace .pace-progress{background:#3273dc;position:fixed;z-index:2000;top:0;right:100%;width:100%;height:2px}</style><script src="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/pace.min.js"></script><!--!--><!--!--><!-- hexo injector head_end start --><script>
+  (function () {
+      function switchTab() {
+          if (!location.hash) {
+            return;
+          }
+
+          const id = '#' + CSS.escape(location.hash.substring(1));
+          const $tabMenu = document.querySelector(`.tabs a[href="${id}"]`);
+          if (!$tabMenu) {
+            return;
+          }
+
+          const $tabMenuContainer = $tabMenu.parentElement.parentElement;
+          Array.from($tabMenuContainer.children).forEach($menu => $menu.classList.remove('is-active'));
+          Array.from($tabMenuContainer.querySelectorAll('a'))
+              .map($menu => document.getElementById($menu.getAttribute("href").substring(1)))
+              .forEach($content => $content.classList.add('is-hidden'));
+
+          if ($tabMenu) {
+              $tabMenu.parentElement.classList.add('is-active');
+          }
+          const $activeTab = document.querySelector(id);
+          if ($activeTab) {
+              $activeTab.classList.remove('is-hidden');
+          }
+      }
+      switchTab();
+      window.addEventListener('hashchange', switchTab, false);
+  })();
+  </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"></head><body class="is-2-column"><nav class="navbar navbar-main"><div class="container navbar-container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="https://housirvip-blog.oss-cn-hangzhou.aliyuncs.com/logo/housirvip%400.25x.jpg" alt="Hexo" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">Home</a><a class="navbar-item" href="/archives">Archives</a><a class="navbar-item" href="/categories">Categories</a><a class="navbar-item" href="/tags">Tags</a><a class="navbar-item" href="/about">About</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a><a class="navbar-item search" title="Search" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-8-widescreen"><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item">Posted&nbsp;<time dateTime="2018-01-02T04:13:24.000Z" title="1/2/2018, 12:13:24 PM">2018-01-02</time></span><span class="level-item">Updated&nbsp;<time dateTime="2023-01-01T12:38:18.058Z" title="1/1/2023, 8:38:18 PM">2023-01-01</time></span><span class="level-item">14 minutes read (About 2130 words)</span><span class="level-item" id="busuanzi_container_page_pv"><span id="busuanzi_value_page_pv">0</span>&nbsp;visits</span></div></div><h1 class="title is-3 is-size-4-mobile">高并发web系统设计</h1><div class="content"><p><img src="https://housirvip-blog.oss-cn-hangzhou.aliyuncs.com/static/2018-06-12-085459.jpg"></p>
+<h2 id="核心技术点"><a href="#核心技术点" class="headerlink" title="核心技术点"></a>核心技术点</h2><ul>
+<li><p>前端优化</p>
+<blockquote>
+<p>前端优化主要包括动态内容静态化，增加前端缓存。页面静态化是指将指含有大量动态元素的动态网页，如jsp、php等，转换为html静态页面，静态页面由于不用加载动态元素，其访问速度要比动态页面快得多，可以增加访问速度，减小数据库压力；前端页面缓存在系统前端对Web服务器上的页面进行缓存。</p>
+</blockquote>
+</li>
+<li><p>CDN技术</p>
+<blockquote>
+<p>CDN即内容分发网络，其基本思路是尽可能避开互联网上有可能影响数据传输速度和稳定性的瓶颈和环节，使内容传输的更快、更稳定。通过在网络各处放置节点服务器所构成的在现有的互联网基础之上的一层智能虚拟网络，CDN系统能够实时地根据网络流量和各节点的连接、负载状况以及到用户的距离和响应时间等综合信息将用户的请求重新导向离用户最近的服务节点上。其目的是使用户可就近取得所需内容，解决 Internet网络拥挤的状况，提高用户访问网站的响应速度。</p>
+</blockquote>
+</li>
+<li><p>负载均衡</p>
+<blockquote>
+<p>负载均衡的基本思想是把高并发的访问平均分配到每一个服务器节点上，从而减小分布式数据库中每一个节点的压力。</p>
+</blockquote>
+</li>
+<li><p>中间件</p>
+<blockquote>
+<p>数据库的中间件技术是指把应用层与数据库层分离，在中间增加一个部分，避免应用直接访问数据库。因为系统可能采用读写分离的技术，因而会使用不同的数据库，中间件可以屏蔽数据库直接的不同，提供统一的接口。中间件还负责事务的协调处理，起到数据连接管理的作用，多个客户端连接通过中间件可以共用一个数据库连接。</p>
+</blockquote>
+</li>
+<li><p>memcached</p>
+<blockquote>
+<p>memcached是一个高性能的分布式内存对象缓存系统，通过在内存中缓存数据和对象来减少读取数据库的次数，从而提高动态、数据库驱动网站的速度，它是基于一个存储键&#x2F;值对的hashmap。</p>
+</blockquote>
+</li>
+<li><p>并发控制</p>
+<blockquote>
+<p>数据库限流，达到数据库的最大并发数，进入行锁状态。如不进行控制，一旦其中一个连接卡住，会引发雪崩效应，从而影响整个系统</p>
+</blockquote>
+</li>
+<li><p>排队系统</p>
+<blockquote>
+<p>锁机制导致排队</p>
+</blockquote>
+</li>
+<li><p>并行复制</p>
+<blockquote>
+<p>采用并行复制的技术可以解决主备库复制延迟问题</p>
+</blockquote>
+</li>
+<li><p>数据库拆分</p>
+<blockquote>
+<p>分为水平拆分和垂直拆分，垂直拆分即按列拆分，把数据按应用分离，降低单个事务的数据处理量；水平拆分即按行拆分，降低节点的并发量</p>
+</blockquote>
+</li>
+<li><p>读写分离</p>
+<blockquote>
+<p>有些系统读操作频繁，而有些系统写操作频繁，读写分离能有效提高访问速度</p>
+</blockquote>
+</li>
+</ul>
+<h2 id="高并发带来的问题和解决方案"><a href="#高并发带来的问题和解决方案" class="headerlink" title="高并发带来的问题和解决方案"></a>高并发带来的问题和解决方案</h2><h3 id="事务问题（一致性）"><a href="#事务问题（一致性）" class="headerlink" title="事务问题（一致性）"></a>事务问题（一致性）</h3><ul>
+<li>容器事务管理</li>
+<li>锁机制</li>
+<li>隔离机制</li>
+</ul>
+<h3 id="状态问题-session"><a href="#状态问题-session" class="headerlink" title="状态问题(session)"></a>状态问题(session)</h3><ul>
+<li><p>用cooke记录sesion</p>
+<blockquote>
+<p>缺点是有大小限制，另外不稳定，客户端可能关闭浏览器导致数据丢失，且不安全</p>
+</blockquote>
+</li>
+<li><p>session复制</p>
+<blockquote>
+<p>即集群中的服务器都持有一份sesion，每次有数据变化时需要同步给其他服务器，适合小规模网站</p>
+</blockquote>
+</li>
+<li><p>session绑定</p>
+<blockquote>
+<p>由负载均衡服务器将客户的IP&#x2F;cookie与session绑定，实现会话粘滞。<br>但这种方案缺乏高可用性，因为客户的关闭浏览器可能会改变cookie，客户端IP也可能变化，服务器端也可能宕机导致session丢失。</p>
+</blockquote>
+</li>
+<li><p>session服务器</p>
+<blockquote>
+<p>包含两个层面，<br>一个是利用分布式缓存，可以实现会话的保持，适合一般集群需求<br>另一个是独立session服务器，适合更高要求的需求，例如单点登录（SSO）</p>
+</blockquote>
+</li>
+</ul>
+<h2 id="设计原则"><a href="#设计原则" class="headerlink" title="设计原则"></a>设计原则</h2><ul>
+<li><p>墨菲定律</p>
+<blockquote>
+<p>任何事没有表面看起来那么简单 - 所有的事都会比预计的时间长 - 可能出错的事情总会出错 - 担心某种事情发生，那么它就更有可能发生</p>
+</blockquote>
+</li>
+<li><p>康威定律</p>
+<blockquote>
+<p>系统架构师公司组织架构的反映 - 按照业务闭环进行系统拆分&#x2F;组织架构划分，实现闭环、高内聚、低耦合，减少沟通成本 - 如果沟通出现问题，应该考虑进行系统和组织架构的调整 - 适合时机进行系统拆分，不要一开始就吧系统、服务拆分拆的非常细，虽然闭环，但是每个人维护的系统多，维护成本高 - 微服务架构的理论基础 - 康威定律</p>
+</blockquote>
+</li>
+<li><p>二八定律</p>
+<blockquote>
+<p>80%的结果取决于20%的原因</p>
+</blockquote>
+</li>
+</ul>
+<h3 id="高并发原则"><a href="#高并发原则" class="headerlink" title="高并发原则"></a>高并发原则</h3><ol>
+<li><p>无状态</p>
+<blockquote>
+<p>无状态应用，便于水平扩展<br>有状态配置可通过配置中心实现无状态</p>
+</blockquote>
+</li>
+<li><p>拆分</p>
+<blockquote>
+<p>系统维度：按照系统功能、业务拆分，如购物车，结算，订单等<br>功能维度：对系统功能在做细粒度拆分<br>读写维度：根据读写比例特征拆分；读多，可考虑多级缓存；写多，可考虑分库分表<br>AOP维度： 根据访问特征，按照AOP进行拆分，比如商品详情页可分为CDN、页面渲染系统，CDN就是一个AOP系统<br>模块维度：对整体代码结构划分Web、Service、DAO</p>
+</blockquote>
+</li>
+<li><p>服务化</p>
+<blockquote>
+<p>服务化演进: 进程内服务-单机远程服务-集群手动注册服务-自动注册和发现服务-服务的分组、隔离、路由-服务治理<br>考虑服务分组、隔离、限流、黑白名单、超时、重试机制、路由、故障补偿等</p>
+</blockquote>
+</li>
+<li><p>消息队列</p>
+<blockquote>
+<p>目的: 服务解耦(一对多消费)、异步处理、流量削峰缓冲等<br>大流量缓冲： 牺牲强一致性，保证最终一致性(案例：库存扣减，现在Redis中做扣减，记录扣减日志，通过后台进程将扣减日志应用到DB)<br>数据校对: 解决异步消息机制下消息丢失问题</p>
+</blockquote>
+</li>
+<li><p>数据异构</p>
+<blockquote>
+<p>数据异构: 通过消息队列机制接收数据变更，原子化存储<br>数据闭环: 屏蔽多从数据来源，将数据异构存储，形成闭环</p>
+</blockquote>
+</li>
+<li><p>缓存银弹</p>
+</li>
+<li><p>并发化</p>
+</li>
+</ol>
+<h3 id="高可用原则"><a href="#高可用原则" class="headerlink" title="高可用原则"></a>高可用原则</h3><ol>
+<li><p>降级</p>
+<blockquote>
+<p>降级开关集中化管理：将开关配置信息推送到各个应用<br>可降级的多级读服务：如服务调用降级为只读本地缓存<br>开关前置化：如Nginx+lua(OpenResty)配置降级策略，引流流量；可基于此做灰度策略<br>业务降级：高并发下，保证核心功能，次要功能可由同步改为异步策略或屏蔽功能</p>
+</blockquote>
+</li>
+<li><p>限流</p>
+<blockquote>
+<p>目的: 防止恶意请求攻击或超出系统峰值<br>实践：<br>恶意请求流量只访问到Cache<br>穿透后端应用的流量使用Nginx的limit处理<br>恶意IP使用Nginx Deny策略或者iptables拒绝</p>
+</blockquote>
+</li>
+<li><p>切流量</p>
+<blockquote>
+<p>目的：屏蔽故障机器<br>实践:<br>DNS: 更改域名解析入口，如DNSPOD可以添加备用IP，正常IP故障时，会自主切换到备用地址;生效实践较慢<br>HttpDNS: 为了绕过运营商LocalDNS实现的精准流量调度<br>LVS&#x2F;HaProxy&#x2F;Nginx: 摘除故障节点</p>
+</blockquote>
+</li>
+<li><p>可回滚</p>
+<blockquote>
+<p>发布版本失败时可随时快速回退到上一个稳定版本</p>
+</blockquote>
+</li>
+</ol>
+<h3 id="业务设计原则"><a href="#业务设计原则" class="headerlink" title="业务设计原则"></a>业务设计原则</h3><ul>
+<li>防重设计</li>
+<li>幂等设计</li>
+<li>流程定义</li>
+<li>状态与状态机</li>
+<li>后台系统操作可反馈</li>
+<li>后台系统审批化</li>
+<li>文档注释</li>
+<li>备份</li>
+</ul>
+</div><div class="article-licensing box"><div class="licensing-title"><p>高并发web系统设计</p><p><a href="http://example.com/2018/01/02/高并发web设计/">http://example.com/2018/01/02/高并发web设计/</a></p></div><div class="licensing-meta level is-mobile"><div class="level-left"><div class="level-item is-narrow"><div><h6>Author</h6><p>John Doe</p></div></div><div class="level-item is-narrow"><div><h6>Posted on</h6><p>2018-01-02</p></div></div><div class="level-item is-narrow"><div><h6>Updated on</h6><p>2023-01-01</p></div></div><div class="level-item is-narrow"><div><h6>Licensed under</h6><p><a class="icons" rel="noopener" target="_blank" title="Creative Commons" href="https://creativecommons.org/"><i class="icon fab fa-creative-commons"></i></a><a class="icons" rel="noopener" target="_blank" title="Attribution" href="https://creativecommons.org/licenses/by/4.0/"><i class="icon fab fa-creative-commons-by"></i></a><a class="icons" rel="noopener" target="_blank" title="Noncommercial" href="https://creativecommons.org/licenses/by-nc/4.0/"><i class="icon fab fa-creative-commons-nc"></i></a></p></div></div></div></div></div><div class="article-tags is-size-7 mb-4"><span class="mr-2">#</span><a class="link-muted mr-2" rel="tag" href="/tags/Web/">Web</a><a class="link-muted mr-2" rel="tag" href="/tags/%E9%9D%A2%E7%BB%8F/">面经</a><a class="link-muted mr-2" rel="tag" href="/tags/%E9%AB%98%E5%B9%B6%E5%8F%91/">高并发</a></div><!--!--></article></div><!--!--><nav class="post-navigation mt-4 level is-mobile"><div class="level-start"><a class="article-nav-prev level level-item link-muted" href="/2018/01/02/SQL%E5%92%8CNOSQL/"><i class="level-item fas fa-chevron-left"></i><span class="level-item">NoSQL与SQL对比</span></a></div><div class="level-end"><a class="article-nav-next level level-item link-muted" href="/2017/08/24/dnscrypt/"><span class="level-item">搭建纯净 DNS 服务</span><i class="level-item fas fa-chevron-right"></i></a></div></nav><div class="card"><div class="card-content"><h3 class="title is-5">Comments</h3><div id="comment-container"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.css"><script src="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.min.js"></script><script>var gitalk = new Gitalk({
+            id: "2b70a3d2194a8fa9c77d6a7320a9bf95",
+            repo: "housirvip.github.io",
+            owner: "housirvip",
+            clientID: "2030be9e8c1e85c8945b",
+            clientSecret: "ce8691d1c8f98b53282524f86907960b7af6e762",
+            admin: ["housirvip"],
+            createIssueManually: false,
+            distractionFreeMode: false,
+            perPage: 20,
+            pagerDirection: "last",
+            
+            
+            enableHotKey: true,
+            language: "zh-CN",
+        })
+        gitalk.render('comment-container')</script></div></div></div><div class="column column-left is-4-tablet is-4-desktop is-4-widescreen  order-1"><div class="card widget" data-type="profile"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-128x128 mx-auto mb-2"><img class="avatar" src="https://housirvip-blog.oss-cn-hangzhou.aliyuncs.com/what.jpeg" alt="housirvip"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">housirvip</p><p class="is-size-6 is-flex justify-content-center"><i class="fas fa-map-marker-alt mr-1"></i><span>China</span></p></div></div></nav><nav class="level is-mobile"><div class="level-item has-text-centered is-marginless"><div><p class="heading">Posts</p><a href="/archives"><p class="title">23</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">Categories</p><a href="/categories"><p class="title">0</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">Tags</p><a href="/tags"><p class="title">23</p></a></div></div></nav><div class="level"><a class="level-item button is-primary is-rounded" href="https://github.com/housirvip" target="_blank" rel="noopener">Follow</a></div><div class="level is-mobile is-multiline"><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Github" href="https://github.com/housirvip"><i class="fab fa-github"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="RSS" href="/"><i class="fas fa-rss"></i></a></div></div></div><!--!--><div class="card widget" data-type="links"><div class="card-content"><div class="menu"><h3 class="menu-label">Links</h3><ul class="menu-list"><li><a class="level is-mobile" href="https://github.com/housirvip" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">Github</span></span><span class="level-right"><span class="level-item tag">github.com</span></span></a></li></ul></div></div></div><!--!--><div class="card widget" data-type="recent-posts"><div class="card-content"><h3 class="menu-label">Recents</h3><article class="media"><div class="media-content"><p class="date"><time dateTime="2021-03-26T20:18:14.000Z">2021-03-27</time></p><p class="title"><a href="/2021/03/27/pve-openwrt/">PVE 下安装 Openwrt 软路由</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2021-03-25T06:22:59.000Z">2021-03-25</time></p><p class="title"><a href="/2021/03/25/ubuntu-docker/">Ubuntu 下安装 Docker 和 Portainer</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2021-03-25T05:15:07.000Z">2021-03-25</time></p><p class="title"><a href="/2021/03/25/gogs-drone/">Gogs + Drone 在 Docker 下配置持续集成</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2021-03-25T04:36:13.000Z">2021-03-25</time></p><p class="title"><a href="/2021/03/25/zerotier/">Zerotier 组网，访问路由器内网</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2021-03-22T07:12:05.000Z">2021-03-22</time></p><p class="title"><a href="/2021/03/22/MacOS%20app%E5%B7%B2%E6%8D%9F%E5%9D%8F/">MacOS app 已损坏，无法打开，你应该将它移到废纸篓</a></p></div></article></div></div><div class="card widget" data-type="archives"><div class="card-content"><div class="menu"><h3 class="menu-label">Archives</h3><ul class="menu-list"><li><a class="level is-mobile" href="/archives/2021/03/"><span class="level-start"><span class="level-item">March 2021</span></span><span class="level-end"><span class="level-item tag">5</span></span></a></li><li><a class="level is-mobile" href="/archives/2020/12/"><span class="level-start"><span class="level-item">December 2020</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2020/09/"><span class="level-start"><span class="level-item">September 2020</span></span><span class="level-end"><span class="level-item tag">6</span></span></a></li><li><a class="level is-mobile" href="/archives/2018/05/"><span class="level-start"><span class="level-item">May 2018</span></span><span class="level-end"><span class="level-item tag">3</span></span></a></li><li><a class="level is-mobile" href="/archives/2018/01/"><span class="level-start"><span class="level-item">January 2018</span></span><span class="level-end"><span class="level-item tag">4</span></span></a></li><li><a class="level is-mobile" href="/archives/2017/08/"><span class="level-start"><span class="level-item">August 2017</span></span><span class="level-end"><span class="level-item tag">4</span></span></a></li></ul></div></div></div><div class="card widget" data-type="tags"><div class="card-content"><div class="menu"><h3 class="menu-label">Tags</h3><div class="field is-grouped is-grouped-multiline"><div class="control"><a class="tags has-addons" href="/tags/Consul/"><span class="tag">Consul</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Dns/"><span class="tag">Dns</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Docker/"><span class="tag">Docker</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Golang/"><span class="tag">Golang</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Hackintosh/"><span class="tag">Hackintosh</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Java/"><span class="tag">Java</span><span class="tag">5</span></a></div><div class="control"><a class="tags has-addons" href="/tags/LeetCode/"><span class="tag">LeetCode</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Linux/"><span class="tag">Linux</span><span class="tag">4</span></a></div><div class="control"><a class="tags has-addons" href="/tags/MarkDown/"><span class="tag">MarkDown</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Math/"><span class="tag">Math</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Openwrt/"><span class="tag">Openwrt</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/SSR/"><span class="tag">SSR</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Web/"><span class="tag">Web</span><span class="tag">5</span></a></div><div class="control"><a class="tags has-addons" href="/tags/pve/"><span class="tag">pve</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E5%88%86%E5%B8%83%E5%BC%8F/"><span class="tag">分布式</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/"><span class="tag">数据库</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E6%A0%91%E8%8E%93%E6%B4%BE/"><span class="tag">树莓派</span><span class="tag">3</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E7%AE%97%E6%B3%95/"><span class="tag">算法</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"><span class="tag">设计模式</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E8%BD%AF%E8%B7%AF%E7%94%B1/"><span class="tag">软路由</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E9%9D%A2%E7%BB%8F/"><span class="tag">面经</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E9%AB%98%E5%B9%B6%E5%8F%91/"><span class="tag">高并发</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E9%BB%91%E8%8B%B9%E6%9E%9C/"><span class="tag">黑苹果</span><span class="tag">1</span></a></div></div></div></div></div></div><!--!--></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="https://housirvip-blog.oss-cn-hangzhou.aliyuncs.com/logo/housirvip%400.25x.jpg" alt="Hexo" height="28"></a><p class="is-size-7"><span>&copy; 2023 John Doe</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a><br><span id="busuanzi_container_site_uv">Visited by <span id="busuanzi_value_site_uv">0</span> users</span></p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/housirvip"><i class="fab fa-github"></i></a></p></div></div></div></div></footer><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script><script>moment.locale("en");</script><script>var IcarusThemeSettings = {
+            article: {
+                highlight: {
+                    clipboard: true,
+                    fold: 'unfolded'
+                }
+            }
+        };</script><script src="/js/column.js"></script><script src="/js/animation.js"></script><a id="back-to-top" title="Back to top" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script src="/js/back_to_top.js" defer></script><!--!--><!--!--><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.js" defer></script><script>window.addEventListener("load", () => {
+      window.cookieconsent.initialise({
+        type: "info",
+        theme: "edgeless",
+        static: false,
+        position: "bottom-left",
+        content: {
+          message: "This website uses cookies to improve your experience.",
+          dismiss: "Got it!",
+          allow: "Allow cookies",
+          deny: "Decline",
+          link: "Learn more",
+          policy: "Cookie Policy",
+          href: "https://www.cookiesandyou.com/",
+        },
+        palette: {
+          popup: {
+            background: "#edeff5",
+            text: "#838391"
+          },
+          button: {
+            background: "#4b81e8"
+          },
+        },
+      });
+    });</script><script src="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/js/lightgallery.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
+            if (typeof $.fn.lightGallery === 'function') {
+                $('.article').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof $.fn.justifiedGallery === 'function') {
+                if ($('.justified-gallery > p > .gallery-item').length) {
+                    $('.justified-gallery > p > .gallery-item').unwrap();
+                }
+                $('.justified-gallery').justifiedGallery();
+            }
+        });</script><!--!--><!--!--><!--!--><!--!--><!--!--><script src="/js/main.js" defer></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="Type something..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script src="/js/insight.js" defer></script><script>document.addEventListener('DOMContentLoaded', function () {
+            loadInsight({"contentUrl":"/content.json"}, {"hint":"Type something...","untitled":"(Untitled)","posts":"Posts","pages":"Pages","categories":"Categories","tags":"Tags"});
+        });</script></body></html>

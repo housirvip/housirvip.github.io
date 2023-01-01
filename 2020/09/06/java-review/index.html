@@ -1,0 +1,465 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>Java 复习 面经总结 - Hexo</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="housirvip"><meta name="msapplication-TileImage" content="https://housirvip-blog.oss-cn-hangzhou.aliyuncs.com/logo/housirvip%400.25x.jpg"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="housirvip"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="description" content="housirvip&amp;#39;s personal blog"><meta property="og:type" content="blog"><meta property="og:title" content="Java 复习 面经总结"><meta property="og:url" content="http://example.com/2020/09/06/java-review/"><meta property="og:site_name" content="housirvip"><meta property="og:description" content="housirvip&amp;#39;s personal blog"><meta property="og:locale" content="en_US"><meta property="og:image" content="https://housirvip-blog.oss-cn-hangzhou.aliyuncs.com/static/20200906202729.png"><meta property="og:image" content="https://housirvip-blog.oss-cn-hangzhou.aliyuncs.com/static/20200906213800.png"><meta property="og:image" content="https://housirvip-blog.oss-cn-hangzhou.aliyuncs.com/static/20200906205056.png"><meta property="og:image" content="https://housirvip-blog.oss-cn-hangzhou.aliyuncs.com/static/20200906205200.png"><meta property="og:image" content="https://housirvip-blog.oss-cn-hangzhou.aliyuncs.com/static/20200906213837.png"><meta property="og:image" content="https://housirvip-blog.oss-cn-hangzhou.aliyuncs.com/static/20200906210809.png"><meta property="og:image" content="https://housirvip-blog.oss-cn-hangzhou.aliyuncs.com/static/20200906212112.png"><meta property="og:image" content="https://housirvip-blog.oss-cn-hangzhou.aliyuncs.com/static/20200906212122.png"><meta property="og:image" content="https://housirvip-blog.oss-cn-hangzhou.aliyuncs.com/static/20200914173634.png"><meta property="og:image" content="https://housirvip-blog.oss-cn-hangzhou.aliyuncs.com/static/20200914174129.png"><meta property="og:image" content="https://housirvip-blog.oss-cn-hangzhou.aliyuncs.com/static/20200914174915.png"><meta property="og:image" content="https://housirvip-blog.oss-cn-hangzhou.aliyuncs.com/static/20200914175048.png"><meta property="og:image" content="https://housirvip-blog.oss-cn-hangzhou.aliyuncs.com/static/20200914180411.png"><meta property="article:published_time" content="2020-09-06T00:39:51.000Z"><meta property="article:modified_time" content="2023-01-01T12:38:18.053Z"><meta property="article:author" content="housirvip"><meta property="article:tag" content="Java"><meta property="article:tag" content="面经"><meta property="twitter:card" content="summary"><meta property="twitter:image:src" content="https://housirvip-blog.oss-cn-hangzhou.aliyuncs.com/static/20200906202729.png"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"http://example.com/2020/09/06/java-review/"},"headline":"Java 复习 面经总结","image":["https://housirvip-blog.oss-cn-hangzhou.aliyuncs.com/static/20200906202729.png","https://housirvip-blog.oss-cn-hangzhou.aliyuncs.com/static/20200906213800.png","https://housirvip-blog.oss-cn-hangzhou.aliyuncs.com/static/20200906205056.png","https://housirvip-blog.oss-cn-hangzhou.aliyuncs.com/static/20200906205200.png","https://housirvip-blog.oss-cn-hangzhou.aliyuncs.com/static/20200906213837.png","https://housirvip-blog.oss-cn-hangzhou.aliyuncs.com/static/20200906210809.png","https://housirvip-blog.oss-cn-hangzhou.aliyuncs.com/static/20200906212112.png","https://housirvip-blog.oss-cn-hangzhou.aliyuncs.com/static/20200906212122.png","https://housirvip-blog.oss-cn-hangzhou.aliyuncs.com/static/20200914173634.png","https://housirvip-blog.oss-cn-hangzhou.aliyuncs.com/static/20200914174129.png","https://housirvip-blog.oss-cn-hangzhou.aliyuncs.com/static/20200914174915.png","https://housirvip-blog.oss-cn-hangzhou.aliyuncs.com/static/20200914175048.png","https://housirvip-blog.oss-cn-hangzhou.aliyuncs.com/static/20200914180411.png"],"datePublished":"2020-09-06T00:39:51.000Z","dateModified":"2023-01-01T12:38:18.053Z","author":{"@type":"Person","name":"John Doe"},"publisher":{"@type":"Organization","name":"Hexo","logo":{"@type":"ImageObject","url":"https://housirvip-blog.oss-cn-hangzhou.aliyuncs.com/logo/housirvip%400.25x.jpg"}},"description":"记录下自己在面试期间常见的java基础问题"}</script><link rel="canonical" href="http://example.com/2020/09/06/java-review/"><link rel="icon" href="https://housirvip-blog.oss-cn-hangzhou.aliyuncs.com/logo/housirvip%400.25x.jpg"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.0.0/css/all.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-light.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link rel="stylesheet" href="/css/default.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><!--!--><!--!--><script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" defer></script><!--!--><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/css/justifiedGallery.min.css"><!--!--><!--!--><style>.pace{-webkit-pointer-events:none;pointer-events:none;-webkit-user-select:none;-moz-user-select:none;user-select:none}.pace-inactive{display:none}.pace .pace-progress{background:#3273dc;position:fixed;z-index:2000;top:0;right:100%;width:100%;height:2px}</style><script src="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/pace.min.js"></script><!--!--><!--!--><!-- hexo injector head_end start --><script>
+  (function () {
+      function switchTab() {
+          if (!location.hash) {
+            return;
+          }
+
+          const id = '#' + CSS.escape(location.hash.substring(1));
+          const $tabMenu = document.querySelector(`.tabs a[href="${id}"]`);
+          if (!$tabMenu) {
+            return;
+          }
+
+          const $tabMenuContainer = $tabMenu.parentElement.parentElement;
+          Array.from($tabMenuContainer.children).forEach($menu => $menu.classList.remove('is-active'));
+          Array.from($tabMenuContainer.querySelectorAll('a'))
+              .map($menu => document.getElementById($menu.getAttribute("href").substring(1)))
+              .forEach($content => $content.classList.add('is-hidden'));
+
+          if ($tabMenu) {
+              $tabMenu.parentElement.classList.add('is-active');
+          }
+          const $activeTab = document.querySelector(id);
+          if ($activeTab) {
+              $activeTab.classList.remove('is-hidden');
+          }
+      }
+      switchTab();
+      window.addEventListener('hashchange', switchTab, false);
+  })();
+  </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"></head><body class="is-2-column"><nav class="navbar navbar-main"><div class="container navbar-container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="https://housirvip-blog.oss-cn-hangzhou.aliyuncs.com/logo/housirvip%400.25x.jpg" alt="Hexo" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">Home</a><a class="navbar-item" href="/archives">Archives</a><a class="navbar-item" href="/categories">Categories</a><a class="navbar-item" href="/tags">Tags</a><a class="navbar-item" href="/about">About</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a><a class="navbar-item search" title="Search" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-8-widescreen"><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item">Posted&nbsp;<time dateTime="2020-09-06T00:39:51.000Z" title="9/6/2020, 8:39:51 AM">2020-09-06</time></span><span class="level-item">Updated&nbsp;<time dateTime="2023-01-01T12:38:18.053Z" title="1/1/2023, 8:38:18 PM">2023-01-01</time></span><span class="level-item">an hour read (About 7425 words)</span><span class="level-item" id="busuanzi_container_page_pv"><span id="busuanzi_value_page_pv">0</span>&nbsp;visits</span></div></div><h1 class="title is-3 is-size-4-mobile">Java 复习 面经总结</h1><div class="content"><h2 id="Java相关"><a href="#Java相关" class="headerlink" title="Java相关"></a>Java相关</h2><h3 id="8-种基本类型"><a href="#8-种基本类型" class="headerlink" title="8 种基本类型"></a>8 种基本类型</h3><p><img src="https://housirvip-blog.oss-cn-hangzhou.aliyuncs.com/static/20200906202729.png"></p>
+<h3 id="String"><a href="#String" class="headerlink" title="String"></a>String</h3><blockquote>
+<p><a target="_blank" rel="noopener" href="http://www.programcreek.com/2009/02/diagram-to-show-java-strings-immutability/">String是不可变对象</a>, 意思是一旦创建,那么整个对象就不可改变. 即使新手觉得String引用变了,实际上只是(指针)引用指向了另一个(新的)对象，而程序员可以明确地对字符数组进行修改,因此敏感信息(如密码)不容易在其他地方暴露(只要你用完后对char[]置0)。</p>
+<p>Java 的 8 种基本数据类型中不包括 String，基本数据类型中用来描述文本数据的是 char</p>
+</blockquote>
+<h3 id="x3D-x3D-与-equals"><a href="#x3D-x3D-与-equals" class="headerlink" title="&#x3D;&#x3D; 与 equals"></a>&#x3D;&#x3D; 与 equals</h3><blockquote>
+<p>简单来说, <code>==</code>判断两个引用的是不是同一个内存地址(同一个物理对象)。而 <code>equals()</code> 是可以重写的一个方法，默认直接 <code>return a==b</code>;</p>
+<p>String 的 equals 先判断内存地址，再比较值相等。</p>
+</blockquote>
+<h3 id="hashCode-与-equals"><a href="#hashCode-与-equals" class="headerlink" title="hashCode 与 equals"></a>hashCode 与 equals</h3><blockquote>
+<p><strong>hashCode()与equals()的相关规定</strong></p>
+<p>如果两个对象相等，则hashcode一定也是相同的</p>
+<p>两个对象相等，对两个对象分别调用equals方法都返回true</p>
+<p>两个对象有相同的hashcode值，它们也不一定是相等的</p>
+<p><strong>因此，equals 方法被覆盖过，则 hashCode 方法也必须被覆盖</strong></p>
+<p>hashCode() 的默认行为是对堆上的对象产生独特值。如果没有重写 hashCode()，则该 class 的两个对象无论如何都不会相等（即使这两个对象指向相同的数据）</p>
+</blockquote>
+<h3 id="访问修饰符"><a href="#访问修饰符" class="headerlink" title="访问修饰符"></a>访问修饰符</h3><blockquote>
+<p>private : 在同一类内可见。使用对象：变量、方法。 注意：不能修饰类（外部类）</p>
+<p>default (即缺省，什么也不写，不使用任何关键字）: 在同一包内可见，不使用任何修饰符。使用对象：类、接口、变量、方法。</p>
+<p>protected : 对同一包内的类和所有子类可见。使用对象：变量、方法。 注意：不能修饰类（外部类）。</p>
+<p>public : 对所有类可见。使用对象：类、接口、变量、方法</p>
+</blockquote>
+<h3 id="重载、重写"><a href="#重载、重写" class="headerlink" title="重载、重写"></a>重载、重写</h3><blockquote>
+<p>构造器不能被继承，因此不能被重写，但可以被重载。</p>
+<p>方法的重载和重写都是实现多态的方式，区别在于前者实现的是编译时的多态性，而后者实现的是运行时的多态性。重载：发生在同一个类中，方法名相同参数列表不同（参数类型不同、个数不同、顺序不同），与方法返回值和访问修饰符无关，即重载的方法不能根据返回类型进行区分</p>
+<p>重写：发生在父子类中，方法名、参数列表必须相同，返回值小于等于父类，抛出的异常小于等于父类，访问修饰符大于等于父类（里氏代换原则）；如果父类方法访问修饰符为private则子类中就不是重写。</p>
+</blockquote>
+<h3 id="栈溢出"><a href="#栈溢出" class="headerlink" title="栈溢出"></a>栈溢出</h3><blockquote>
+<ol>
+<li>栈是线程私有的，栈的生命周期和线程一样，每个方法在执行的时候就会创建一个栈帧，它包含局部变量表、操作数栈、动态链接、方法出口等信息，局部变量表又包括基本数据类型和对象的引用；</li>
+<li>当线程请求的栈深度超过了虚拟机允许的最大深度时，会抛出StackOverFlowError异常，方法递归调用肯可能会出现该问题；</li>
+<li>调整参数-xss去调整jvm栈的大小</li>
+</ol>
+</blockquote>
+<h3 id="OOM"><a href="#OOM" class="headerlink" title="OOM"></a>OOM</h3><h4 id="原因"><a href="#原因" class="headerlink" title="原因"></a>原因</h4><blockquote>
+<ul>
+<li>无法在 Java 堆中分配对象</li>
+<li>应用程序保存了无法被GC回收的对象</li>
+<li>应用程序过度使用 finalizer</li>
+</ul>
+</blockquote>
+<h4 id="常见类型"><a href="#常见类型" class="headerlink" title="常见类型"></a>常见类型</h4><h5 id="Java-Heap-溢出"><a href="#Java-Heap-溢出" class="headerlink" title="Java Heap 溢出"></a>Java Heap 溢出</h5><blockquote>
+<p>堆 存放实例对象和数组，线程共享。</p>
+<p>一般的异常信息：java.lang.OutOfMemoryError:Java heap spacess</p>
+<p>java堆用于存储对象实例，我们只要不断的创建对象，并且保证GC Roots到对象之间有可达路径来避免垃圾回收机制清除这些对象，就会在对象数量达到最大堆容量限制后产生内存溢出异常。</p>
+<p>出现这种异常，一般手段是先通过内存映像分析工具(如Eclipse Memory Analyzer)对dump出来的堆转存快照进行分析，重点是确认内存中的对象是否是必要的，先分清是因为内存泄漏(Memory Leak)还是内存溢出(Memory Overflow)。</p>
+<p>如果是内存泄漏，可进一步通过工具查看泄漏对象到GC Roots的引用链。于是就能找到泄漏对象时通过怎样的路径与GC Roots相关联并导致垃圾收集器无法自动回收。</p>
+<p>如果不存在泄漏，那就应该检查虚拟机的参数(-Xmx与-Xms)的设置是否适当。</p>
+</blockquote>
+<h5 id="虚拟机栈和本地方法栈溢出"><a href="#虚拟机栈和本地方法栈溢出" class="headerlink" title="虚拟机栈和本地方法栈溢出"></a>虚拟机栈和本地方法栈溢出</h5><blockquote>
+<p>虚拟机栈是jvm执行java代码所使用的栈。</p>
+<p>本地方法栈是jvm调用操作系统方法所使用的栈。</p>
+<p>本地方法栈类似虚拟机栈，但是只为Native方法服务。</p>
+<p>如果线程请求的栈深度大于虚拟机所允许的最大深度，将抛出StackOverflowError异常。</p>
+<p>如果虚拟机在扩展栈时无法申请到足够的内存空间(不断创建线程)，则抛出OutOfMemoryError异常</p>
+<p>这里需要注意当栈的大小越大可分配的线程数就越少。</p>
+</blockquote>
+<h5 id="运行时常量池溢出"><a href="#运行时常量池溢出" class="headerlink" title="运行时常量池溢出"></a>运行时常量池溢出</h5><blockquote>
+<p>方法区一部分。存放编译期生成的各种字面量和符号引用。</p>
+<p>异常信息：java.lang.OutOfMemoryError:PermGen space</p>
+<p>如果要向运行时常量池中添加内容，最简单的做法就是使用String.intern()这个Native方法。该方法的作用是：如果池中已经包含一个等于此String的字符串，则返回代表池中这个字符串的String对象；否则，将此String对象包含的字符串添加到常量池中，并且返回此String对象的引用。由于常量池分配在方法区内，我们可以通过-XX:PermSize和-XX:MaxPermSize限制方法区的大小，从而间接限制其中常量池的容量。</p>
+</blockquote>
+<h5 id="方法区溢出"><a href="#方法区溢出" class="headerlink" title="方法区溢出"></a>方法区溢出</h5><blockquote>
+<p>用于存储已被JVM加载的类信息，类名、访问修饰符、常量池、字段描述、方法描述等。，即时编译器编译后的代码，线程共享。</p>
+<p>异常信息：java.lang.OutOfMemoryError:PermGen space</p>
+<p>方法区溢出也是一种常见的内存溢出异常，一个类如果要被垃圾收集器回收，判定条件是很苛刻的。在经常动态生成大量Class的应用中，要特别注意这点。</p>
+</blockquote>
+<h4 id="排查方法"><a href="#排查方法" class="headerlink" title="排查方法"></a>排查方法</h4><blockquote>
+<ol>
+<li>查找关键报错信息，如<code>java.lang.OutOfMemoryError: Java heap space</code></li>
+<li>使用内存映像分析工具（如Eclipsc Memory Analyzer或者Jprofiler）对Dump出来的堆储存快照进行分析，分析清楚是内存泄漏还是内存溢出。</li>
+<li>如果是内存泄漏，可进一步通过工具查看泄漏对象到GC Roots的引用链，修复应用程序中的内存泄漏。</li>
+<li>如果不存在泄漏，先检查代码是否有死循环，递归等，再考虑用 -Xmx 增加堆大小。</li>
+</ol>
+</blockquote>
+<h3 id="区别于面向过程"><a href="#区别于面向过程" class="headerlink" title="区别于面向过程"></a>区别于面向过程</h3><blockquote>
+<p>就像蛋炒饭（面向对象）和盖浇饭（面向过程）的区别</p>
+</blockquote>
+<h3 id="JVM-内存空间"><a href="#JVM-内存空间" class="headerlink" title="JVM 内存空间"></a>JVM 内存空间</h3><blockquote>
+<p>线程独享：JVM栈，程序计数器，本地方法栈</p>
+<p>线程共享：堆，方法区</p>
+</blockquote>
+<p><img src="https://housirvip-blog.oss-cn-hangzhou.aliyuncs.com/static/20200906213800.png"></p>
+<p>程序计数器：线程私有的，是一块很小的内存空间，作为当前线程的行号指示器，用于记录当前虚拟机正在执行的线程指令地址；</p>
+<p>虚拟机栈：线程私有的，每个方法执行的时候都会创建一个栈帧，用于存储局部变量表、操作数、动态链接和方法返回等信息，当线程请求的栈深度超过了虚拟机允许的最大深度时，就会抛出StackOverFlowError；</p>
+<p>本地方法栈：线程私有的，保存的是native方法的信息，当一个jvm创建的线程调用native方法后，jvm不会在虚拟机栈中为该线程创建栈帧，而是简单的动态链接并直接调用该方法；</p>
+<p>堆：java堆是所有线程共享的一块内存，几乎所有对象的实例和数组都要在堆上分配内存，因此该区域经常发生垃圾回收的操作；</p>
+<p>方法区：存放已被加载的类信息、常量、静态变量、即时编译器编译后的代码数据。即永久代，在jdk1.8中不存在方法区了，被元数据区替代了，原方法区被分成两部分；1：加载的类信息，2：运行时常量池；加载的类信息被保存在元数据区中，运行时常量池保存在堆中；</p>
+<h3 id="JVM-堆内存空间"><a href="#JVM-堆内存空间" class="headerlink" title="JVM 堆内存空间"></a>JVM 堆内存空间</h3><p><img src="https://housirvip-blog.oss-cn-hangzhou.aliyuncs.com/static/20200906205056.png"></p>
+<blockquote>
+<p>新生代（eden，survivor），老年代，永久代（元空间）</p>
+<ul>
+<li>新生带（年轻代）：新对象和没达到一定年龄的对象都在年轻代 </li>
+<li>老年代：被长时间使用的对象，老年代的内存空间应该要比年轻代更大 </li>
+<li>元空间（JDK1.8之前叫永久代）：像一些方法中的操作临时对象等，JDK1.8之前是占用JVM内存，JDK1.8之后直接使用物理内存</li>
+</ul>
+</blockquote>
+<h3 id="堆内存调参"><a href="#堆内存调参" class="headerlink" title="堆内存调参"></a>堆内存调参</h3><p><img src="https://housirvip-blog.oss-cn-hangzhou.aliyuncs.com/static/20200906205200.png"></p>
+<blockquote>
+<p>-Xms：设置初始分配大小，默认为物理内存的1&#x2F;64 </p>
+<p>-Xmx：最大分配内存，默认为物理内存的1&#x2F;4</p>
+<p>-XX:+PrintGCDetails：输出详细的GC处理日志 </p>
+<p>-XX:+PrintGCTimeStamps：输出GC的时间戳信息 </p>
+<p>-XX:+PrintGCDateStamps：输出GC的时间戳信息（以日期的形式）</p>
+<p>-XX:+PrintHeapAtGC：在GC进行处理的前后打印堆内存信息 </p>
+<p>-Xloggc:(SavePath)：设置日志信息保存文件 </p>
+<p>在堆内存的调整策略中，基本上只要调整两个参数：-Xms和-Xmx </p>
+</blockquote>
+<h3 id="JVM-垃圾回收"><a href="#JVM-垃圾回收" class="headerlink" title="JVM 垃圾回收"></a>JVM 垃圾回收</h3><h4 id="垃圾回收算法"><a href="#垃圾回收算法" class="headerlink" title="垃圾回收算法"></a>垃圾回收算法</h4><blockquote>
+<ol>
+<li>标记-清除算法</li>
+<li>标记-整理算法</li>
+<li>复制算法（新生代）</li>
+</ol>
+</blockquote>
+<h5 id="标记-清除"><a href="#标记-清除" class="headerlink" title="标记-清除"></a>标记-清除</h5><blockquote>
+<p>第一步：利用可达性去遍历内存，把存活对象和垃圾对象进行标记；</p>
+<p>第二步：在遍历一遍，将所有标记的对象回收掉；</p>
+<p>特点：效率不行，标记和清除的效率都不高；标记和清除后会产生大量的不连续的空间分片，可能会导致之后程序运行的时候需分配大对象而找不到连续分片而不得不触发一次GC；</p>
+</blockquote>
+<h5 id="标记-整理"><a href="#标记-整理" class="headerlink" title="标记-整理"></a>标记-整理</h5><blockquote>
+<p>第一步：利用可达性去遍历内存，把存活对象和垃圾对象进行标记；</p>
+<p>第二步：将所有的存活的对象向一段移动，将端边界以外的对象都回收掉；</p>
+<p>特点：适用于存活对象多，垃圾少的情况；需要整理的过程，无空间碎片产生；</p>
+</blockquote>
+<h5 id="复制算法"><a href="#复制算法" class="headerlink" title="复制算法"></a>复制算法</h5><blockquote>
+<p>将内存按照容量大小分为大小相等的两块，每次只使用一块，当一块使用完了，就将还存活的对象移到另一块上，然后在把使用过的内存空间移除；</p>
+<p>特点：不会产生空间碎片；内存使用率极低；</p>
+</blockquote>
+<h5 id="分代收集"><a href="#分代收集" class="headerlink" title="分代收集"></a>分代收集</h5><blockquote>
+<p>根据内存对象的存活周期不同，将内存划分成几块，java虚拟机一般将内存分成新生代和老生代，在新生代中，有大量对象死去和少量对象存活，所以采用复制算法，只需要付出少量存活对象的复制成本就可以完成收集；</p>
+<p>老年代中因为对象的存活率极高，没有额外的空间对他进行分配担保，所以采用标记清理或者标记整理算法进行回收；</p>
+</blockquote>
+<h4 id="GC-相关"><a href="#GC-相关" class="headerlink" title="GC 相关"></a>GC 相关</h4><p>java堆 &#x3D; 新生代+老年代；</p>
+<p>新生代 &#x3D; Eden + Suivivor（S0 + S1），默认分配比例是 8:1:1</p>
+<p>当Eden区空间满了的时候，就会触发一次Minor GC，以收集新生代的垃圾，存活下来的对象会被分配到Survivor区</p>
+<p>大对象（需要大量连续内存空间的对象）会直接被分配到老年代</p>
+<p>如果对象在Eden中出生，并且在经历过一次Minor GC之后仍然存活，被分配到存活区的话，年龄+1，此后每经历过一次</p>
+<p>Minor GC并且存活下来，年龄就+1，当年龄达到15的时候，会被晋升到老年代</p>
+<p>当老年代满了，而无法容纳更多对象的话，会触发一次full gc；full gc存储的是整个内存堆（包括年轻代和老年代）</p>
+<p>Major GC是发生在老年代的GC，清理老年区，经常会伴随至少一次minor gc</p>
+<h4 id="cms-和-g1"><a href="#cms-和-g1" class="headerlink" title="cms 和 g1"></a>cms 和 g1</h4><h5 id="cms"><a href="#cms" class="headerlink" title="cms"></a>cms</h5><blockquote>
+<p>CMS（Concurrent Mark Sweep）收集器是一种以获取最短回收停顿时间为目标的收集器。</p>
+<p>CMS收集器仅作用于<strong>老年代</strong>的收集，是基于<code>标记-清除算法</code>，2次 stop the world</p>
+</blockquote>
+<ul>
+<li>初始标记（CMS initial mark）(stop the world)</li>
+<li>并发标记（CMS concurrent mark）</li>
+<li>重新标记（CMS remark）(stop the world)</li>
+<li>并发清除（CMS concurrent sweep）</li>
+</ul>
+<p>其中，初始标记、重新标记这两个步骤仍然需要Stop-the-world。初始标记仅仅只是标记一下GC Roots能直接关联到的对象，速度很快，并发标记阶段就是进行GC Roots Tracing的过程，而重新标记阶段则是为了修正并发标记期间因用户程序继续运作而导致标记产生变动的那一部分对象的标记记录，这个阶段的停顿时间一般会比初始阶段稍长一些，但远比并发标记的时间短。</p>
+<h5 id="g1"><a href="#g1" class="headerlink" title="g1"></a>g1</h5><blockquote>
+<p>G1重新定义了堆空间，打破了原有的分代模型，将堆划分为一个个区域。这么做的目的是在进行收集时不必在全堆范围内进行，这是它最显著的特点。区域划分的好处就是带来了停顿时间可预测的收集模型</p>
+</blockquote>
+<p><strong>初始标记（Initial Marking）</strong>：仅仅只是标记一下GC Roots能直接关联到的对象，并且修改TAMS（Next Top at Mark Start）的值，让下一阶段用户程序并发运行时，能在正确可用的Region中创建新对象，<strong>这阶段需要<code>停顿线程</code>，但耗时很短</strong>。</p>
+<p><strong>并发标记（Concurrent Marking）</strong>：是从GC Roots开始堆中对象进行可达性分析，找出存活的对象，<strong>这阶段耗时较长</strong>，但可与用户程序并发执行。</p>
+<p><strong>最终标记（Final Marking）</strong>：是为了修正并发标记期间因用户程序继续运作而导致标记产生变动的那一部分标记记录，虚拟机将这段时间对象变化记录在线程Remembered Set Logs里面，最终标记阶段需要把Remembered Set Logs的数据合并到Remembered Set中，<strong>这阶段需要<code>停顿线程</code>，但是可并行执行</strong>。</p>
+<p><strong>筛选回收（Live Data Counting and Evacuation）</strong>：首先对各个Region的回收价值和成本进行排序，根据用户所期望的GC停顿时间来制定回收计划。这个阶段也可以做到与用户程序一起并发执行，但是因为只回收一部分Region，时间是用户可控制的，而且停顿用户线程将大幅提高收集效率。</p>
+<p><img src="https://housirvip-blog.oss-cn-hangzhou.aliyuncs.com/static/20200906213837.png"></p>
+<h3 id="JMM-内存模型"><a href="#JMM-内存模型" class="headerlink" title="JMM 内存模型"></a>JMM 内存模型</h3><h4 id="volatile-关键字"><a href="#volatile-关键字" class="headerlink" title="volatile 关键字"></a>volatile 关键字</h4><h5 id="指令重排"><a href="#指令重排" class="headerlink" title="指令重排"></a>指令重排</h5><blockquote>
+<p>为了遵守as-if-serial语义, 编译器和处理器不会对存在数据依赖关系的操作做重排序, 因为这种重排序会改变执行结果. 但是,如果操作之间不存在数据依赖关系, 这些操作就可能被编译器和处理器重排序.　　</p>
+</blockquote>
+<ol>
+<li>编译器优化的重排序: 编译器在不改变单线程程序语义的前提下, 可以重新安排语句的执行顺序.</li>
+<li>指令级并行的重排序: 现代处理器采用了指令级并行技术(Instruction-Level Parallelism, ILP)来将多条指令重叠执行. 如果不存在数据依赖性, 处理器可以改变语句对应机器指令的执行顺序.</li>
+<li>内存系统的重排序: 由于处理器使用缓存和读&#x2F;写缓冲区, 这使得加载和存储操作看上去可能是在乱序执行.</li>
+</ol>
+<h5 id="内存屏障"><a href="#内存屏障" class="headerlink" title="内存屏障"></a>内存屏障</h5><p><img src="https://housirvip-blog.oss-cn-hangzhou.aliyuncs.com/static/20200906210809.png"></p>
+<h5 id="volatile写"><a href="#volatile写" class="headerlink" title="volatile写"></a>volatile写</h5><p>对于volatile变量的写，按照JMM的标准，需要插入两条内存屏障：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">StoreStore；</span><br><span class="line">volatile_write_code;</span><br><span class="line">StoreLoad;</span><br></pre></td></tr></table></figure>
+
+<p>解释下，在写volatile之前插入了storestore指令，意味着volatile之前的普通写操作需要先于volatile操作执行，也就是不允许之前的普通写操作，与volatile写操作重排序。符合JMM对volatile关键字的规则。</p>
+<p>在写volatile之后，需要加入StoreLoad指令，也就是先把volatile变量的最新值刷新到主内存（store），然后再执行后续的操作。同样不允许volatile写操作与后续的读、写操作重排序。</p>
+<h5 id="volatile读"><a href="#volatile读" class="headerlink" title="volatile读"></a>volatile读</h5><p>对于volatile的读，按照JMM的标准，同样需要查询两条内存屏障，但是不同于上述的写操作，这块都是插入在volatile_code之后的。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">volatile_read_code;</span><br><span class="line">LoadLoad;</span><br><span class="line">LoadStore;</span><br></pre></td></tr></table></figure>
+
+<p>这里的LoadLoad用于禁止下面的普通读操作与volatile读重排序，LoadStore则禁止普通写操作与volatile读操作重排序。</p>
+<h3 id="Java-跨平台机制"><a href="#Java-跨平台机制" class="headerlink" title="Java 跨平台机制"></a>Java 跨平台机制</h3><blockquote>
+<p>Java源代码经过虚拟机编译器编译后产生的文件（即扩展为.class的文件），它不面向任何特定的处理器，只面向虚拟机。</p>
+</blockquote>
+<h4 id="好处"><a href="#好处" class="headerlink" title="好处"></a>好处</h4><p>Java语言通过字节码的方式，在一定程度上解决了传统解释型语言执行效率低的问题，同时又保留了解释型语言可移植的特点。所以Java程序运行时比较高效，而且，由于字节码并不专对一种特定的机器，因此，Java程序无须重新编译便可在多种不同的计算机上运行。</p>
+<h4 id="编译型-or-解释型"><a href="#编译型-or-解释型" class="headerlink" title="编译型 or 解释型"></a>编译型 or 解释型</h4><p>暂无定论</p>
+<p><code>Java源代码----&gt;编译器----&gt;jvm可执行的Java字节码(即虚拟指令)----&gt;jvm----&gt;jvm中解释器-----&gt;机器可执行的二进制机器码----&gt;程序运行</code></p>
+<h4 id="类的加载"><a href="#类的加载" class="headerlink" title="类的加载"></a>类的加载</h4><h4 id="机制"><a href="#机制" class="headerlink" title="机制"></a>机制</h4><blockquote>
+<p>虚拟机把描述类的数据加载到内存里面，并对数据进行校验、解析和初始化，最终变成可以被虚拟机直接使用的class对象；</p>
+</blockquote>
+<p><img src="https://housirvip-blog.oss-cn-hangzhou.aliyuncs.com/static/20200906212112.png"></p>
+<p><img src="https://housirvip-blog.oss-cn-hangzhou.aliyuncs.com/static/20200906212122.png"></p>
+<blockquote>
+<ol>
+<li>装载：查找和导入Class文件</li>
+<li>链接：把类的二进制数据合并到JRE中 <ul>
+<li>校验：检查载入Class文件数据的正确性</li>
+<li>准备：给类的静态变量分配存储空间（赋0值）</li>
+<li>解析：将符号引用转成直接引用；</li>
+</ul>
+</li>
+<li>初始化：对类的静态变量，静态代码块执行初始化操作（赋初始值）</li>
+</ol>
+</blockquote>
+<h4 id="类加载器"><a href="#类加载器" class="headerlink" title="类加载器"></a>类加载器</h4><blockquote>
+<p>类加载器是指：通过一个类的全限定性类名获取该类的二进制字节流叫做类加载器</p>
+<p>启动类加载器：用来加载java核心类库，无法被java程序直接引用；</p>
+<p>扩展类加载器：用来加载java的扩展库，java的虚拟机实现会提供一个扩展库目录，该类加载器在扩展库目录里面查找并加载java类；</p>
+<p>系统类加载器：它根据java的类路径来加载类，一般来说，java应用的类都是通过它来加载的；</p>
+<p>自定义类加载器：由java语言实现，继承自ClassLoader；</p>
+</blockquote>
+<h4 id="双亲委派模型"><a href="#双亲委派模型" class="headerlink" title="双亲委派模型"></a>双亲委派模型</h4><blockquote>
+<p>当一个类加载器收到一个类加载的请求，他首先不会尝试自己去加载，而是将这个请求委派给父类加载器去加载，只有父类加载器在自己的搜索范围类查找不到给类时，子加载器才会尝试自己去加载该类；</p>
+</blockquote>
+<h5 id="为什么"><a href="#为什么" class="headerlink" title="为什么"></a>为什么</h5><p>为了防止内存中出现多个相同的字节码；</p>
+<p>因为如果没有双亲委派的话，用户就可以自己定义一个java.lang.String类，那么就无法保证类的唯一性；</p>
+<h5 id="怎么打破"><a href="#怎么打破" class="headerlink" title="怎么打破"></a>怎么打破</h5><p>自定义类加载器，继承ClassLoader类，重写loadClass方法和findClass方法；</p>
+<h3 id="Java-反射"><a href="#Java-反射" class="headerlink" title="Java 反射"></a>Java 反射</h3><blockquote>
+<p>Class getClass() getMethodName()…</p>
+<p>对比直接调用速度变慢</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//正常的调用</span></span><br><span class="line"><span class="type">Apple</span> <span class="variable">apple</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Apple</span>();</span><br><span class="line">apple.setPrice(<span class="number">5</span>);</span><br><span class="line">System.out.println(<span class="string">&quot;Apple Price:&quot;</span> + apple.getPrice());</span><br><span class="line"><span class="comment">//使用反射调用</span></span><br><span class="line"><span class="type">Class</span> <span class="variable">clz</span> <span class="operator">=</span> Class.forName(<span class="string">&quot;com.chenshuyi.api.Apple&quot;</span>);</span><br><span class="line"><span class="type">Method</span> <span class="variable">setPriceMethod</span> <span class="operator">=</span> clz.getMethod(<span class="string">&quot;setPrice&quot;</span>, <span class="type">int</span>.class);</span><br><span class="line"><span class="type">Constructor</span> <span class="variable">appleConstructor</span> <span class="operator">=</span> clz.getConstructor();</span><br><span class="line"><span class="type">Object</span> <span class="variable">appleObj</span> <span class="operator">=</span> appleConstructor.newInstance();</span><br><span class="line">setPriceMethod.invoke(appleObj, <span class="number">14</span>);</span><br><span class="line"><span class="type">Method</span> <span class="variable">getPriceMethod</span> <span class="operator">=</span> clz.getMethod(<span class="string">&quot;getPrice&quot;</span>);</span><br><span class="line">System.out.println(<span class="string">&quot;Apple Price:&quot;</span> + getPriceMethod.invoke(appleObj));</span><br></pre></td></tr></table></figure>
+
+<h4 id="原因-1"><a href="#原因-1" class="headerlink" title="原因"></a>原因</h4><ol>
+<li>反射调用会多出来参数校验的过程</li>
+<li>无法被JIT优化，JIT可以帮助java的字节码到原生的机器码层面上，这样的话减少了java字节码的再解析操作，而反射方法是无法被jit优化的</li>
+<li>调用过程中的封装与解封操作，invoke 方法的参数是 Object[] 类型，在调用的时候需要进行一次封装。产生了额外的开销</li>
+</ol>
+<h3 id="Java-动态代理"><a href="#Java-动态代理" class="headerlink" title="Java 动态代理"></a>Java 动态代理</h3><p><a href="/post/dynamic-proxy/">java动态代理详细用法</a></p>
+<blockquote>
+<p>通过使用代理，通常有两个优点</p>
+<p>优点一：可以隐藏委托类的实现;</p>
+<p>优点二：可以实现客户与委托类间的解耦，在不修改委托类代码的情况下能够做一些额外的处理。</p>
+</blockquote>
+<h3 id="HashMap"><a href="#HashMap" class="headerlink" title="HashMap"></a>HashMap</h3><p><a href="/post/hashmap/">查看详细解读</a></p>
+<h4 id="1-7-1-8区别"><a href="#1-7-1-8区别" class="headerlink" title="1.7 1.8区别"></a>1.7 1.8区别</h4><blockquote>
+<p>拉链法解决hash碰撞时</p>
+<p>超过8个链表转红黑树</p>
+<p>低于6个转为链表</p>
+</blockquote>
+<h4 id="cpu-占用-100"><a href="#cpu-占用-100" class="headerlink" title="cpu 占用 100%"></a>cpu 占用 100%</h4><blockquote>
+<p>在resize的过程中，需要将部分冲突的key迁移至新的桶中</p>
+<p>在此过程中，多线程操作可导致链表形成环</p>
+</blockquote>
+<h3 id="ConcurrentHashMap"><a href="#ConcurrentHashMap" class="headerlink" title="ConcurrentHashMap"></a>ConcurrentHashMap</h3><h4 id="1-7-1-8-区别"><a href="#1-7-1-8-区别" class="headerlink" title="1.7 1.8 区别"></a>1.7 1.8 区别</h4><blockquote>
+<p>1.7采用分段锁</p>
+<p>1.8采用synchronized + cas</p>
+<p>主要是因为sychronized在jvm上进行了优化，把起步重量级锁，改为从偏向锁开始起步，再到轻量级锁，直到最后才膨胀为重量级锁，极大优化了执行效率，减少了锁的开销</p>
+</blockquote>
+<h3 id="ArrayList"><a href="#ArrayList" class="headerlink" title="ArrayList"></a>ArrayList</h3><h4 id="扩容机制"><a href="#扩容机制" class="headerlink" title="扩容机制"></a>扩容机制</h4><blockquote>
+<p>初始大小为10，每次扩容增加自身大小的一半</p>
+<p>newCap&#x3D;oldCap+(oldCap&gt;&gt;1)</p>
+</blockquote>
+<h3 id="多线程"><a href="#多线程" class="headerlink" title="多线程"></a>多线程</h3><h4 id="Synchronized"><a href="#Synchronized" class="headerlink" title="Synchronized"></a>Synchronized</h4><ul>
+<li>同步普通方法，锁的是当前对象。</li>
+<li>同步静态方法，锁的是当前 <code>Class</code> 对象。</li>
+<li>同步块，锁的是 <code>()</code> 中的对象。</li>
+</ul>
+<p><img src="https://housirvip-blog.oss-cn-hangzhou.aliyuncs.com/static/20200914173634.png"></p>
+<blockquote>
+<p><code>synchronized</code> 很多都称之为重量锁，<code>JDK1.6</code> 中对 <code>synchronized</code> 进行了各种优化，为了能减少获取和释放锁带来的消耗引入了<code>偏向锁</code>和<code>轻量锁</code>。</p>
+</blockquote>
+<p><img src="https://housirvip-blog.oss-cn-hangzhou.aliyuncs.com/static/20200914174129.png"></p>
+<h4 id="CAS（乐观）"><a href="#CAS（乐观）" class="headerlink" title="CAS（乐观）"></a>CAS（乐观）</h4><blockquote>
+<p>通过原子性来保证数据的同步，比如说数据库的乐观锁，通过版本控制来实现等，所以CAS不会保证线程同步。乐观的认为在数据更新期间没有其他线程影响</p>
+</blockquote>
+<ul>
+<li>优点<br> 非阻塞的轻量级的乐观锁，通过CPU指令实现，在资源竞争不激烈的情况下性能高，相比synchronized重量锁，synchronized会进行比较复杂的加锁，解锁和唤醒操作。</li>
+<li>缺点<ul>
+<li>ABA问题 线程C、D,线程D将A修改为B后又修改为A,此时C线程以为A没有改变过，java的原子类AtomicStampedReference，通过控制变量值的版本来保证CAS的正确性。</li>
+<li>自旋时间过长，消耗CPU资源， 如果资源竞争激烈，多线程自旋长时间消耗资源。</li>
+</ul>
+</li>
+</ul>
+<h4 id="线程池（4种类型，拒绝策略）"><a href="#线程池（4种类型，拒绝策略）" class="headerlink" title="线程池（4种类型，拒绝策略）"></a>线程池（4种类型，拒绝策略）</h4><ul>
+<li><code>Executors.newCachedThreadPool()</code>：无限线程池。</li>
+<li><code>Executors.newFixedThreadPool(nThreads)</code>：创建固定大小的线程池。</li>
+<li><code>Executors.newSingleThreadExecutor()</code>：创建单个线程的线程池。</li>
+<li><code>newScheduledThreadPool()</code> 创建一个定长线程池，支持定时及周期性任务执行。</li>
+</ul>
+<p>优点</p>
+<ol>
+<li>减少了创建和销毁线程的次数，每个工作线程都可以被重复利用，可执行多个任务。</li>
+<li>可以根据系统的承受能力，调整线程池中工作线线程的数目，防止因为消耗过多的内存，而把服务器累趴下(每个线程需要大约1MB内存，线程开的越多，消耗的内存也就越大，最后死机)。</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">ThreadPoolExecutor(<span class="type">int</span> corePoolSize, </span><br><span class="line">                   <span class="type">int</span> maximumPoolSize, </span><br><span class="line">                   <span class="type">long</span> keepAliveTime, </span><br><span class="line">                   TimeUnit unit, </span><br><span class="line">                   BlockingQueue&lt;Runnable&gt; workQueue,</span><br><span class="line">                   RejectedExecutionHandler handler)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>corePoolSize</code> 为线程池的基本大小。</li>
+<li><code>maximumPoolSize</code> 为线程池最大线程大小。</li>
+<li><code>keepAliveTime</code> 和 <code>unit</code> 则是线程空闲后的存活时间。</li>
+<li><code>workQueue</code> 用于存放任务的阻塞队列。</li>
+<li><code>handler</code> 当队列和最大线程池都满了之后的饱和策略。</li>
+</ul>
+<p><img src="https://housirvip-blog.oss-cn-hangzhou.aliyuncs.com/static/20200914174915.png"></p>
+<p>线程池的5种状态</p>
+<ol>
+<li><strong>RUNNING</strong> ：能接受新提交的任务，并且也能处理阻塞队列中的任务；</li>
+<li><strong>SHUTDOWN</strong>：关闭状态，不再接受新提交的任务，但却可以继续处理阻塞队列中已保存的任务。在线程池处于 RUNNING 状态时，调用 shutdown()方法会使线程池进入到该状态。（finalize() 方法在执行过程中也会调用shutdown()方法进入该状态）；</li>
+<li><strong>STOP</strong>：不能接受新任务，也不处理队列中的任务，会中断正在处理任务的线程。在线程池处于 RUNNING 或 SHUTDOWN 状态时，调用 shutdownNow() 方法会使线程池进入到该状态；</li>
+<li><strong>TIDYING</strong>：如果所有的任务都已终止了，workerCount (有效线程数) 为0，线程池进入该状态后会调用 terminated() 方法进入TERMINATED 状态。</li>
+<li><strong>TERMINATED</strong>：在terminated() 方法执行完后进入该状态，默认terminated()方法中什么也没有做。</li>
+</ol>
+<p><img src="https://housirvip-blog.oss-cn-hangzhou.aliyuncs.com/static/20200914175048.png"></p>
+<h4 id="ThreadLocal"><a href="#ThreadLocal" class="headerlink" title="ThreadLocal"></a>ThreadLocal</h4><blockquote>
+<p>每个线程中都有一个<code>ThreadLocalMap</code>数据结构，当执行set方法时，其值是保存在当前线程的<code>threadLocals</code>变量中，当执行set方法中，是从当前线程的<code>threadLocals</code>变量获取</p>
+</blockquote>
+<p><img src="https://housirvip-blog.oss-cn-hangzhou.aliyuncs.com/static/20200914180411.png"></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">static</span> <span class="keyword">class</span> <span class="title class_">Entry</span> <span class="keyword">extends</span> <span class="title class_">WeakReference</span>&lt;ThreadLocal&lt;?&gt;&gt; &#123;</span><br><span class="line">    <span class="comment">/** The value associated with this ThreadLocal. */</span></span><br><span class="line">    Object value;</span><br><span class="line"></span><br><span class="line">    Entry(ThreadLocal&lt;?&gt; k, Object v) &#123;</span><br><span class="line">        <span class="built_in">super</span>(k);</span><br><span class="line">        value = v;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>当使用ThreadLocal保存一个value时，会在ThreadLocalMap中的数组插入一个Entry对象，在ThreadLocalMap的实现中，key被保存到了WeakReference对象中。</p>
+<p>这就导致ThreadLocal在没有外部强引用时，发生GC时会被回收，如果创建ThreadLocal的线程一直持续运行，那么这个Entry对象中的value就有可能一直得不到回收，发生内存泄露。</p>
+<h3 id="StringBuilder-和-StringBuffer"><a href="#StringBuilder-和-StringBuffer" class="headerlink" title="StringBuilder 和 StringBuffer"></a>StringBuilder 和 StringBuffer</h3><blockquote>
+<p>StringBuffer线程安全，StringBuilder线程不安全</p>
+<p>StringBuilder的效率比StringBuffer高一些</p>
+</blockquote>
+<p>字符串连接操作中StringBuffer的效率要比String高:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">String</span> <span class="variable">str</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">String</span>(<span class="string">&quot;hello &quot;</span>);</span><br><span class="line">str += <span class="string">&quot;world&quot;</span>;</span><br></pre></td></tr></table></figure>
+
+<p>以上代码的处理步骤实际上是通过建立一个StringBuffer</p>
+<p>然后调用append(),最后再将StringBuffer toSting();</p>
+<p>这样的话String的连接操作就比StringBuffer多出了一些附加操作,当然效率上要打折扣.</p>
+<h3 id="SpringBoot"><a href="#SpringBoot" class="headerlink" title="SpringBoot"></a>SpringBoot</h3><h4 id="相关设计模式"><a href="#相关设计模式" class="headerlink" title="相关设计模式"></a>相关设计模式</h4><p>代理</p>
+<blockquote>
+<p>动态代理</p>
+<p>AOP</p>
+<p>JDK代理和Cglib代理</p>
+</blockquote>
+<p>观察者</p>
+<blockquote>
+<p>ApplicationEvent</p>
+<p>ApplicationListener</p>
+<p>ApplicationEventPublisher</p>
+</blockquote>
+<p>适配器</p>
+<blockquote>
+<p>DispatcherServlet</p>
+<p>Handler</p>
+<p>Controller</p>
+</blockquote>
+<p>单例</p>
+<blockquote>
+<p>Bean</p>
+<p>Component</p>
+</blockquote>
+<p>工厂</p>
+<blockquote>
+<p>BeanFactory</p>
+<p>DataSourceFactory</p>
+</blockquote>
+<p>模板</p>
+<blockquote>
+<p>JdbcTemplate</p>
+<p>HibernateTemplate</p>
+</blockquote>
+<p>装饰器</p>
+<blockquote>
+<p>InputStream</p>
+<p>Wrapper</p>
+</blockquote>
+<p>上下文</p>
+<blockquote>
+<p>ApplicationContext</p>
+</blockquote>
+<h4 id="区别Spring"><a href="#区别Spring" class="headerlink" title="区别Spring"></a>区别Spring</h4><blockquote>
+<p><code>Spring Boot</code>基本上是<code>Spring</code>框架的扩展，它消除了设置<code>Spring</code>应用程序所需的<code>XML配置</code>，为更快，更高效的开发生态系统铺平了道路。</p>
+</blockquote>
+<ol>
+<li>创建独立的<code>Spring</code>应用。</li>
+<li>嵌入式<code>Tomcat</code>、<code>Jetty</code>、 <code>Undertow</code>容器（无需部署war文件）。</li>
+<li>提供的<code>starters</code> 简化构建配置</li>
+<li>尽可能自动配置<code>spring</code>应用。</li>
+<li>提供生产指标,例如指标、健壮检查和外部化配置</li>
+<li>完全没有代码生成和<code>XML</code>配置要求</li>
+</ol>
+</div><div class="article-licensing box"><div class="licensing-title"><p>Java 复习 面经总结</p><p><a href="http://example.com/2020/09/06/java-review/">http://example.com/2020/09/06/java-review/</a></p></div><div class="licensing-meta level is-mobile"><div class="level-left"><div class="level-item is-narrow"><div><h6>Author</h6><p>John Doe</p></div></div><div class="level-item is-narrow"><div><h6>Posted on</h6><p>2020-09-06</p></div></div><div class="level-item is-narrow"><div><h6>Updated on</h6><p>2023-01-01</p></div></div><div class="level-item is-narrow"><div><h6>Licensed under</h6><p><a class="icons" rel="noopener" target="_blank" title="Creative Commons" href="https://creativecommons.org/"><i class="icon fab fa-creative-commons"></i></a><a class="icons" rel="noopener" target="_blank" title="Attribution" href="https://creativecommons.org/licenses/by/4.0/"><i class="icon fab fa-creative-commons-by"></i></a><a class="icons" rel="noopener" target="_blank" title="Noncommercial" href="https://creativecommons.org/licenses/by-nc/4.0/"><i class="icon fab fa-creative-commons-nc"></i></a></p></div></div></div></div></div><div class="article-tags is-size-7 mb-4"><span class="mr-2">#</span><a class="link-muted mr-2" rel="tag" href="/tags/Java/">Java</a><a class="link-muted mr-2" rel="tag" href="/tags/%E9%9D%A2%E7%BB%8F/">面经</a></div><!--!--></article></div><!--!--><nav class="post-navigation mt-4 level is-mobile"><div class="level-start"><a class="article-nav-prev level level-item link-muted" href="/2020/09/09/hashmap/"><i class="level-item fas fa-chevron-left"></i><span class="level-item">哈希表 Hashmap</span></a></div><div class="level-end"><a class="article-nav-next level level-item link-muted" href="/2020/09/02/dynamic-proxy/"><span class="level-item">动态代理 Dynamic Proxy</span><i class="level-item fas fa-chevron-right"></i></a></div></nav><div class="card"><div class="card-content"><h3 class="title is-5">Comments</h3><div id="comment-container"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.css"><script src="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.min.js"></script><script>var gitalk = new Gitalk({
+            id: "8815fb9c0eba76eac2f9135230661049",
+            repo: "housirvip.github.io",
+            owner: "housirvip",
+            clientID: "2030be9e8c1e85c8945b",
+            clientSecret: "ce8691d1c8f98b53282524f86907960b7af6e762",
+            admin: ["housirvip"],
+            createIssueManually: false,
+            distractionFreeMode: false,
+            perPage: 20,
+            pagerDirection: "last",
+            
+            
+            enableHotKey: true,
+            language: "zh-CN",
+        })
+        gitalk.render('comment-container')</script></div></div></div><div class="column column-left is-4-tablet is-4-desktop is-4-widescreen  order-1"><div class="card widget" data-type="profile"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-128x128 mx-auto mb-2"><img class="avatar" src="https://housirvip-blog.oss-cn-hangzhou.aliyuncs.com/what.jpeg" alt="housirvip"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">housirvip</p><p class="is-size-6 is-flex justify-content-center"><i class="fas fa-map-marker-alt mr-1"></i><span>China</span></p></div></div></nav><nav class="level is-mobile"><div class="level-item has-text-centered is-marginless"><div><p class="heading">Posts</p><a href="/archives"><p class="title">23</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">Categories</p><a href="/categories"><p class="title">0</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">Tags</p><a href="/tags"><p class="title">23</p></a></div></div></nav><div class="level"><a class="level-item button is-primary is-rounded" href="https://github.com/housirvip" target="_blank" rel="noopener">Follow</a></div><div class="level is-mobile is-multiline"><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Github" href="https://github.com/housirvip"><i class="fab fa-github"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="RSS" href="/"><i class="fas fa-rss"></i></a></div></div></div><!--!--><div class="card widget" data-type="links"><div class="card-content"><div class="menu"><h3 class="menu-label">Links</h3><ul class="menu-list"><li><a class="level is-mobile" href="https://github.com/housirvip" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">Github</span></span><span class="level-right"><span class="level-item tag">github.com</span></span></a></li></ul></div></div></div><!--!--><div class="card widget" data-type="recent-posts"><div class="card-content"><h3 class="menu-label">Recents</h3><article class="media"><div class="media-content"><p class="date"><time dateTime="2021-03-26T20:18:14.000Z">2021-03-27</time></p><p class="title"><a href="/2021/03/27/pve-openwrt/">PVE 下安装 Openwrt 软路由</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2021-03-25T06:22:59.000Z">2021-03-25</time></p><p class="title"><a href="/2021/03/25/ubuntu-docker/">Ubuntu 下安装 Docker 和 Portainer</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2021-03-25T05:15:07.000Z">2021-03-25</time></p><p class="title"><a href="/2021/03/25/gogs-drone/">Gogs + Drone 在 Docker 下配置持续集成</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2021-03-25T04:36:13.000Z">2021-03-25</time></p><p class="title"><a href="/2021/03/25/zerotier/">Zerotier 组网，访问路由器内网</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2021-03-22T07:12:05.000Z">2021-03-22</time></p><p class="title"><a href="/2021/03/22/MacOS%20app%E5%B7%B2%E6%8D%9F%E5%9D%8F/">MacOS app 已损坏，无法打开，你应该将它移到废纸篓</a></p></div></article></div></div><div class="card widget" data-type="archives"><div class="card-content"><div class="menu"><h3 class="menu-label">Archives</h3><ul class="menu-list"><li><a class="level is-mobile" href="/archives/2021/03/"><span class="level-start"><span class="level-item">March 2021</span></span><span class="level-end"><span class="level-item tag">5</span></span></a></li><li><a class="level is-mobile" href="/archives/2020/12/"><span class="level-start"><span class="level-item">December 2020</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2020/09/"><span class="level-start"><span class="level-item">September 2020</span></span><span class="level-end"><span class="level-item tag">6</span></span></a></li><li><a class="level is-mobile" href="/archives/2018/05/"><span class="level-start"><span class="level-item">May 2018</span></span><span class="level-end"><span class="level-item tag">3</span></span></a></li><li><a class="level is-mobile" href="/archives/2018/01/"><span class="level-start"><span class="level-item">January 2018</span></span><span class="level-end"><span class="level-item tag">4</span></span></a></li><li><a class="level is-mobile" href="/archives/2017/08/"><span class="level-start"><span class="level-item">August 2017</span></span><span class="level-end"><span class="level-item tag">4</span></span></a></li></ul></div></div></div><div class="card widget" data-type="tags"><div class="card-content"><div class="menu"><h3 class="menu-label">Tags</h3><div class="field is-grouped is-grouped-multiline"><div class="control"><a class="tags has-addons" href="/tags/Consul/"><span class="tag">Consul</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Dns/"><span class="tag">Dns</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Docker/"><span class="tag">Docker</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Golang/"><span class="tag">Golang</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Hackintosh/"><span class="tag">Hackintosh</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Java/"><span class="tag">Java</span><span class="tag">5</span></a></div><div class="control"><a class="tags has-addons" href="/tags/LeetCode/"><span class="tag">LeetCode</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Linux/"><span class="tag">Linux</span><span class="tag">4</span></a></div><div class="control"><a class="tags has-addons" href="/tags/MarkDown/"><span class="tag">MarkDown</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Math/"><span class="tag">Math</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Openwrt/"><span class="tag">Openwrt</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/SSR/"><span class="tag">SSR</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Web/"><span class="tag">Web</span><span class="tag">5</span></a></div><div class="control"><a class="tags has-addons" href="/tags/pve/"><span class="tag">pve</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E5%88%86%E5%B8%83%E5%BC%8F/"><span class="tag">分布式</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/"><span class="tag">数据库</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E6%A0%91%E8%8E%93%E6%B4%BE/"><span class="tag">树莓派</span><span class="tag">3</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E7%AE%97%E6%B3%95/"><span class="tag">算法</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"><span class="tag">设计模式</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E8%BD%AF%E8%B7%AF%E7%94%B1/"><span class="tag">软路由</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E9%9D%A2%E7%BB%8F/"><span class="tag">面经</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E9%AB%98%E5%B9%B6%E5%8F%91/"><span class="tag">高并发</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E9%BB%91%E8%8B%B9%E6%9E%9C/"><span class="tag">黑苹果</span><span class="tag">1</span></a></div></div></div></div></div></div><!--!--></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="https://housirvip-blog.oss-cn-hangzhou.aliyuncs.com/logo/housirvip%400.25x.jpg" alt="Hexo" height="28"></a><p class="is-size-7"><span>&copy; 2023 John Doe</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a><br><span id="busuanzi_container_site_uv">Visited by <span id="busuanzi_value_site_uv">0</span> users</span></p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/housirvip"><i class="fab fa-github"></i></a></p></div></div></div></div></footer><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script><script>moment.locale("en");</script><script>var IcarusThemeSettings = {
+            article: {
+                highlight: {
+                    clipboard: true,
+                    fold: 'unfolded'
+                }
+            }
+        };</script><script src="/js/column.js"></script><script src="/js/animation.js"></script><a id="back-to-top" title="Back to top" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script src="/js/back_to_top.js" defer></script><!--!--><!--!--><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.js" defer></script><script>window.addEventListener("load", () => {
+      window.cookieconsent.initialise({
+        type: "info",
+        theme: "edgeless",
+        static: false,
+        position: "bottom-left",
+        content: {
+          message: "This website uses cookies to improve your experience.",
+          dismiss: "Got it!",
+          allow: "Allow cookies",
+          deny: "Decline",
+          link: "Learn more",
+          policy: "Cookie Policy",
+          href: "https://www.cookiesandyou.com/",
+        },
+        palette: {
+          popup: {
+            background: "#edeff5",
+            text: "#838391"
+          },
+          button: {
+            background: "#4b81e8"
+          },
+        },
+      });
+    });</script><script src="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/js/lightgallery.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
+            if (typeof $.fn.lightGallery === 'function') {
+                $('.article').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof $.fn.justifiedGallery === 'function') {
+                if ($('.justified-gallery > p > .gallery-item').length) {
+                    $('.justified-gallery > p > .gallery-item').unwrap();
+                }
+                $('.justified-gallery').justifiedGallery();
+            }
+        });</script><!--!--><!--!--><!--!--><!--!--><!--!--><script src="/js/main.js" defer></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="Type something..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script src="/js/insight.js" defer></script><script>document.addEventListener('DOMContentLoaded', function () {
+            loadInsight({"contentUrl":"/content.json"}, {"hint":"Type something...","untitled":"(Untitled)","posts":"Posts","pages":"Pages","categories":"Categories","tags":"Tags"});
+        });</script></body></html>

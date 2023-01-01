@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>NoSQL与SQL对比 - Hexo</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="housirvip"><meta name="msapplication-TileImage" content="https://housirvip-blog.oss-cn-hangzhou.aliyuncs.com/logo/housirvip%400.25x.jpg"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="housirvip"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="description" content="housirvip&amp;#39;s personal blog"><meta property="og:type" content="blog"><meta property="og:title" content="NoSQL与SQL对比"><meta property="og:url" content="http://example.com/2018/01/02/SQL%E5%92%8CNOSQL/"><meta property="og:site_name" content="housirvip"><meta property="og:description" content="housirvip&amp;#39;s personal blog"><meta property="og:locale" content="en_US"><meta property="og:image" content="https://housirvip-blog.oss-cn-hangzhou.aliyuncs.com/static/2018-06-12-085427.jpg"><meta property="article:published_time" content="2018-01-02T04:15:24.000Z"><meta property="article:modified_time" content="2023-01-01T12:38:18.050Z"><meta property="article:author" content="housirvip"><meta property="article:tag" content="Web"><meta property="article:tag" content="数据库"><meta property="twitter:card" content="summary"><meta property="twitter:image:src" content="https://housirvip-blog.oss-cn-hangzhou.aliyuncs.com/static/2018-06-12-085427.jpg"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"http://example.com/2018/01/02/SQL%E5%92%8CNOSQL/"},"headline":"NoSQL与SQL对比","image":["https://housirvip-blog.oss-cn-hangzhou.aliyuncs.com/static/2018-06-12-085427.jpg"],"datePublished":"2018-01-02T04:15:24.000Z","dateModified":"2023-01-01T12:38:18.050Z","author":{"@type":"Person","name":"John Doe"},"publisher":{"@type":"Organization","name":"Hexo","logo":{"@type":"ImageObject","url":"https://housirvip-blog.oss-cn-hangzhou.aliyuncs.com/logo/housirvip%400.25x.jpg"}},"description":"SQL (Structured Query Language) 数据库，指关系型数据库。主要代表：SQL Server，Oracle，MySQL(开源)，PostgreSQL(开源)。 NoSQL（Not Only SQL）泛指非关系型数据库。主要代表：MongoDB，Redis，CouchDB，HBase。"}</script><link rel="canonical" href="http://example.com/2018/01/02/SQL%E5%92%8CNOSQL/"><link rel="icon" href="https://housirvip-blog.oss-cn-hangzhou.aliyuncs.com/logo/housirvip%400.25x.jpg"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.0.0/css/all.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-light.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link rel="stylesheet" href="/css/default.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><!--!--><!--!--><script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" defer></script><!--!--><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/css/justifiedGallery.min.css"><!--!--><!--!--><style>.pace{-webkit-pointer-events:none;pointer-events:none;-webkit-user-select:none;-moz-user-select:none;user-select:none}.pace-inactive{display:none}.pace .pace-progress{background:#3273dc;position:fixed;z-index:2000;top:0;right:100%;width:100%;height:2px}</style><script src="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/pace.min.js"></script><!--!--><!--!--><!-- hexo injector head_end start --><script>
+  (function () {
+      function switchTab() {
+          if (!location.hash) {
+            return;
+          }
+
+          const id = '#' + CSS.escape(location.hash.substring(1));
+          const $tabMenu = document.querySelector(`.tabs a[href="${id}"]`);
+          if (!$tabMenu) {
+            return;
+          }
+
+          const $tabMenuContainer = $tabMenu.parentElement.parentElement;
+          Array.from($tabMenuContainer.children).forEach($menu => $menu.classList.remove('is-active'));
+          Array.from($tabMenuContainer.querySelectorAll('a'))
+              .map($menu => document.getElementById($menu.getAttribute("href").substring(1)))
+              .forEach($content => $content.classList.add('is-hidden'));
+
+          if ($tabMenu) {
+              $tabMenu.parentElement.classList.add('is-active');
+          }
+          const $activeTab = document.querySelector(id);
+          if ($activeTab) {
+              $activeTab.classList.remove('is-hidden');
+          }
+      }
+      switchTab();
+      window.addEventListener('hashchange', switchTab, false);
+  })();
+  </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"></head><body class="is-2-column"><nav class="navbar navbar-main"><div class="container navbar-container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="https://housirvip-blog.oss-cn-hangzhou.aliyuncs.com/logo/housirvip%400.25x.jpg" alt="Hexo" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">Home</a><a class="navbar-item" href="/archives">Archives</a><a class="navbar-item" href="/categories">Categories</a><a class="navbar-item" href="/tags">Tags</a><a class="navbar-item" href="/about">About</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a><a class="navbar-item search" title="Search" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-8-widescreen"><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item">Posted&nbsp;<time dateTime="2018-01-02T04:15:24.000Z" title="1/2/2018, 12:15:24 PM">2018-01-02</time></span><span class="level-item">Updated&nbsp;<time dateTime="2023-01-01T12:38:18.050Z" title="1/1/2023, 8:38:18 PM">2023-01-01</time></span><span class="level-item">13 minutes read (About 1938 words)</span><span class="level-item" id="busuanzi_container_page_pv"><span id="busuanzi_value_page_pv">0</span>&nbsp;visits</span></div></div><h1 class="title is-3 is-size-4-mobile">NoSQL与SQL对比</h1><div class="content"><h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><blockquote>
+<p>SQL (Structured Query Language) 数据库，指关系型数据库。主要代表：SQL Server，Oracle，MySQL(开源)，PostgreSQL(开源)。<br>NoSQL（Not Only SQL）泛指非关系型数据库。主要代表：MongoDB，Redis，CouchDB，HBase。</p>
+</blockquote>
+<p>随着web2.0的快速发展，非关系型、分布式数据存储得到了快速的发展，它们不保证关系数据的ACID特性。NoSQL概念在2009年被提了出来。NoSQL最常见的解释是“non-relational”，“Not Only SQL”也被很多人接受。（“NoSQL”一词最早于1998年被用于一个轻量级的关系数据库的名字。）</p>
+<p>NoSQL被我们用得最多的当数key-value存储，当然还有其他的文档型的、列存储、图型数据库、xml数据库等。在NoSQL概念提出之前，这些数据库就被用于各种系统当中，但是却很少用于web互联网应用。比如cdb、qdbm、bdb数据库。</p>
+<p><img src="https://housirvip-blog.oss-cn-hangzhou.aliyuncs.com/static/2018-06-12-085427.jpg"></p>
+<h2 id="区别"><a href="#区别" class="headerlink" title="区别"></a>区别</h2><hr>
+<ol>
+<li><p>存储方式<br>　　SQL数据存在特定结构的表中；而NoSQL则更加灵活和可扩展，存储方式可以省是JSON文档、哈希表或者其他方式。SQL通常以数据库表形式存储数据。举个栗子，存个学生借书数据：<br>而NoSQL存储方式比较灵活，比如使用类JSON文件存储上表中熊大的借阅数据：</p>
+</li>
+<li><p>表&#x2F;数据集合的数据的关系<br>　　在SQL中，必须定义好表和字段结构后才能添加数据，例如定义表的主键(primary key)，索引(index),触发器(trigger),存储过程(stored procedure)等。表结构可以在被定义之后更新，但是如果有比较大的结构变更的话就会变得比较复杂。在NoSQL中，数据可以在任何时候任何地方添加，不需要先定义表。例如下面这段代码会自动创建一个新的”借阅表”数据集合：<br>NoSQL也可以在数据集中建立索引。以MongoDB为例，会自动在数据集合创建后创建唯一值_id字段，这样的话就可以在数据集创建后增加索引。<br>从这点来看，NoSQL可能更加适合初始化数据还不明确或者未定的项目中。</p>
+</li>
+<li><p>外部数据存储<br>　　SQL中如何需要增加外部关联数据的话，规范化做法是在原表中增加一个外键，关联外部数据表。例如需要在借阅表中增加审核人信息，先建立一个审核人表：<br>再在原来的借阅人表中增加审核人外键：<br>这样如果我们需要更新审核人个人信息的时候只需要更新审核人表而不需要对借阅人表做更新。而在NoSQL中除了这种规范化的外部数据表做法以外，我们还能用如下的非规范化方式把外部数据直接放到原数据集中，以提高查询效率。缺点也比较明显，更新审核人数据的时候将会比较麻烦。</p>
+</li>
+<li><p>SQL中的JOIN查询<br>　　SQL中可以使用JOIN表链接方式将多个关系数据表中的数据用一条简单的查询语句查询出来。NoSQL暂未提供类似JOIN的查询方式对多个数据集中的数据做查询。所以大部分NoSQL使用非规范化的数据存储方式存储数据。</p>
+</li>
+<li><p>数据耦合性<br>　　SQL中不允许删除已经被使用的外部数据，例如审核人表中的”熊三”已经被分配给了借阅人熊大，那么在审核人表中将不允许删除熊三这条数据，以保证数据完整性。而NoSQL中则没有这种强耦合的概念，可以随时删除任何数据。</p>
+</li>
+<li><p>事务<br>　　SQL中如果多张表数据需要同批次被更新，即如果其中一张表更新失败的话其他表也不能更新成功。这种场景可以通过事务来控制，可以在所有命令完成后再统一提交事务。而NoSQL中没有事务这个概念，每一个数据集的操作都是原子级的。</p>
+</li>
+<li><p>增删改查语法</p>
+</li>
+<li><p>查询性能<br>　　在相同水平的系统设计的前提下，因为NoSQL中省略了JOIN查询的消耗，故理论上性能上是优于SQL的。</p>
+</li>
+</ol>
+<h2 id="优缺点"><a href="#优缺点" class="headerlink" title="优缺点"></a>优缺点</h2><hr>
+<h3 id="关系型数据库"><a href="#关系型数据库" class="headerlink" title="关系型数据库"></a>关系型数据库</h3><p>&lt;1&gt;关系数据库的特点是：</p>
+<ul>
+<li>数据关系模型基于关系模型，结构化存储，完整性约束。</li>
+<li>基于二维表及其之间的联系，需要连接、并、交、差、除等数据操作。</li>
+<li>采用结构化的查询语言（SQL）做数据读写。</li>
+<li>操作需要数据的一致性，需要事务甚至是强一致性。</li>
+</ul>
+<p>&lt;2&gt;优点：</p>
+<ul>
+<li>保持数据的一致性（事务处理）</li>
+<li>可以进行join等复杂查询。</li>
+<li>通用化，技术成熟。</li>
+</ul>
+<p>&lt;3&gt;缺点:</p>
+<ul>
+<li>数据读写必须经过sql解析，大量数据、高并发下读写性能不足。</li>
+<li>对数据做读写，或修改数据结构时需要加锁，影响并发操作。</li>
+<li>无法适应非结构化存储。</li>
+<li>扩展困难。</li>
+<li>昂贵、复杂。</li>
+</ul>
+<h3 id="NoSQL数据库"><a href="#NoSQL数据库" class="headerlink" title="NoSQL数据库"></a>NoSQL数据库</h3><p>&lt;1&gt;NoSQL数据库的特点是：</p>
+<ul>
+<li>非结构化的存储。</li>
+<li>基于多维关系模型。</li>
+<li>具有特有的使用场景。</li>
+</ul>
+<p>&lt;2&gt;优点：</p>
+<ul>
+<li>高并发，大数据下读写能力较强。</li>
+<li>基本支持分布式，易于扩展，可伸缩。</li>
+<li>简单，弱结构化存储。</li>
+</ul>
+<p>&lt;3&gt;缺点:</p>
+<ul>
+<li>join等复杂操作能力较弱。</li>
+<li>事务支持较弱。</li>
+<li>通用性差。</li>
+<li>无完整约束复杂业务场景支持较差。</li>
+</ul>
+<h2 id="补充"><a href="#补充" class="headerlink" title="补充"></a>补充</h2><hr>
+<p>目前许多大型互联网项目都会选用MySQL（或任何关系型数据库） + NoSQL的组合方案。</p>
+<ul>
+<li><p>关系型数据库适合存储结构化数据，如用户的帐号、地址：<br>　　1）这些数据通常需要做结构化查询（嗯，好像是废话），比如join，这时候，关系型数据库就要胜出一筹<br>　　2）这些数据的规模、增长的速度通常是可以预期的<br>　　3）事务性、一致性</p>
+</li>
+<li><p>NoSQL适合存储非结构化数据，如文章、评论：<br>　　1）这些数据通常用于模糊处理，如全文搜索、机器学习<br>　　2）这些数据是海量的，而且增长的速度是难以预期的，<br>　　3）根据数据的特点，NoSQL数据库通常具有无限（至少接近）伸缩性<br>　　4）按key获取数据效率很高，但是对join或其他结构化查询的支持就比较差</p>
+</li>
+</ul>
+<p>　　基于它们的适用范围不同，目前主流架构才会采用组合方案，一个也不能少。目前为止，还没有出现一个能够通吃各种场景的数据库，而且根据CAP理论，这样的数据库是不存在的。</p>
+</div><div class="article-licensing box"><div class="licensing-title"><p>NoSQL与SQL对比</p><p><a href="http://example.com/2018/01/02/SQL和NOSQL/">http://example.com/2018/01/02/SQL和NOSQL/</a></p></div><div class="licensing-meta level is-mobile"><div class="level-left"><div class="level-item is-narrow"><div><h6>Author</h6><p>John Doe</p></div></div><div class="level-item is-narrow"><div><h6>Posted on</h6><p>2018-01-02</p></div></div><div class="level-item is-narrow"><div><h6>Updated on</h6><p>2023-01-01</p></div></div><div class="level-item is-narrow"><div><h6>Licensed under</h6><p><a class="icons" rel="noopener" target="_blank" title="Creative Commons" href="https://creativecommons.org/"><i class="icon fab fa-creative-commons"></i></a><a class="icons" rel="noopener" target="_blank" title="Attribution" href="https://creativecommons.org/licenses/by/4.0/"><i class="icon fab fa-creative-commons-by"></i></a><a class="icons" rel="noopener" target="_blank" title="Noncommercial" href="https://creativecommons.org/licenses/by-nc/4.0/"><i class="icon fab fa-creative-commons-nc"></i></a></p></div></div></div></div></div><div class="article-tags is-size-7 mb-4"><span class="mr-2">#</span><a class="link-muted mr-2" rel="tag" href="/tags/Web/">Web</a><a class="link-muted mr-2" rel="tag" href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a></div><!--!--></article></div><!--!--><nav class="post-navigation mt-4 level is-mobile"><div class="level-start"><a class="article-nav-prev level level-item link-muted" href="/2018/01/18/kmp/"><i class="level-item fas fa-chevron-left"></i><span class="level-item">KMP算法个人理解</span></a></div><div class="level-end"><a class="article-nav-next level level-item link-muted" href="/2018/01/02/%E9%AB%98%E5%B9%B6%E5%8F%91web%E8%AE%BE%E8%AE%A1/"><span class="level-item">高并发web系统设计</span><i class="level-item fas fa-chevron-right"></i></a></div></nav><div class="card"><div class="card-content"><h3 class="title is-5">Comments</h3><div id="comment-container"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.css"><script src="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.min.js"></script><script>var gitalk = new Gitalk({
+            id: "3c1e4179a8a19eeaf600893cc3bfd120",
+            repo: "housirvip.github.io",
+            owner: "housirvip",
+            clientID: "2030be9e8c1e85c8945b",
+            clientSecret: "ce8691d1c8f98b53282524f86907960b7af6e762",
+            admin: ["housirvip"],
+            createIssueManually: false,
+            distractionFreeMode: false,
+            perPage: 20,
+            pagerDirection: "last",
+            
+            
+            enableHotKey: true,
+            language: "zh-CN",
+        })
+        gitalk.render('comment-container')</script></div></div></div><div class="column column-left is-4-tablet is-4-desktop is-4-widescreen  order-1"><div class="card widget" data-type="profile"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-128x128 mx-auto mb-2"><img class="avatar" src="https://housirvip-blog.oss-cn-hangzhou.aliyuncs.com/what.jpeg" alt="housirvip"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">housirvip</p><p class="is-size-6 is-flex justify-content-center"><i class="fas fa-map-marker-alt mr-1"></i><span>China</span></p></div></div></nav><nav class="level is-mobile"><div class="level-item has-text-centered is-marginless"><div><p class="heading">Posts</p><a href="/archives"><p class="title">23</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">Categories</p><a href="/categories"><p class="title">0</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">Tags</p><a href="/tags"><p class="title">23</p></a></div></div></nav><div class="level"><a class="level-item button is-primary is-rounded" href="https://github.com/housirvip" target="_blank" rel="noopener">Follow</a></div><div class="level is-mobile is-multiline"><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Github" href="https://github.com/housirvip"><i class="fab fa-github"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="RSS" href="/"><i class="fas fa-rss"></i></a></div></div></div><!--!--><div class="card widget" data-type="links"><div class="card-content"><div class="menu"><h3 class="menu-label">Links</h3><ul class="menu-list"><li><a class="level is-mobile" href="https://github.com/housirvip" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">Github</span></span><span class="level-right"><span class="level-item tag">github.com</span></span></a></li></ul></div></div></div><!--!--><div class="card widget" data-type="recent-posts"><div class="card-content"><h3 class="menu-label">Recents</h3><article class="media"><div class="media-content"><p class="date"><time dateTime="2021-03-26T20:18:14.000Z">2021-03-27</time></p><p class="title"><a href="/2021/03/27/pve-openwrt/">PVE 下安装 Openwrt 软路由</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2021-03-25T06:22:59.000Z">2021-03-25</time></p><p class="title"><a href="/2021/03/25/ubuntu-docker/">Ubuntu 下安装 Docker 和 Portainer</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2021-03-25T05:15:07.000Z">2021-03-25</time></p><p class="title"><a href="/2021/03/25/gogs-drone/">Gogs + Drone 在 Docker 下配置持续集成</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2021-03-25T04:36:13.000Z">2021-03-25</time></p><p class="title"><a href="/2021/03/25/zerotier/">Zerotier 组网，访问路由器内网</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2021-03-22T07:12:05.000Z">2021-03-22</time></p><p class="title"><a href="/2021/03/22/MacOS%20app%E5%B7%B2%E6%8D%9F%E5%9D%8F/">MacOS app 已损坏，无法打开，你应该将它移到废纸篓</a></p></div></article></div></div><div class="card widget" data-type="archives"><div class="card-content"><div class="menu"><h3 class="menu-label">Archives</h3><ul class="menu-list"><li><a class="level is-mobile" href="/archives/2021/03/"><span class="level-start"><span class="level-item">March 2021</span></span><span class="level-end"><span class="level-item tag">5</span></span></a></li><li><a class="level is-mobile" href="/archives/2020/12/"><span class="level-start"><span class="level-item">December 2020</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2020/09/"><span class="level-start"><span class="level-item">September 2020</span></span><span class="level-end"><span class="level-item tag">6</span></span></a></li><li><a class="level is-mobile" href="/archives/2018/05/"><span class="level-start"><span class="level-item">May 2018</span></span><span class="level-end"><span class="level-item tag">3</span></span></a></li><li><a class="level is-mobile" href="/archives/2018/01/"><span class="level-start"><span class="level-item">January 2018</span></span><span class="level-end"><span class="level-item tag">4</span></span></a></li><li><a class="level is-mobile" href="/archives/2017/08/"><span class="level-start"><span class="level-item">August 2017</span></span><span class="level-end"><span class="level-item tag">4</span></span></a></li></ul></div></div></div><div class="card widget" data-type="tags"><div class="card-content"><div class="menu"><h3 class="menu-label">Tags</h3><div class="field is-grouped is-grouped-multiline"><div class="control"><a class="tags has-addons" href="/tags/Consul/"><span class="tag">Consul</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Dns/"><span class="tag">Dns</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Docker/"><span class="tag">Docker</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Golang/"><span class="tag">Golang</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Hackintosh/"><span class="tag">Hackintosh</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Java/"><span class="tag">Java</span><span class="tag">5</span></a></div><div class="control"><a class="tags has-addons" href="/tags/LeetCode/"><span class="tag">LeetCode</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Linux/"><span class="tag">Linux</span><span class="tag">4</span></a></div><div class="control"><a class="tags has-addons" href="/tags/MarkDown/"><span class="tag">MarkDown</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Math/"><span class="tag">Math</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Openwrt/"><span class="tag">Openwrt</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/SSR/"><span class="tag">SSR</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Web/"><span class="tag">Web</span><span class="tag">5</span></a></div><div class="control"><a class="tags has-addons" href="/tags/pve/"><span class="tag">pve</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E5%88%86%E5%B8%83%E5%BC%8F/"><span class="tag">分布式</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/"><span class="tag">数据库</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E6%A0%91%E8%8E%93%E6%B4%BE/"><span class="tag">树莓派</span><span class="tag">3</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E7%AE%97%E6%B3%95/"><span class="tag">算法</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"><span class="tag">设计模式</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E8%BD%AF%E8%B7%AF%E7%94%B1/"><span class="tag">软路由</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E9%9D%A2%E7%BB%8F/"><span class="tag">面经</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E9%AB%98%E5%B9%B6%E5%8F%91/"><span class="tag">高并发</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E9%BB%91%E8%8B%B9%E6%9E%9C/"><span class="tag">黑苹果</span><span class="tag">1</span></a></div></div></div></div></div></div><!--!--></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="https://housirvip-blog.oss-cn-hangzhou.aliyuncs.com/logo/housirvip%400.25x.jpg" alt="Hexo" height="28"></a><p class="is-size-7"><span>&copy; 2023 John Doe</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a><br><span id="busuanzi_container_site_uv">Visited by <span id="busuanzi_value_site_uv">0</span> users</span></p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/housirvip"><i class="fab fa-github"></i></a></p></div></div></div></div></footer><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script><script>moment.locale("en");</script><script>var IcarusThemeSettings = {
+            article: {
+                highlight: {
+                    clipboard: true,
+                    fold: 'unfolded'
+                }
+            }
+        };</script><script src="/js/column.js"></script><script src="/js/animation.js"></script><a id="back-to-top" title="Back to top" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script src="/js/back_to_top.js" defer></script><!--!--><!--!--><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.js" defer></script><script>window.addEventListener("load", () => {
+      window.cookieconsent.initialise({
+        type: "info",
+        theme: "edgeless",
+        static: false,
+        position: "bottom-left",
+        content: {
+          message: "This website uses cookies to improve your experience.",
+          dismiss: "Got it!",
+          allow: "Allow cookies",
+          deny: "Decline",
+          link: "Learn more",
+          policy: "Cookie Policy",
+          href: "https://www.cookiesandyou.com/",
+        },
+        palette: {
+          popup: {
+            background: "#edeff5",
+            text: "#838391"
+          },
+          button: {
+            background: "#4b81e8"
+          },
+        },
+      });
+    });</script><script src="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/js/lightgallery.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
+            if (typeof $.fn.lightGallery === 'function') {
+                $('.article').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof $.fn.justifiedGallery === 'function') {
+                if ($('.justified-gallery > p > .gallery-item').length) {
+                    $('.justified-gallery > p > .gallery-item').unwrap();
+                }
+                $('.justified-gallery').justifiedGallery();
+            }
+        });</script><!--!--><!--!--><!--!--><!--!--><!--!--><script src="/js/main.js" defer></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="Type something..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script src="/js/insight.js" defer></script><script>document.addEventListener('DOMContentLoaded', function () {
+            loadInsight({"contentUrl":"/content.json"}, {"hint":"Type something...","untitled":"(Untitled)","posts":"Posts","pages":"Pages","categories":"Categories","tags":"Tags"});
+        });</script></body></html>
